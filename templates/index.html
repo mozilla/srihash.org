@@ -1,0 +1,42 @@
+{{! This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/. }}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+    <p>Sub-resource integrity is a
+      new <a href="http://www.w3.org/TR/SRI/">specification</a> which allows
+      web developers to ensure that the third-party resources they load
+      match a particular hash.</p>
+
+    <h2>Generate a third-party resource</h2>
+    <p>Enter the URL of the sub-resource you wish to include on your site:</p>
+    <form action="/hash" method="POST">
+      <input name="url" type="text" placeholder="https://example.com/script-1.0.1.js" size="50">
+      <input value="Hash!" type="submit">
+    </form>
+    <p>Alternatively, you can use the following command-line to generate a
+      hash manually:</p>
+    <code>cat file.js | openssl dgst -sha256 -binary | openssl enc -base64 -A | sed -e 's/+/-/g' -e 's/\//_/g' -e 's/=*$//g'</code>
+
+    <h2>Test your browser</h2>
+    <p>To verify whether or not your browser supports sub-resource
+      integrity, open this <a href="https://btoews.github.io/sri_test/">test
+        page</a>.</p>
+    <p>If it doesn't, download the latest version
+      of <a href="https://www.mozilla.org/firefox/new/">Firefox</a>
+      or <a href="https://www.google.com/chrome/">Chrome</a> and try
+      again.</p>
+
+    <hr>
+
+    <p>The code behind this service is hosted
+      on <a href="https://github.com/fmarier/srihash.org">Github</a> and is
+      licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla
+        Public License 2.0</a>.</p>
+  </body>
+</html>
