@@ -24,7 +24,7 @@ This is an example workflow to make it easier to submit Pull Requests. Imagine y
 2. The clone the upstream (as origin) and add your own repo as a remote:
 
     ```sh
-    $ git clone git://github.com/fmarier/srihash.org.git
+    $ git clone git://github.com/mozilla/srihash.org.git
     $ cd srihash.org
     $ git remote add user1 git@github.com:user1/srihash.org.git
 ```

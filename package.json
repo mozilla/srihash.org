@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/fmarier/srihash.org.git"
+    "url": "git://github.com/mozilla/srihash.org.git"
   },
   "author": "Francois Marier <francois@mozilla.com>",
   "license": "MPL 2.0",
   "bugs": {
-    "url": "https://github.com/fmarier/srihash.org/issues"
+    "url": "https://github.com/mozilla/srihash.org/issues"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
