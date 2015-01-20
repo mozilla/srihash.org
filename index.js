@@ -30,8 +30,9 @@ server.route({
   method: 'POST',
   path: '/hash',
   handler: function (request, reply) {
-    reply(helpers.generateElement(request.payload.url, 'sha-256'))
-      .type('text/plain');
+    helpers.generateElement(request.payload.url, 'sha-256', function (result) {
+      reply(result).type('text/plain');
+    });
   }
 });
   
