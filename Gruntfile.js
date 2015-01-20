@@ -22,6 +22,14 @@ module.exports = function (grunt) {
           'scripts/*',
           'templates/*.html'
         ]
+      },
+      tests: {
+        options: {
+          pattern: 'Any copyright is dedicated to the Public Domain.'
+        },
+        src: [
+          'test/*.js'
+        ]
       }
     },
 

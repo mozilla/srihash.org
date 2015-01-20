@@ -5,3 +5,4 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 node_modules/.bin/grunt || exit 1
+node_modules/.bin/tap test/ || exit 1
