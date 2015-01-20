@@ -29,3 +29,24 @@ test(
     t.end();
   }
 )
+
+test(
+  'hashString',
+  function (t) {
+    var badHeader1 = helpers.isEligible({'refresh': '1'});
+    t.notOk(badHeader1, 'Refresh header');
+    var badHeader2 = helpers.isEligible({'WWW-Authenticate': '1'});
+    t.notOk(badHeader2, 'WWW-Authenticate header');
+    var badHeader3 = helpers.isEligible({'authorization': null});
+    t.notOk(badHeader3, 'Authorization header');
+    var corsHeader = helpers.isEligible({'Access-Control-Allow-Origin': '*'});
+    t.ok(corsHeader, 'CORS header');
+    var cacheHeader1 = helpers.isEligible({'Cache-Control': 'public, no-transform'});
+    t.ok(cacheHeader1, 'Publicly cachable');
+    var cacheHeader2 = helpers.isEligible({'Cache-Control': 'max-age=1000,private'});
+    t.notOk(cacheHeader2, 'Cache-Control: private');
+    var cacheHeader3 = helpers.isEligible({'Cache-Control': 'no-store'});
+    t.notOk(cacheHeader3, 'Cache-Control: no-store');
+    t.end();
+  }
+)
