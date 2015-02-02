@@ -7,6 +7,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-copyright');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -41,9 +42,16 @@ module.exports = function (grunt) {
       app: [
         '*.js'
       ]
+    },
+
+    nodemon: {
+      dev: {
+        script: 'index.js'
+      }
     }
   });
 
   grunt.registerTask('default', ['lint', 'copyright']);
   grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('dev', ['nodemon']);
 };
