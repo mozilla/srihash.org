@@ -16,7 +16,7 @@ test(
 )
 
 test(
-  'hashString',
+  'upgradeToHttps',
   function (t) {
     var knownHttpsURL = helpers.upgradeToHttps('https://code.jquery.com/script.js');
     t.equals(knownHttpsURL, 'https://code.jquery.com/script.js', 'HTTPS from known CDN');
@@ -31,7 +31,7 @@ test(
 )
 
 test(
-  'hashString',
+  'isEligible',
   function (t) {
     var badHeader1 = helpers.isEligible({'refresh': '1'});
     t.notOk(badHeader1, 'Refresh header');
