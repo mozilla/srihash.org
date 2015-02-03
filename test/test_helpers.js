@@ -20,22 +20,25 @@ test(
 );
 
 test(
-  'isEligible',
+  'eligibility',
   function (t) {
-    var badHeader1 = helpers.isEligible({'refresh': '1'});
-    t.notOk(badHeader1, 'Refresh header');
-    var badHeader2 = helpers.isEligible({'WWW-Authenticate': '1'});
-    t.notOk(badHeader2, 'WWW-Authenticate header');
-    var badHeader3 = helpers.isEligible({'authorization': null});
-    t.notOk(badHeader3, 'Authorization header');
-    var corsHeader = helpers.isEligible({'Access-Control-Allow-Origin': '*'});
-    t.ok(corsHeader, 'CORS header');
-    var cacheHeader1 = helpers.isEligible({'Cache-Control': 'public, no-transform'});
-    t.ok(cacheHeader1, 'Publicly cachable');
-    var cacheHeader2 = helpers.isEligible({'Cache-Control': 'max-age=1000,private'});
-    t.notOk(cacheHeader2, 'Cache-Control: private');
-    var cacheHeader3 = helpers.isEligible({'Cache-Control': 'no-store'});
-    t.notOk(cacheHeader3, 'Cache-Control: no-store');
+    // Simulate a XMLHttpRequest object
+    var FauxXHR = function (headers) {
+      var that = this;
+      that.getResponseHeader = function (header) {
+        return headers[header];
+      }
+      return that;
+    };
+    var badHeader1 = new FauxXHR({'refresh': '1'});
+    t.deepEqual(helpers.eligibility(badHeader1), ['refresh'], 'refresh is an issue');
+    var badHeader2 = new FauxXHR({'www-authenticate': '1'});
+    t.deepEqual(helpers.eligibility(badHeader2), ['www-authenticate'], 'www-auth is an issue');
+    var badHeader3 = new FauxXHR({'authorization': 'baSe64DaTA'});
+    t.deepEqual(helpers.eligibility(badHeader3), ['authorization'], 'auth is an issue');
+    var cacheHeader1 = new FauxXHR({'cache-control': 'max-age=1000,private'});
+    t.deepEqual(helpers.eligibility(cacheHeader1), ['no-cache'], 'cache expiry is an issue');
+    // TODO: More "no-cache" checks
     t.end();
   }
 );
