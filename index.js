@@ -47,6 +47,20 @@ server.route({
   }
 });
 
+server.route({
+  method: 'POST',
+  path: '/generate',
+  handler: function (request, reply) {
+    var options = {
+      url: request.payload.url,
+      algorithms: request.payload.algorithms
+    };
+    helpers.generate(options, function (result) {
+      reply(JSON.stringify(result)).type('application/json');
+    });
+  }
+});
+
 server.start(function () {
   console.log('Server running at:', server.info.uri);
 });
