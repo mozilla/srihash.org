@@ -20,6 +20,8 @@ module.exports = function (grunt) {
         src: [
           '*.js',
           'lib/*.js',
+          'public/*.css',
+          'public/*.js',
           'scripts/*',
           'templates/*.html'
         ]
