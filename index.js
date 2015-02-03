@@ -27,11 +27,36 @@ server.route({
 });
 
 server.route({
-  method: 'POST',
+  method: 'GET',
+  path: '/public/{p*}',
+  handler: {
+    directory: {
+      path: 'public',
+      listing: true
+    }
+  }
+});
+
+server.route({
+  method: ['GET', 'POST'],
   path: '/hash',
   handler: function (request, reply) {
     helpers.generateElement(request.payload.url, 'sha-256', function (result) {
       reply(result).type('text/plain');
+    });
+  }
+});
+
+server.route({
+  method: 'POST',
+  path: '/generate',
+  handler: function (request, reply) {
+    var options = {
+      url: request.payload.url,
+      algorithms: request.payload.algorithms
+    };
+    helpers.generate(options, function (result) {
+      reply(JSON.stringify(result)).type('application/json');
     });
   }
 });
