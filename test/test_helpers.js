@@ -17,9 +17,8 @@ test(
     t.equals(unknownHttpURL, 'http://example.com/script.js', 'HTTP from unknown CDN');
     t.end();
   }
-)
+);
 
-/*
 test(
   'isEligible',
   function (t) {
@@ -39,5 +38,23 @@ test(
     t.notOk(cacheHeader3, 'Cache-Control: no-store');
     t.end();
   }
-)
-*/
+);
+
+// Ideally we should find a way to test this without using the network
+test(
+  'generateElement',
+  function (t) {
+    helpers.generateElement('https://code.jquery.com/jquery-1.11.2.min.js', 'sha-256',
+      function (element) {
+        t.equals(element, '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="ni:///sha-256;Ls0pXSlb7AYs7evhd-VLnWsZ_AqEHcXBeMZUycz_CcA?ct=application/x-javascript"></script>', 'jQuery 1.11.2 using sha256');
+
+        helpers.generateElement('https://code.jquery.com/jquery-1.11.2.min.js', 'sha-512',
+          function (element) {
+            t.equals(element, '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="ni:///sha-512;eBrO3JneTOjVPZtDoVjGReqxsj39_WtXs8RCsRrMSjRODVsAZ9S3i7Fzq73tdfuRxBDytaWPcdQ4qmJm0EjZig?ct=application/x-javascript"></script>', 'jQuery 1.11.2 using sha512');
+            t.end();
+          }
+        );
+      }
+    );
+  }
+);
