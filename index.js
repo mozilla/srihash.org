@@ -27,6 +27,17 @@ server.route({
 });
 
 server.route({
+  method: 'GET',
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: 'public',
+      lookupCompressed: true
+    }
+  }
+});
+
+server.route({
   method: 'POST',
   path: '/hash',
   handler: function (request, reply) {
@@ -35,7 +46,7 @@ server.route({
     });
   }
 });
-  
+
 server.start(function () {
   console.log('Server running at:', server.info.uri);
 });
