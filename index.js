@@ -18,6 +18,9 @@ server.views({
   path: Path.join(__dirname, 'templates')
 });
 
+/**
+ * Serve index.js
+ */
 server.route({
   method: 'GET',
   path: '/',
@@ -26,6 +29,9 @@ server.route({
   }
 });
 
+/**
+ * Serve public files
+ */
 server.route({
   method: 'GET',
   path: '/{param*}',
@@ -37,13 +43,39 @@ server.route({
   }
 });
 
+/**
+ * Return SRI lookup in JSON format
+ */
+server.route({
+  method: 'POST',
+  path: '/generate',
+  handler: function (request, reply) {
+    var options = {
+      url: request.payload.url,
+      algorithms: request.payload.algorithms
+    };
+    helpers.generate(options, function (result) {
+      reply(JSON.stringify(result)).type('application/json');
+    });
+  }
+});
+
+
+/**
+ * Return SRI lookup in HTML format.
+ * Deprecated, pending move to isomorphic app.
+ */
 server.route({
   method: 'POST',
   path: '/hash',
   handler: function (request, reply) {
-    helpers.generateElement(request.payload.url, 'sha-256', function (result) {
-      reply(result).type('text/plain');
-    });
+    helpers.generateElement(
+      request.payload.url, 
+      request.payload.algorithms, 
+      function (result) {
+        reply(result).type('text/plain');
+      }
+    );
   }
 });
 
