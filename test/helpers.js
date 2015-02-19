@@ -240,3 +240,25 @@ describe ("generate()", function () {
   })();
 
 });
+
+
+describe('extractExtension()', function () {
+
+  it('Standard', function () {
+    var result = helpers.extractExtension('https://example.com/script.js');
+    assert.equal(result, 'js');
+  });
+
+  it('Multi-part', function () {
+    var result = helpers.extractExtension('https://example.com/script.min.js');
+    assert.equal(result, 'js');
+  });
+
+  it('None', function () {
+    var result1 = helpers.extractExtension('');
+    assert.equal(result1, undefined);
+    var result2 = helpers.extractExtension('https://example.com/.');
+    assert.equal(result2, undefined);
+  });
+
+});
