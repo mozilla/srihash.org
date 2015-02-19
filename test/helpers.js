@@ -188,13 +188,12 @@ describe ("generate()", function () {
 
     var resource = {
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
-      algorithms: ['sha-256'] 
+      algorithms: ['sha256'] 
     };
     var expect = {
       status: true,
-      url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       type: 'js',
-      integrity: 'ni:///sha-256;Ls0pXSlb7AYs7evhd-VLnWsZ_AqEHcXBeMZUycz_CcA?ct=application/x-javascript',
+      integrity: 'type:application/x-javascript sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=',
       eligibility: []
     };
 
@@ -216,13 +215,12 @@ describe ("generate()", function () {
 
     var resource = {
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
-      algorithms: ['sha-256'] 
+      algorithms: ['sha256'] 
     };
     var expect = {
       status: true,
-      url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
       type: 'css',
-      integrity: 'ni:///sha-256;DW9MX1sLpQ9seN_7-gouAyFj8-xc-lQD6Q9DKWqQDy0?ct=text/css',
+      integrity: 'type:text/css sha256-DW9MX1sLpQ9seN/7+gouAyFj8+xc+lQD6Q9DKWqQDy0=',
       eligibility: []
     };
 
