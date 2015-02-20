@@ -17,6 +17,7 @@
     <h2>Generate a third-party resource</h2>
     <p>Enter the URL of the sub-resource you wish to include on your site:</p>
     <form action="/hash" method="POST">
+      <input name="algorithms" type="hidden" value="sha-256">
       <input name="url" type="text" placeholder="https://example.com/script-1.0.1.js" size="50">
       <input value="Hash!" type="submit">
     </form>
