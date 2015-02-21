@@ -46,6 +46,35 @@ test(
   }
 );
 
+test(
+  'guessResourceType',
+  function (t) {
+    var jsCt1 = helpers.guessResourceType({ ct: 'text/javascript' });
+    t.deepEqual(jsCt1, 'js');
+    var jsCt2 = helpers.guessResourceType({ ct: 'application/javascript' });
+    t.deepEqual(jsCt2, 'js');
+    var jsCt3 = helpers.guessResourceType({ ct: 'application/x-javascript' });
+    t.deepEqual(jsCt3, 'js');
+    var jsUrl1 = helpers.guessResourceType({ url: 'https://example.com/file.min.js' });
+    t.deepEqual(jsUrl1, 'js');
+    var jsUrl2 = helpers.guessResourceType({ url: 'https://example.com/file.qh4325kgjhgkjhg' });
+    t.deepEqual(jsUrl2, 'js'); // fallback to js
+    var jsUrl3 = helpers.guessResourceType({ url: 'https://example.com/file' });
+    t.deepEqual(jsUrl3, 'js'); // fallback to js
+    var jsUrl4 = helpers.guessResourceType({ url: 'https://example.com/' });
+    t.deepEqual(jsUrl4, 'js'); // fallback to js
+    var cssCt1 = helpers.guessResourceType({ ct: 'text/css' });
+    t.deepEqual(cssCt1, 'css');
+    var cssUrl1 = helpers.guessResourceType({ url: 'http://example.com/file.css' });
+    t.deepEqual(cssUrl1, 'css');
+    var cssUrl2 = helpers.guessResourceType({ url: 'https://example.com/STYLES.CSS' });
+    t.deepEqual(cssUrl2, 'css');
+    var cssUrl3 = helpers.guessResourceType({ ct: 'text/css', url: 'https://example.com/file.min.js' });
+    t.deepEqual(cssUrl3, 'css'); // ct takes precedence over url
+    t.end();
+  }
+);
+
 // Ideally we should find a way to test this without using the network
 test(
   'generateElement',
@@ -57,9 +86,17 @@ test(
         helpers.generateElement('https://code.jquery.com/jquery-1.11.2.min.js', 'sha-512',
           function (element) {
             t.equals(element, '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="ni:///sha-512;eBrO3JneTOjVPZtDoVjGReqxsj39_WtXs8RCsRrMSjRODVsAZ9S3i7Fzq73tdfuRxBDytaWPcdQ4qmJm0EjZig?ct=application/x-javascript"></script>', 'jQuery 1.11.2 using sha512');
-            t.end();
+
+            helpers.generateElement('https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css', 'sha-256',
+              function (element) {
+                t.equals(element, '<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css" integrity="ni:///sha-256;DW9MX1sLpQ9seN_7-gouAyFj8-xc-lQD6Q9DKWqQDy0?ct=text/css">', 'jQuery UI 1.11.3 black-tie theme using sha256');
+                t.end();
+              }
+            );
+
           }
         );
+
       }
     );
   }
