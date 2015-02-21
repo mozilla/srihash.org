@@ -12,7 +12,7 @@
     <!-- Nav -->
     <nav>
       <a href="#about">About</a>
-      <a href="#app">SRI Generator</a>
+      <a href="#app">Hash Generator</a>
       <br class="clear">
     </nav>
 
@@ -21,7 +21,7 @@
       <div class="container" id="sriAppContainer">
         {{! section to be replaced with react app }}
         <div id="sriApp">
-          <h1>SRI Generator</h1>
+          <h1>SRI Hash Generator</h1>
           <div>Enter the URL of the resource you wish to use:</div>
           <form method="POST" action="/hash" target="sriSnippet">
             <input name="url" type="text" value="" placeholder="Resource URL" required>
@@ -37,15 +37,15 @@
     <!-- About -->
     <div id="about" class="container">
       <h3>What is Sub-resource integrity?</h3>
-      <p>SRI is a new <a href="http://www.w3.org/TR/SRI/">W3C specification</a> that allows web developers to ensure that third-party resources have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.</p>
+      <p>SRI is a new <a href="http://www.w3.org/TR/SRI/">W3C specification</a> that allows web developers to ensure that resources hosted on third-party servers have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.</p>
       <hr>
 
       <h3>How is Sub-resource integrity different to HTTPS?</h3>
-      <p>HTTPS only ensures that the transport layer has not been compromised. The resource itself may be modified to contain malicious instructions, yet still be served with a valid certificate. SRI, on the other hand, guarantees that a resource has not since been tampered with, and is transport-layer-agnostic.</p>
+      <p>TLS ensures that the connection between the browser and the server is secure. The resource itself may still be modified server-side by an attacker to include malicious content, yet still be served with a valid TLS certificate. SRI, on the other hand, guarantees that a resource hasn't changed since it was hashed by a web author.</p>
       <hr>
 
       <h3>How can I generate Integrity hashes?</h3>
-      <p>Use the <a href="#">Generator</a> or the following shell command:<br>
+      <p>Use the generator above or the following shell command:<br>
         <code>
           cat <strong>FILENAME.js</strong> |<br>
           openssl dgst -sha256 -binary |<br>

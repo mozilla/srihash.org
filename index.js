@@ -25,7 +25,7 @@ server.route({
   method: 'GET',
   path: '/',
   handler: function (request, reply) {
-    reply.view('index', { 'title': 'URI Hash Generator' });
+    reply.view('index', { 'title': 'SRI Hash Generator' });
   }
 });
 
