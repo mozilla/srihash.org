@@ -15,6 +15,12 @@ test(
     t.equals(unknownHttpsURL, 'https://example.com/script.js', 'HTTPS from unknown CDN');
     var unknownHttpURL = helpers.upgradeToHttps('http://example.com/script.js');
     t.equals(unknownHttpURL, 'http://example.com/script.js', 'HTTP from unknown CDN');
+    var schemelessURL = helpers.upgradeToHttps('example.com/script.js');
+    t.equals(schemelessURL, 'http://example.com/script.js', 'Schemeless URL');
+    var relativeSchemeURL = helpers.upgradeToHttps('//example.com/script.js');
+    t.equals(relativeSchemeURL, 'https://example.com/script.js', 'Relative scheme URL');
+    var schemelessKnownURL = helpers.upgradeToHttps('code.jquery.com/script.js');
+    t.equals(schemelessKnownURL, 'https://code.jquery.com/script.js', 'Schemeless known URL');
     t.end();
   }
 );
