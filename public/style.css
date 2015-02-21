@@ -6,7 +6,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(OpenSans-Light.ttf) format('truetype');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('OpenSans-Light.woff') format('woff');
 }
 
 body {
