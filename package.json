@@ -29,7 +29,7 @@
   "dependencies": {
     "handlebars": "^3.0.0",
     "hapi": "^8.1.0",
-    "sri-toolbox": "0.0.1",
+    "sri-toolbox": "^0.1.0",
     "xhr2": "^0.1.2"
   },
   "engines": {

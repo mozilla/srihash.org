@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-
     <!-- Nav -->
     <nav>
       <a href="#about">About</a>
@@ -25,7 +24,7 @@
           <div>Enter the URL of the resource you wish to use:</div>
           <form method="POST" action="/hash" target="sriSnippet">
             <input name="url" type="text" value="" placeholder="Resource URL" required>
-            <input name="algorithms" value="sha-256" type="hidden">
+            <input name="algorithms" value="sha256" type="hidden">
             <input type="submit" value="Hash!">
           </form>
           <iframe id="sriSnippet" name="sriSnippet" frameborder="0"></iframe>
@@ -49,8 +48,7 @@
         <code>
           cat <strong>FILENAME.js</strong> |<br>
           openssl dgst -sha256 -binary |<br>
-          openssl enc -base64 -A |<br>
-          sed -e 's/+/-/g' -e 's/\//_/g' -e 's/=*$//g'<br>
+          openssl enc -base64 -A
         </code>
       </p>
       <hr>
