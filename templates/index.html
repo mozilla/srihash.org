@@ -8,37 +8,62 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <h1>{{title}}</h1>
-    <p>Sub-resource integrity is a
-      new <a href="http://www.w3.org/TR/SRI/">specification</a> which allows
-      web developers to ensure that the third-party resources they load
-      match a particular hash.</p>
 
-    <h2>Generate a third-party resource</h2>
-    <p>Enter the URL of the sub-resource you wish to include on your site:</p>
-    <form action="/hash" method="POST">
-      <input name="algorithms" type="hidden" value="sha-256">
-      <input name="url" type="text" placeholder="https://example.com/script-1.0.1.js" size="50">
-      <input value="Hash!" type="submit">
-    </form>
-    <p>Alternatively, you can use the following command-line to generate a
-      hash manually:</p>
-    <code>cat file.js | openssl dgst -sha256 -binary | openssl enc -base64 -A | sed -e 's/+/-/g' -e 's/\//_/g' -e 's/=*$//g'</code>
+    <!-- Nav -->
+    <nav>
+      <a href="#about">About</a>
+      <a href="#app">Hash Generator</a>
+      <br class="clear">
+    </nav>
 
-    <h2>Test your browser</h2>
-    <p>To verify whether or not your browser supports sub-resource
-      integrity, open this <a href="https://btoews.github.io/sri_test/">test
-        page</a>.</p>
-    <p>If it doesn't, download the latest version
-      of <a href="https://www.mozilla.org/firefox/new/">Firefox</a>
-      or <a href="https://www.google.com/chrome/">Chrome</a> and try
-      again.</p>
+    <!-- Banner -->
+    <div id="app" class="container">
+      <div class="container" id="sriAppContainer">
+        {{! section to be replaced with react app }}
+        <div id="sriApp">
+          <h1>SRI Hash Generator</h1>
+          <div>Enter the URL of the resource you wish to use:</div>
+          <form method="POST" action="/hash" target="sriSnippet">
+            <input name="url" type="text" value="" placeholder="Resource URL" required>
+            <input name="algorithms" value="sha-256" type="hidden">
+            <input type="submit" value="Hash!">
+          </form>
+          <iframe id="sriSnippet" name="sriSnippet" frameborder="0"></iframe>
+        </div>
+        {{! end section }}
+      </div>
+    </div>
 
+    <!-- About -->
+    <div id="about" class="container">
+      <h3>What is Sub-resource integrity?</h3>
+      <p>SRI is a new <a href="http://www.w3.org/TR/SRI/">W3C specification</a> that allows web developers to ensure that resources hosted on third-party servers have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.</p>
+      <hr>
+
+      <h3>How is Sub-resource integrity different to HTTPS?</h3>
+      <p>TLS ensures that the connection between the browser and the server is secure. The resource itself may still be modified server-side by an attacker to include malicious content, yet still be served with a valid TLS certificate. SRI, on the other hand, guarantees that a resource hasn't changed since it was hashed by a web author.</p>
+      <hr>
+
+      <h3>How can I generate Integrity hashes?</h3>
+      <p>Use the generator above or the following shell command:<br>
+        <code>
+          cat <strong>FILENAME.js</strong> |<br>
+          openssl dgst -sha256 -binary |<br>
+          openssl enc -base64 -A |<br>
+          sed -e 's/+/-/g' -e 's/\//_/g' -e 's/=*$//g'<br>
+        </code>
+      </p>
+      <hr>
+
+      <h3>Test your browser</h3>
+      <p>To verify whether or not your browser supports sub-resource integrity, open this <a href="https://btoews.github.io/sri_test/">test page</a>.</p>
+    </div>
     <hr>
 
-    <p>The code behind this service is hosted
-      on <a href="https://github.com/mozilla/srihash.org">Github</a> and is
-      licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla
-        Public License 2.0</a>.</p>
+    <!-- Footer -->
+    <footer class="container">
+      The code behind this service is hosted on <a href="https://github.com/mozilla/srihash.org">Github</a> and is licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.
+    </footer>
+
   </body>
 </html>
