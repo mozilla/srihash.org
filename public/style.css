@@ -152,6 +152,12 @@ footer {
   margin-top: 1rem;
 }
 
+code#sriSnippet {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
 /*
  * Mobile styling
  */

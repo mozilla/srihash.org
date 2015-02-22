@@ -73,7 +73,7 @@ server.route({
       request.payload.url,
       request.payload.algorithms,
       function (result) {
-        reply(result).type('text/plain');
+        reply.view('hash', { 'hash': result });
       }
     );
   }
