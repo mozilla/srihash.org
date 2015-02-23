@@ -9,7 +9,7 @@ var Hapi = require('hapi');
 var helpers = require('./lib/helpers.js');
 
 var server = new Hapi.Server();
-server.connection({ port: 3000 });
+server.connection({ port: 4000 });
 
 server.views({
   engines: {
