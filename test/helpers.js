@@ -144,25 +144,25 @@ describe('guessResourceType()', function () {
     });
   });
 
-  describe('Fallback to js', function () {
+  describe('Fallback', function () {
     it('Invalid content-type', function () {
-      var pdfCt1 = helpers.guessResourceType({ ct: 'application/pdf', url:'http://example.com' });
-      assert.deepEqual(pdfCt1, 'js');
+      var pdfCt1 = helpers.guessResourceType({ ct: 'invalid/type', url:'http://example.com' });
+      assert.deepEqual(pdfCt1, null);
     });
 
     it('Invalid extension', function () {
       var jsUrl2 = helpers.guessResourceType({ url: 'https://example.com/file.ZZZ' });
-      assert.deepEqual(jsUrl2, 'js');
+      assert.deepEqual(jsUrl2, null);
     });
 
     it('Missing extension', function () {
       var jsUrl3 = helpers.guessResourceType({ url: 'https://example.com/file' });
-      assert.deepEqual(jsUrl3, 'js');
+      assert.deepEqual(jsUrl3, null);
     });
 
     it('Empty path', function () {
       var jsUrl4 = helpers.guessResourceType({ url: 'https://example.com' });
-      assert.deepEqual(jsUrl4, 'js');
+      assert.deepEqual(jsUrl4, null);
     });
   });
 
