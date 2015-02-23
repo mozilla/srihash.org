@@ -7,6 +7,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-copyright');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.initConfig({
@@ -19,11 +20,11 @@ module.exports = function (grunt) {
         },
         src: [
           '*.js',
-          'lib/*.js',
-          'public/*.css',
-          'public/*.js',
-          'scripts/*',
-          'templates/*.html'
+          'lib/**/*.js',
+          'public/**/*.js',
+          'public/**/*.css',
+          'scripts/**/*',
+          'templates/**/*.html'
         ]
       },
       tests: {
@@ -38,11 +39,25 @@ module.exports = function (grunt) {
 
     jshint: {
       options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        jshintrc: '.jshint.json'
       },
-      app: [
-        '*.js'
+      src: [
+        '*.js',
+        'lib/**/*.js',
+        'public/**/*.js',
+        'scripts/**/*.js'
+      ]
+    },
+
+    jscs: {
+      options: {
+        config: '.jscs.json'
+      },
+      src: [
+        '*.js',
+        'lib/**/*.js',
+        'public/**/*.js',
+        'scripts/**/*.js'
       ]
     },
 
@@ -54,6 +69,6 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['lint', 'copyright']);
-  grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('lint', ['jshint', 'jscs']);
   grunt.registerTask('dev', ['nodemon']);
 };

@@ -21,9 +21,8 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-copyright": "^0.1.0",
+    "grunt-jscs": "^1.5.0",
     "grunt-nodemon": "^0.4.0",
-    "jshint": "^2.5.11",
-    "jshint-stylish": "^1.0.0",
     "mocha": "^2.1.0"
   },
   "dependencies": {
