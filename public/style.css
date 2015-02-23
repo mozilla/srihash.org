@@ -156,6 +156,7 @@ code#sriSnippet {
   padding: 0;
   margin: 0;
   border: 0;
+  white-space: pre-line;
 }
 
 /*
