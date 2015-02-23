@@ -1,7 +1,7 @@
 SRI Hash Generator
 ===================
 
-This is the code behind the <http://srihash.org> website. It generates [sub-resource integrity](http://www.w3.org/TR/SRI/) hashes.
+This is the code behind the <https://srihash.org> website. It generates [sub-resource integrity](http://www.w3.org/TR/SRI/) hashes.
 
 [![Build Status](https://travis-ci.org/mozilla/srihash.org.svg?branch=master)](https://travis-ci.org/mozilla/srihash.org)
 [![Dependencies Status](https://david-dm.org/mozilla/srihash.org.png)](https://david-dm.org/mozilla/srihash.org)
