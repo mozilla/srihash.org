@@ -19,11 +19,11 @@ module.exports = function (grunt) {
         },
         src: [
           '*.js',
-          'lib/*.js',
-          'public/*.css',
-          'public/*.js',
-          'scripts/*',
-          'templates/*.html'
+          'lib/**/*.js',
+          'public/**/*.js',
+          'public/**/*.css',
+          'scripts/**/*',
+          'templates/**/*.html'
         ]
       },
       tests: {
@@ -38,11 +38,13 @@ module.exports = function (grunt) {
 
     jshint: {
       options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        jshintrc: '.jshint.json'
       },
-      app: [
-        '*.js'
+      src: [
+        '*.js',
+        'lib/**/*.js',
+        'public/**/*.js',
+        'scripts/**/*.js'
       ]
     },
 
