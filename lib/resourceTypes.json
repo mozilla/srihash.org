@@ -1,0 +1,13 @@
+{
+  "js": [
+    "application/ecmascript",
+    "application/javascript",
+    "application/x-javascript",
+    "text/ecmascript",
+    "text/javascript",
+    "text/x-javascript"
+  ],
+  "css": [
+    "text/css"
+  ]
+}
