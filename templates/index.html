@@ -6,6 +6,7 @@
   <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/badge/badge.css">
   </head>
   <body>
     <!-- Nav -->
@@ -54,8 +55,22 @@
       <hr>
 
       <h3>Test your browser</h3>
-      <p>To verify whether or not your browser supports sub-resource integrity, open this <a href="https://btoews.github.io/sri_test/">test page</a>.</p>
+      <p>To fully test your browser for sub-resource integrity support, please open <a href="https://btoews.github.io/sri_test/">this page</a>.</p>
+      <!-- SRI support badge -->
+      <div class="sri-test" id="sri-badge">
+        <link rel="stylesheet" href="/badge/will-pass.css">
+        <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha256-INVALIDHASH">
+        <div data-sri-status="pass" style="display: none">
+          <img src="/badge/pass.svg">
+          <p>Your browser supports SRI</p>
+        </div>
+        <div data-sri-status="fail" style="display: none">
+          <img src="/badge/fail.svg">
+          <p>Your browser does not support SRI</p>
+        </div>
+      </div>
     </div>
+    <!-- end SRI support badge -->
     <hr>
 
     <!-- Footer -->
