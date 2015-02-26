@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="64" width="50" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<metadata id="metadata7">
+<rdf:RDF>
+<license id="license4" rdf:resource="http://www.mozilla.org/MPL/2.0/">
+<rdf:label>MPL</rdf:label>
+<dc:title>Mozilla Public License, v. 2.0</dc:title>
+</license>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g id="layer1" transform="matrix(0.9765625,0,0,1.0003126,0,-988.92906)">
+<path id="path2985" d="M25,0c-3.2,3.63-8.9,6.02-14.8,7.28l14.8,14.7,14.8-14.7c-5.9-1.26-11.6-3.65-14.8-7.28zm-25,11.2c0.284,13,2.51,22.8,5.5,30.3l12.4-12.4-17.9-17.9zm50,0l-17.9,17.9,12.4,12.4c3-7.5,5.2-17.3,5.5-30.3zm-25,25l-14.7,14.7c6.9,10.5,14.7,13.1,14.7,13.1s7.8-2.6,14.7-13.1l-14.7-14.7z" transform="matrix(1.024,0,0,0.9996875,0,988.62002)" stroke-miterlimit="4" stroke-width="0" fill="#FF6138"/>
+</g>
+</svg>
