@@ -45,6 +45,8 @@
 }
 
 #sri-badge *[data-sri-status="pass"] {
+    display: none;
 }
 #sri-badge *[data-sri-status="fail"] {
+    display: none;
 }
