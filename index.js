@@ -55,7 +55,10 @@ server.route({
       algorithms: request.payload.algorithms
     };
     helpers.generate(options, function (result) {
-      reply(JSON.stringify(result)).type('application/json');
+      reply(
+        JSON // jshint ignore:line
+          .stringify(result)
+      ).type('application/json');
     });
   }
 });
