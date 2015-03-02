@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "handlebars": "^3.0.0",
+    "handlebars-helper-sri": "0.0.0",
     "hapi": "^8.1.0",
     "sri-toolbox": "^0.1.2",
     "xhr2": "^0.1.2"

@@ -6,6 +6,9 @@
 var Path = require('path');
 var Hapi = require('hapi');
 
+var handlebars = require('handlebars');
+handlebars = require('handlebars-helper-sri').register(handlebars);
+
 var helpers = require('./lib/helpers.js');
 
 var server = new Hapi.Server();
@@ -13,7 +16,7 @@ server.connection({ port: 4000 });
 
 server.views({
   engines: {
-    html: require('handlebars')
+    html: handlebars
   },
   path: Path.join(__dirname, 'templates')
 });
