@@ -4,8 +4,9 @@ SRI Hash Generator
 This is the code behind the <https://srihash.org> website. It generates [sub-resource integrity](http://www.w3.org/TR/SRI/) hashes.
 
 [![Build Status](https://travis-ci.org/mozilla/srihash.org.svg?branch=master)](https://travis-ci.org/mozilla/srihash.org)
-[![Dependencies Status](https://david-dm.org/mozilla/srihash.org.png)](https://david-dm.org/mozilla/srihash.org)
-[![Dev Dependencies Status](https://david-dm.org/mozilla/srihash.org/dev-status.png)](https://david-dm.org/mozilla/srihash.org#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/mozilla/srihash.org/badge.svg?branch=master)](https://coveralls.io/r/mozilla/srihash.org?branch=master)
+[![Dependencies Status](https://david-dm.org/mozilla/srihash.org.svg)](https://david-dm.org/mozilla/srihash.org)
+[![Dev Dependencies Status](https://david-dm.org/mozilla/srihash.org/dev-status.svg)](https://david-dm.org/mozilla/srihash.org#info=devDependencies)
 
 ## Install
 
