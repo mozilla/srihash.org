@@ -127,6 +127,17 @@ describe('guessResourceType()', function () {
         var cssCt1 = helpers.guessResourceType({ ct: 'text/css' });
         assert.deepEqual(cssCt1, 'css');
       });
+
+      it('.forbidden', function () {
+        var forbiddenCt1 = helpers.guessResourceType({ ct: 'text/plain' });
+        assert.deepEqual(forbiddenCt1, '.forbidden');
+        var forbiddenCt2 = helpers.guessResourceType({ ct: 'text/xml' });
+        assert.deepEqual(forbiddenCt2, '.forbidden');
+        var forbiddenCt3 = helpers.guessResourceType({ ct: 'application/octet-stream' });
+        assert.deepEqual(forbiddenCt3, '.forbidden');
+        var forbiddenCt4 = helpers.guessResourceType({ ct: 'application/xml' });
+        assert.deepEqual(forbiddenCt4, '.forbidden');
+      });
     });
 
     describe('Extension', function () {
@@ -140,6 +151,14 @@ describe('guessResourceType()', function () {
         assert.deepEqual(cssUrl1, 'css');
         var cssUrl2 = helpers.guessResourceType({ url: 'http://example.com/STYLES.CSS' });
         assert.deepEqual(cssUrl2, 'css');
+      });
+
+      // The internal label ".forbidden" must never be detected as a file ext
+      it('NOT .forbidden', function () {
+        var forbiddenUrl1 = helpers.guessResourceType({ url: 'http://example.com/file.forbidden' });
+        assert.deepEqual(forbiddenUrl1, null);
+        var forbiddenUrl2 = helpers.guessResourceType({ url: 'http://example.com/file..forbidden' });
+        assert.deepEqual(forbiddenUrl2, null);
       });
     });
   });
