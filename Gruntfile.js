@@ -8,6 +8,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-copyright');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jscs');
+  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.initConfig({
@@ -20,7 +21,8 @@ module.exports = function (grunt) {
         },
         src: [
           '*.js',
-          'lib/**/*.js',
+          'src/**/*.js',
+          'src/**/*.jsx',
           'public/**/*.js',
           'public/**/*.css',
           'scripts/**/*',
@@ -43,7 +45,8 @@ module.exports = function (grunt) {
       },
       src: [
         '*.js',
-        'lib/**/*.js',
+        'src/**/*.js',
+        'src/**/*.jsx',
         'public/**/*.js',
         'scripts/**/*.js'
       ]
@@ -55,10 +58,28 @@ module.exports = function (grunt) {
       },
       src: [
         '*.js',
-        'lib/**/*.js',
+        'src/**/*.js',
+        'src/**/*.jsx',
         'public/**/*.js',
         'scripts/**/*.js'
       ]
+    },
+
+    babel: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: [
+            '**/*.js',
+            '**/*.jsx'
+          ],
+          dest: 'dist'
+        }]
+      }
     },
 
     nodemon: {
@@ -68,7 +89,8 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', ['lint', 'copyright']);
+  grunt.registerTask('default', ['lint', 'build', 'copyright']);
   grunt.registerTask('lint', ['jshint', 'jscs']);
+  grunt.registerTask('build', ['babel']);
   grunt.registerTask('dev', ['nodemon']);
 };
