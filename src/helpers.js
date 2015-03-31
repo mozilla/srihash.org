@@ -70,13 +70,12 @@ var eligibility = function (request) {
 /**
  * Handle server response.
  *
+ * @param {Object.XMLHttpRequest} request
  * @param {string} resourceUrl
  * @param {Function} cb - callback
  * @return {Function.cb}
  */
-var processResource = function (resourceUrl, cb) {
-  var request = this;
-
+var processResource = function (request, resourceUrl, cb) {
   if (request.readyState !== 4) {
     return false;
   }
@@ -108,7 +107,9 @@ var fetchResource = function (resourceUrl, cb) {
   resourceUrl = upgradeToHttps(resourceUrl);
 
   var request = new XMLHttpRequest();
-  request.onreadystatechange = processResource.bind(request, resourceUrl, cb);
+  request.onreadystatechange = function () {
+    return processResource(request, resourceUrl, cb);
+  };
   request.onerror = function () {
     return cb(false);
   };
