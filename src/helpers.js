@@ -3,13 +3,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 'use strict';
 
-var path = require('path');
-var url = require('url');
-var sriToolbox = require('sri-toolbox');
-var XMLHttpRequest = XMLHttpRequest || require('xhr2');
+import path from 'path';
+import url from 'url';
+import sriToolbox from 'sri-toolbox';
+const XMLHttpRequest = XMLHttpRequest || require('xhr2');
 
-var resourceTypes = require('./resourceTypes.js');
-var secureHosts = require('./secureHosts.js');
+import resourceTypes from './resourceTypes';
+import secureHosts from './secureHosts';
 
 
 /**
@@ -18,15 +18,15 @@ var secureHosts = require('./secureHosts.js');
  * @param {string} urlString
  * @return {string} processed URL
  */
-var upgradeToHttps = function (urlString) {
+const upgradeToHttps = urlString => {
   // Add a scheme to scheme-less URLs
-  var isRelative = !!urlString.match(/^\/\//);
+  const isRelative = !!urlString.match(/^\/\//);
   if (isRelative) {
     urlString = 'https:' + urlString;
   }
 
   // Prepend http for protocol-less URL's
-  var urlObject = url.parse(urlString);
+  let urlObject = url.parse(urlString);
   if (!urlObject.protocol && !isRelative) {
     urlString = 'http:' + '//' + urlString;
     urlObject = url.parse(urlString);
@@ -43,22 +43,21 @@ var upgradeToHttps = function (urlString) {
 
 
 /**
- * Check XHR response headers for issues that could affect SRI eligibility
+ * Check XHR request headers for issues that could affect SRI eligibility
  *
  * @param {Object.XMLHttpRequest} fetchResource request
  * @return {Array} list of potential issues
  */
-var eligibility = function (request) {
-  var badHeaders = [
+const eligibility = request => {
+  const badHeaders = [
+    'authorization',
     'www-authenticate',
     'refresh'
   ];
 
-  var issues = badHeaders.filter(function (header) {
-    return request.getResponseHeader(header);
-  });
+  let issues = badHeaders.filter(request.getResponseHeader);
 
-  var cc = request.getResponseHeader('cache-control');
+  const cc = request.getResponseHeader('cache-control');
   if (cc && (cc.indexOf('no-store') > -1 || cc.indexOf('private') > -1)) {
     issues.push('no-cache');
   }
@@ -75,7 +74,7 @@ var eligibility = function (request) {
  * @param {Function} cb - callback
  * @return {Function.cb}
  */
-var processResource = function (request, resourceUrl, cb) {
+const processResource = (request, resourceUrl, cb) => {
   if (request.readyState !== 4) {
     return false;
   }
@@ -103,16 +102,12 @@ var processResource = function (request, resourceUrl, cb) {
  * @param {Function} cb - callback
  * @return {Object.XMLHttpRequest} request object
  */
-var fetchResource = function (resourceUrl, cb) {
+const fetchResource = (resourceUrl, cb) => {
   resourceUrl = upgradeToHttps(resourceUrl);
 
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function () {
-    return processResource(request, resourceUrl, cb);
-  };
-  request.onerror = function () {
-    return cb(false);
-  };
+  const request = new XMLHttpRequest();
+  request.onreadystatechange = () => processResource(request, resourceUrl, cb);
+  request.onerror = () => cb(false);
 
   request.open('GET', resourceUrl);
   request.send();
@@ -128,18 +123,19 @@ var fetchResource = function (resourceUrl, cb) {
  * @param {string} resource.url - URL
  * @return {string} assumed file extension
  */
-var guessResourceType = function (resource) {
+const guessResourceType = resource => {
   // Match against content-types
-  var type = Object.keys(resourceTypes).filter(function (ext) {
-    return (resourceTypes[ext].indexOf(resource.ct) > -1);
-  });
+  const type = Object.keys(resourceTypes).filter(
+      ext => (resourceTypes[ext].indexOf(resource.ct) > -1)
+  );
   if (type[0]) {
     return type[0];
   }
 
   // Match against file extensions
-  var ext;
-  ext = path.extname(url.parse(resource.url).path).replace('.', '').toLowerCase();
+  const ext = path.extname(
+      url.parse(resource.url).path
+  ).replace('.', '').toLowerCase();
   if (resourceTypes.hasOwnProperty(ext)) {
     return ext;
   }
@@ -156,12 +152,12 @@ var guessResourceType = function (resource) {
  * @param {string} options.url - Resource URL
  * @return {Object.XMLHttpRequest} fetchResource request
  */
-var generate = function (options, cb) {
+const generate = (options, cb) => {
   if (typeof options.algorithms === 'string') {
     options.algorithms = [options.algorithms];
   }
 
-  return fetchResource(options.url, function (resource) {
+  return fetchResource(options.url, resource => {
     if (!resource) {
       return cb({
         'status': false,
@@ -169,7 +165,7 @@ var generate = function (options, cb) {
       });
     }
 
-    var sri = sriToolbox.generate({
+    const sri = sriToolbox.generate({
       'algorithms': options.algorithms,
       'full': true
     }, resource.data);
@@ -197,23 +193,23 @@ var generate = function (options, cb) {
  * @param {Function} cb - callback
  * @return {Function.cb}
  */
-var generateElement = function (resourceUrl, algorithms, cb) {
-  var options = {
+const generateElement = (resourceUrl, algorithms, cb) => {
+  const options = {
     'url': resourceUrl,
     'algorithms': algorithms
   };
 
-  return generate(options, function (resource) {
-    var element;
+  return generate(options, resource => {
+    let element;
 
     switch (resource.type) {
     case 'js':
       element = '<script src="' + resource.url +
-        '" integrity="' + resource.integrity + '" crossorigin="anonymous"></script>';
+        '" integrity="' + resource.integrity + '"></script>';
       break;
     case 'css':
       element = '<link rel="stylesheet" href="' + resource.url +
-        '" integrity="' + resource.integrity + '" crossorigin="anonymous">';
+        '" integrity="' + resource.integrity + '">';
       break;
     case '.forbidden':
       element = 'Error: Forbidden content-type\n\n' +
@@ -224,7 +220,7 @@ var generateElement = function (resourceUrl, algorithms, cb) {
       element = '<!-- Warning: Unrecognized content-type. ' +
         'Are you sure this is the right resource? -->\n' +
         '<script src="' + resource.url +
-        '" integrity="' + resource.integrity + '" crossorigin="anonymous"></script>';
+        '" integrity="' + resource.integrity + '"></script>';
       break;
     }
 
@@ -233,8 +229,10 @@ var generateElement = function (resourceUrl, algorithms, cb) {
 };
 
 
-exports.generateElement = generateElement;
-exports.generate = generate;
-exports.upgradeToHttps = upgradeToHttps;
-exports.eligibility = eligibility;
-exports.guessResourceType = guessResourceType;
+export {
+    generateElement,
+    generate,
+    upgradeToHttps,
+    eligibility,
+    guessResourceType
+};
