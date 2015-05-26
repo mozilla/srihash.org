@@ -263,4 +263,52 @@ describe ("generateElement()", function () {
       assert.deepEqual(result, expect);
     });
   })();
+
+  (function (result) {
+    var url = 'code.jquery.com/jquery-1.11.2.min.js';
+    var expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=" crossorigin="anonymous"></script>';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("js", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+
+  (function (result) {
+    var url = 'https://code.jquery.com/jquery-1.11.2-notfound.min.js';
+    var expect = 'Error: fetching the resource returned a 404 error code.';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("404", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+
+  (function (result) {
+    var url = 'ftp://code.jquery.com/jquery-1.11.2.min.js';
+    var expect = 'Error: fetching the resource returned an unexpected error.';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("bad scheme", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
 });
