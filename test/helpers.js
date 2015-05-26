@@ -69,53 +69,15 @@ describe('upgradeToHttps()', function () {
 
 describe('eligibility()', function () {
   describe('Eligible', function () {
-    it('Irrelevant header', function () {
+    it('CORS', function () {
       var allGood = new FauxXHR({ headers: { 'access-control-allow-origin': '*' } });
       var result = helpers.eligibility(allGood);
       assert.deepEqual(result, []);
     });
   });
 
-  describe('Bad headers', function () {
-    it('refresh', function () {
-      var badRefresh = new FauxXHR({ headers: { 'access-control-allow-origin': '*', 'refresh': '1' } });
-      var result = helpers.eligibility(badRefresh);
-      assert.deepEqual(result, ['refresh']);
-    });
-
-    it('www-authenticate', function () {
-      var badAuthenticate = new FauxXHR({ headers: { 'access-control-allow-origin': '*', 'www-authenticate': '1' } });
-      var result = helpers.eligibility(badAuthenticate);
-      assert.deepEqual(result, ['www-authenticate']);
-    });
-  });
-
-  describe('Caching', function () {
-    it('Explicit public cache', function () {
-      var publicCache1 = new FauxXHR({ headers: { 'access-control-allow-origin': '*', 'cache-control': 'public' } });
-      var result = helpers.eligibility(publicCache1);
-      assert.deepEqual(result, []);
-    });
-
-    it('Implicit public cache', function () {
-      var publicCache2 = new FauxXHR({ headers: { 'access-control-allow-origin': '*', 'cache-control': 'bogus' } });
-      var result = helpers.eligibility(publicCache2);
-      assert.deepEqual(result, []);
-    });
-
-    it('private', function () {
-      var badCache1 = new FauxXHR({ headers: { 'access-control-allow-origin': '*', 'cache-control': 'max-age=1000,private' } });
-      var result = helpers.eligibility(badCache1);
-      assert.deepEqual(result, ['no-cache']);
-    });
-
-    it('no-store', function () {
-      var badCache2 = new FauxXHR({ headers: { 'access-control-allow-origin': '*', 'cache-control': 'public,no-store' } });
-      var result = helpers.eligibility(badCache2);
-      assert.deepEqual(result, ['no-cache']);
-    });
-
-    it('non-cors', function () {
+  describe('Non-eligible', function () {
+    it('non-CORS', function () {
       var nonCORS = new FauxXHR({ headers: { 'dnt': '1' } });
       var result = helpers.eligibility(nonCORS);
       assert.deepEqual(result, ['non-cors']);
