@@ -244,3 +244,23 @@ describe ("generate()", function () {
     });
   })();
 });
+
+
+// Ideally we should find a way to test this without using the network
+describe ("generateElement()", function () {
+  (function (result) {
+    var url = 'https://www.google-analytics.com/ga.js';
+    var expect = 'Error: this resource is not eligible for integrity checks. See http://enable-cors.org/server.html';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("non-CORS", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+});
