@@ -196,7 +196,8 @@ describe ("generate()", function () {
       algorithms: ['sha256']
     };
     var expect = {
-      status: true,
+      success: true,
+      status: 200,
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       type: 'js',
       integrity: 'sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=',
@@ -221,7 +222,8 @@ describe ("generate()", function () {
       algorithms: ['sha256']
     };
     var expect = {
-      status: true,
+      success: true,
+      status: 200,
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
       type: 'css',
       integrity: 'sha256-DW9MX1sLpQ9seN/7+gouAyFj8+xc+lQD6Q9DKWqQDy0=',
@@ -236,6 +238,28 @@ describe ("generate()", function () {
     });
 
     it ("css", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+
+  (function (result) {
+    var resource = {
+      url: 'https://code.jquery.com/jquery-1.11.2-notfound.min.js',
+      algorithms: ['sha256']
+    };
+    var expect = {
+      success: false,
+      status: 404
+    };
+
+    before(function (done) {
+      helpers.generate(resource, function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("404", function () {
       assert.deepEqual(result, expect);
     });
   })();
