@@ -76,12 +76,6 @@ describe('eligibility()', function () {
       var result = helpers.eligibility(badAuthenticate);
       assert.deepEqual(result, ['www-authenticate']);
     });
-
-    it('authorization', function () {
-      var badAuthorization = new FauxXHR({ headers: { 'authorization': 'baSe64DaTA' } });
-      var result = helpers.eligibility(badAuthorization);
-      assert.deepEqual(result, ['authorization']);
-    });
   });
 
   describe('Caching', function () {
