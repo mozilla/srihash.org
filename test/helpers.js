@@ -69,50 +69,18 @@ describe('upgradeToHttps()', function () {
 
 describe('eligibility()', function () {
   describe('Eligible', function () {
-    it('Irrelevant header', function () {
-      var allGood = new FauxXHR({ headers: { 'dnt': '1' } });
+    it('CORS', function () {
+      var allGood = new FauxXHR({ headers: { 'access-control-allow-origin': '*' } });
       var result = helpers.eligibility(allGood);
       assert.deepEqual(result, []);
     });
   });
 
-  describe('Bad headers', function () {
-    it('refresh', function () {
-      var badRefresh = new FauxXHR({ headers: { 'refresh': '1' } });
-      var result = helpers.eligibility(badRefresh);
-      assert.deepEqual(result, ['refresh']);
-    });
-
-    it('www-authenticate', function () {
-      var badAuthenticate = new FauxXHR({ headers: { 'www-authenticate': '1' } });
-      var result = helpers.eligibility(badAuthenticate);
-      assert.deepEqual(result, ['www-authenticate']);
-    });
-  });
-
-  describe('Caching', function () {
-    it('Explicit public cache', function () {
-      var publicCache1 = new FauxXHR({ headers: { 'cache-control': 'public' } });
-      var result = helpers.eligibility(publicCache1);
-      assert.deepEqual(result, []);
-    });
-
-    it('Implicit public cache', function () {
-      var publicCache2 = new FauxXHR({ headers: { 'cache-control': 'bogus' } });
-      var result = helpers.eligibility(publicCache2);
-      assert.deepEqual(result, []);
-    });
-
-    it('private', function () {
-      var badCache1 = new FauxXHR({ headers: { 'cache-control': 'max-age=1000,private' } });
-      var result = helpers.eligibility(badCache1);
-      assert.deepEqual(result, ['no-cache']);
-    });
-
-    it('no-store', function () {
-      var badCache2 = new FauxXHR({ headers: { 'cache-control': 'public,no-store' } });
-      var result = helpers.eligibility(badCache2);
-      assert.deepEqual(result, ['no-cache']);
+  describe('Non-eligible', function () {
+    it('non-CORS', function () {
+      var nonCORS = new FauxXHR({ headers: { 'dnt': '1' } });
+      var result = helpers.eligibility(nonCORS);
+      assert.deepEqual(result, ['non-cors']);
     });
   });
 });
@@ -272,6 +240,74 @@ describe ("generate()", function () {
     });
 
     it ("404", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+});
+
+
+// Ideally we should find a way to test this without using the network
+describe ("generateElement()", function () {
+  (function (result) {
+    var url = 'https://www.google-analytics.com/ga.js';
+    var expect = 'Error: this resource is not eligible for integrity checks. See http://enable-cors.org/server.html';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("non-CORS", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+
+  (function (result) {
+    var url = 'code.jquery.com/jquery-1.11.2.min.js';
+    var expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=" crossorigin="anonymous"></script>';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("js", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+
+  (function (result) {
+    var url = 'https://code.jquery.com/jquery-1.11.2-notfound.min.js';
+    var expect = 'Error: fetching the resource returned a 404 error code.';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("404", function () {
+      assert.deepEqual(result, expect);
+    });
+  })();
+
+  (function (result) {
+    var url = 'ftp://code.jquery.com/jquery-1.11.2.min.js';
+    var expect = 'Error: fetching the resource returned an unexpected error.';
+
+    before(function (done) {
+      helpers.generateElement(url, 'sha256', function (data) {
+        result = data;
+        done();
+      });
+    });
+
+    it ("bad scheme", function () {
       assert.deepEqual(result, expect);
     });
   })();
