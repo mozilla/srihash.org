@@ -9,7 +9,7 @@ var Hapi = require('hapi');
 var handlebars = require('handlebars');
 handlebars = require('handlebars-helper-sri').register(handlebars);
 
-var helpers = require('./lib/helpers.js');
+var helpers = require('./dist/helpers.js');
 
 var server = new Hapi.Server();
 server.connection({ port: 4000 });

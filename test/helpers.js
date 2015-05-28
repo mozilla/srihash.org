@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 var assert = require('assert');
-var helpers = require('../lib/helpers.js');
+var helpers = require('../dist/helpers.js');
 
 /**
  * Simulate a XMLHttpRequest object

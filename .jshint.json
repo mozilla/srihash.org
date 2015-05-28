@@ -3,6 +3,6 @@
   "quotmark": "single",
   "singleGroups": false,
   "node": true,
-
+  "esnext": true,
   "nocomma": false
 }
