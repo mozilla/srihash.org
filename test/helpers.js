@@ -53,6 +53,18 @@ describe('upgradeToHttps()', function () {
       assert.equal(relativeKnownUrl, 'https://code.jquery.com/script.js');
     });
   });
+
+  describe('Invalid URLs', function () {
+    it('Invalid scheme', function () {
+      var ftpScheme = helpers.upgradeToHttps('ftp://example.com/script.js');
+      assert.strictEqual(ftpScheme, false);
+    });
+
+    it('Bare hostname', function () {
+      var bareHostname = helpers.upgradeToHttps('foobar');
+      assert.equal(bareHostname, 'http://foobar/');
+    });
+  });
 });
 
 describe('eligibility()', function () {
