@@ -1,7 +1,7 @@
 {
   "name": "srihash.org",
   "version": "0.1.0",
-  "description": "Sub-resource integrity attribute generator",
+  "description": "Subresource Integrity attribute generator",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
