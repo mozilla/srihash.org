@@ -25,7 +25,7 @@
           <div>Enter the URL of the resource you wish to use:</div>
           <form method="POST" action="/hash" target="sriSnippet">
             <input name="url" type="text" value="" placeholder="Resource URL" required>
-            <input name="algorithms" value="sha256" type="hidden">
+            <input name="algorithms" value="sha384" type="hidden">
             <input type="submit" value="Hash!">
           </form>
           <iframe id="sriSnippet" name="sriSnippet" frameborder="0" sandbox="allow-same-origin"></iframe>
@@ -48,7 +48,7 @@
       <p>Use the generator above or the following shell command:<br>
         <code>
           cat <strong>FILENAME.js</strong> |<br>
-          openssl dgst -sha256 -binary |<br>
+          openssl dgst -sha384 -binary |<br>
           openssl enc -base64 -A
         </code>
       </p>
@@ -59,7 +59,7 @@
 
       <div class="sri-test" id="sri-badge">
         <link rel="stylesheet" href="/badge/will-pass.css">
-        <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha256-INVALIDHASH">
+        <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha384-INVALIDHASH">
         <div data-sri-status="pass">
           <img src="/badge/pass.svg">
           <p>Your browser supports SRI</p>
