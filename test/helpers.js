@@ -173,14 +173,14 @@ describe ("generate()", function () {
   (function (result) {
     var resource = {
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
-      algorithms: ['sha256']
+      algorithms: ['sha384']
     };
     var expect = {
       success: true,
       status: 200,
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       type: 'js',
-      integrity: 'sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=',
+      integrity: 'sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74',
       eligibility: []
     };
 
@@ -199,14 +199,14 @@ describe ("generate()", function () {
   (function (result) {
     var resource = {
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
-      algorithms: ['sha256']
+      algorithms: ['sha384']
     };
     var expect = {
       success: true,
       status: 200,
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
       type: 'css',
-      integrity: 'sha256-DW9MX1sLpQ9seN/7+gouAyFj8+xc+lQD6Q9DKWqQDy0=',
+      integrity: 'sha384-w/LBTbFO0P4C3wi1uA2RpBjIEBMRuH15ue80rElDXquOVM6x7Cw3nsOqy7vSBid9',
       eligibility: []
     };
 
@@ -225,7 +225,7 @@ describe ("generate()", function () {
   (function (result) {
     var resource = {
       url: 'https://code.jquery.com/jquery-1.11.2-notfound.min.js',
-      algorithms: ['sha256']
+      algorithms: ['sha384']
     };
     var expect = {
       success: false,
@@ -253,7 +253,7 @@ describe ("generateElement()", function () {
     var expect = 'Error: this resource is not eligible for integrity checks. See http://enable-cors.org/server.html';
 
     before(function (done) {
-      helpers.generateElement(url, 'sha256', function (data) {
+      helpers.generateElement(url, 'sha384', function (data) {
         result = data;
         done();
       });
@@ -266,10 +266,10 @@ describe ("generateElement()", function () {
 
   (function (result) {
     var url = 'code.jquery.com/jquery-1.11.2.min.js';
-    var expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=" crossorigin="anonymous"></script>';
+    var expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74" crossorigin="anonymous"></script>';
 
     before(function (done) {
-      helpers.generateElement(url, 'sha256', function (data) {
+      helpers.generateElement(url, 'sha384', function (data) {
         result = data;
         done();
       });
@@ -285,7 +285,7 @@ describe ("generateElement()", function () {
     var expect = 'Error: fetching the resource returned a 404 error code.';
 
     before(function (done) {
-      helpers.generateElement(url, 'sha256', function (data) {
+      helpers.generateElement(url, 'sha384', function (data) {
         result = data;
         done();
       });
@@ -301,7 +301,7 @@ describe ("generateElement()", function () {
     var expect = 'Error: fetching the resource returned an unexpected error.';
 
     before(function (done) {
-      helpers.generateElement(url, 'sha256', function (data) {
+      helpers.generateElement(url, 'sha384', function (data) {
         result = data;
         done();
       });
