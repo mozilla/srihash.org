@@ -31,7 +31,11 @@ server.register(require('inert'), function (err) {
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-      reply.view('index', { 'title': 'SRI Hash Generator' });
+      var browsers = helpers.shuffleArray([
+        { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/channel/#developer' },
+        { 'name': 'Chrome', 'url': 'https://www.google.com/chrome/browser/desktop/' }
+      ]);
+      reply.view('index', { 'title': 'SRI Hash Generator', 'browsers': browsers });
     }
   });
 

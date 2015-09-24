@@ -85,6 +85,30 @@ describe('eligibility()', function () {
   });
 });
 
+describe('shuffleArray()', function () {
+  describe('Array Shuffling', function () {
+    it('preserves length', function () {
+      var a = [ 'a', 'b', 'c', 'd' ] ;
+      var result = helpers.shuffleArray(a);
+      assert.equal(result.length, a.length);
+    });
+
+    it('returns all elements', function () {
+      var a = [ 'a', 'b' ] ;
+      var result = helpers.shuffleArray(a);
+      assert.strictEqual(result[0] === 'a' || result[1] === 'a', true);
+      assert.strictEqual(result[0] === 'b' || result[1] === 'b', true);
+    });
+
+    it('clones the array', function () {
+      var a = [ 'a' ] ;
+      var result = helpers.shuffleArray(a);
+      a[0] = 'b';
+      assert.strictEqual(result[0], 'a');
+    });
+  });
+});
+
 describe('guessResourceType()', function () {
   describe('Matching', function () {
     describe('Content-type', function () {
