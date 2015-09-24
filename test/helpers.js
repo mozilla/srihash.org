@@ -99,6 +99,13 @@ describe('shuffleArray()', function () {
       assert.strictEqual(result[0] === 'a' || result[1] === 'a', true);
       assert.strictEqual(result[0] === 'b' || result[1] === 'b', true);
     });
+
+    it('clones the array', function () {
+      var a = [ 'a' ] ;
+      var result = helpers.shuffleArray(a);
+      a[0] = 'b';
+      assert.strictEqual(result[0], 'a');
+    });
   });
 });
 
