@@ -12,7 +12,7 @@ handlebars = require('handlebars-helper-sri').register(handlebars);
 var helpers = require('./lib/helpers.js');
 
 var server = new Hapi.Server();
-server.connection({ port: 4000 });
+server.connection({ port: process.env.PORT || 4000 });
 
 server.register(require('vision'), function (err) {
   server.views({
