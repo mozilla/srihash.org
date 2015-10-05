@@ -11,6 +11,8 @@ handlebars = require('handlebars-helper-sri').register(handlebars);
 
 var helpers = require('./lib/helpers.js');
 
+var CSP_HEADER = "default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self' ; frame-src 'self'"; // jshint ignore:line
+
 var server = new Hapi.Server();
 server.connection({ port: process.env.PORT || 4000 });
 
@@ -35,7 +37,9 @@ server.register(require('inert'), function (err) {
         { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/channel/#developer' },
         { 'name': 'Chrome', 'url': 'https://www.google.com/chrome/browser/desktop/' }
       ]);
-      reply.view('index', { 'title': 'SRI Hash Generator', 'browsers': browsers });
+      reply
+        .view('index', { 'title': 'SRI Hash Generator', 'browsers': browsers })
+        .header('Content-Security-Policy', CSP_HEADER);
     }
   });
 
@@ -86,7 +90,9 @@ server.register(require('inert'), function (err) {
         request.payload.url,
         request.payload.algorithms,
         function (result) {
-          reply.view('hash', { 'hash': result });
+          reply
+            .view('hash', { 'hash': result })
+            .header('Content-Security-Policy', CSP_HEADER);
         }
       );
     }
