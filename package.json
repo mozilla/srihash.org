@@ -24,14 +24,14 @@
     "grunt-copyright": "^0.2.0",
     "grunt-jscs": "^2.1.0",
     "grunt-nodemon": "^0.4.0",
-    "istanbul": "^0.3.20",
+    "istanbul": "^0.3.22",
     "mocha": "^2.3.3"
   },
   "dependencies": {
-    "handlebars": "^4.0.2",
+    "handlebars": "^4.0.3",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^10.0.0",
-    "inert": "^3.0.1",
+    "inert": "^3.0.2",
     "sri-toolbox": "^0.2.0",
     "vision": "^3.0.0",
     "xhr2": "^0.1.3"
