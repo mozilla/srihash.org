@@ -38,7 +38,7 @@
     top: calc(-64px + 16px - 4px);
     left: 0px;
     margin: 0;
-    width: calc (100% - 80px - 26px);
+    width: calc(100% - 80px - 26px);
     padding: 2px 24px 2px 80px;
     background-color: #eee;
     z-index: -1;
