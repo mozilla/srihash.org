@@ -14,7 +14,10 @@ var helpers = require('./lib/helpers.js');
 var CSP_HEADER = "default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self' ; frame-src 'self'"; // jshint ignore:line
 
 var server = new Hapi.Server();
-server.connection({ port: process.env.PORT || 4000 });
+server.connection({
+  port: process.env.PORT || 4000,
+  routes: { security: { xframe: 'sameorigin' } }
+});
 
 server.register(require('vision'), function (err) {
   server.views({
