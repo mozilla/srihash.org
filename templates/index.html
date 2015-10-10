@@ -48,8 +48,7 @@
       <h3>How can I generate Integrity hashes?</h3>
       <p>Use the generator above or the following shell command:<br>
         <code>
-          openssl dgst -sha384 -binary <strong>FILENAME.js</strong> |<br>
-          openssl enc -base64 -A
+          openssl dgst -sha384 -binary <strong>FILENAME.js</strong> | openssl base64 -A
         </code>
       </p>
       <hr>
