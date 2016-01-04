@@ -37,7 +37,7 @@ server.register(require('inert'), function (err) {
     path: '/',
     handler: function (request, reply) {
       var browsers = helpers.shuffleArray([
-        { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/channel/#beta' },
+        { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/' },
         { 'name': 'Chrome', 'url': 'https://www.google.com/chrome/browser/desktop/' }
       ]);
       reply
