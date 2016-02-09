@@ -151,6 +151,13 @@ describe('guessResourceType()', function () {
         assert.deepEqual(cssUrl2, 'css');
       });
 
+      it('URL parameters', function () {
+        var urlWithQuery = helpers.guessResourceType({ url: 'http://example.com/file.css?v=1.0.2' });
+        assert.deepEqual(urlWithQuery, 'css');
+        var urlWithHash = helpers.guessResourceType({ url: 'http://example.com/file.css#v=1.0.2' });
+        assert.deepEqual(urlWithHash, 'css');
+      });
+
       // The internal label ".forbidden" must never be detected as a file ext
       it('NOT .forbidden', function () {
         var forbiddenUrl1 = helpers.guessResourceType({ url: 'http://example.com/file.forbidden' });
