@@ -1,5 +1,4 @@
-SRI Hash Generator
-===================
+# SRI Hash Generator
 
 This is the code behind the <https://srihash.org> website. It generates [subresource integrity](http://www.w3.org/TR/SRI/) hashes.
 
@@ -14,18 +13,24 @@ You'll need node 0.10.x or higher and npm to run the server.
 
 Clone the git repository and install dependencies:
 
-    git clone git://github.com/mozilla/srihash.org.git
-    cd srihash.org
-    npm install
+```shell
+git clone git://github.com/mozilla/srihash.org.git
+cd srihash.org
+npm install
+```
 
 To start the server, run:
 
-    npm start
+```shell
+npm start
+```
 
-It will listen on http://127.0.0.1:4000 by default.
+It will listen on `http://127.0.0.1:4000` by default.
 
 ## Testing
 
 Run tests with:
 
-    npm test
+```shell
+npm test
+```
