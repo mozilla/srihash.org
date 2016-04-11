@@ -1,0 +1,11 @@
+{
+    "box-model": false,
+    "bulletproof-font-face": false,
+    "font-sizes": false,
+    "ids": false,
+    "important": false,
+    "qualified-headings": false,
+    "unique-headings": false,
+    "universal-selector": false,
+    "unqualified-attributes": false
+}

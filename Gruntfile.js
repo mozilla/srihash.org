@@ -5,8 +5,9 @@
 'use strict';
 
 module.exports = function (grunt) {
-  grunt.loadNpmTasks('grunt-copyright');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-copyright');
   grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-nodemon');
 
@@ -55,6 +56,13 @@ module.exports = function (grunt) {
       src: ['<%= jshint.src %>']
     },
 
+    csslint: {
+      options: {
+        csslintrc: '.csslintrc'
+      },
+      src: 'public/**/*.css'
+    },
+
     nodemon: {
       dev: {
         script: 'index.js'
@@ -63,6 +71,6 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['lint', 'copyright']);
-  grunt.registerTask('lint', ['jshint', 'jscs']);
+  grunt.registerTask('lint', ['csslint', 'jshint', 'jscs']);
   grunt.registerTask('dev', ['nodemon']);
 };
