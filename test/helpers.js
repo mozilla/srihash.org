@@ -1,19 +1,23 @@
 /* Any copyright is dedicated to the Public Domain.
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
+/* jshint mocha:true */
+
+'use strict';
+
 var assert = require('assert');
 var helpers = require('../lib/helpers.js');
 
 /**
  * Simulate a XMLHttpRequest object
  */
-var FauxXHR = function (_attributes) {
+var FauxXHR = function (attributes) {
   var that = this,
     headers = {};
 
   // Store header keys as lowercase
-  Object.keys(_attributes.headers).map(function (header) {
-    headers[header.toLowerCase()] = _attributes.headers[header];
+  Object.keys(attributes.headers).map(function (header) {
+    headers[header.toLowerCase()] = attributes.headers[header];
   });
 
   that.getResponseHeader = function (header) {
@@ -88,20 +92,20 @@ describe('eligibility()', function () {
 describe('shuffleArray()', function () {
   describe('Array Shuffling', function () {
     it('preserves length', function () {
-      var a = [ 'a', 'b', 'c', 'd' ] ;
+      var a = ['a', 'b', 'c', 'd'];
       var result = helpers.shuffleArray(a);
       assert.equal(result.length, a.length);
     });
 
     it('returns all elements', function () {
-      var a = [ 'a', 'b' ] ;
+      var a = ['a', 'b'];
       var result = helpers.shuffleArray(a);
       assert.strictEqual(result[0] === 'a' || result[1] === 'a', true);
       assert.strictEqual(result[0] === 'b' || result[1] === 'b', true);
     });
 
     it('clones the array', function () {
-      var a = [ 'a' ] ;
+      var a = ['a'];
       var result = helpers.shuffleArray(a);
       a[0] = 'b';
       assert.strictEqual(result[0], 'a');
@@ -170,7 +174,7 @@ describe('guessResourceType()', function () {
 
   describe('Fallback', function () {
     it('Invalid content-type', function () {
-      var pdfCt1 = helpers.guessResourceType({ ct: 'invalid/type', url:'http://example.com' });
+      var pdfCt1 = helpers.guessResourceType({ ct: 'invalid/type', url: 'http://example.com' });
       assert.deepEqual(pdfCt1, null);
     });
 
@@ -191,7 +195,7 @@ describe('guessResourceType()', function () {
   });
 
   describe('Match precedence', function () {
-    it ('Content-type over extension', function () {
+    it('Content-type over extension', function () {
       var cssUrl2 = helpers.guessResourceType({ ct: 'text/css', url: 'https://example.com/file.min.js' });
       assert.deepEqual(cssUrl2, 'css');
     });
@@ -200,7 +204,7 @@ describe('guessResourceType()', function () {
 
 
 // Ideally we should find a way to test this without using the network
-describe ("generate()", function () {
+describe('generate()', function () {
   (function (result) {
     var resource = {
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
@@ -222,7 +226,7 @@ describe ("generate()", function () {
       });
     });
 
-    it ("js", function () {
+    it('js', function () {
       assert.deepEqual(result, expect);
     });
   })();
@@ -248,7 +252,7 @@ describe ("generate()", function () {
       });
     });
 
-    it ("css", function () {
+    it('css', function () {
       assert.deepEqual(result, expect);
     });
   })();
@@ -270,7 +274,7 @@ describe ("generate()", function () {
       });
     });
 
-    it ("404", function () {
+    it('404', function () {
       assert.deepEqual(result, expect);
     });
   })();
@@ -278,7 +282,7 @@ describe ("generate()", function () {
 
 
 // Ideally we should find a way to test this without using the network
-describe ("generateElement()", function () {
+describe('generateElement()', function () {
   (function (result) {
     var url = 'https://www.google-analytics.com/ga.js';
     var expect = 'Error: this resource is not eligible for integrity checks. See http://enable-cors.org/server.html';
@@ -290,7 +294,7 @@ describe ("generateElement()", function () {
       });
     });
 
-    it ("non-CORS", function () {
+    it('non-CORS', function () {
       assert.deepEqual(result, expect);
     });
   })();
@@ -306,7 +310,7 @@ describe ("generateElement()", function () {
       });
     });
 
-    it ("js", function () {
+    it('js', function () {
       assert.deepEqual(result, expect);
     });
   })();
@@ -322,7 +326,7 @@ describe ("generateElement()", function () {
       });
     });
 
-    it ("404", function () {
+    it('404', function () {
       assert.deepEqual(result, expect);
     });
   })();
@@ -338,7 +342,7 @@ describe ("generateElement()", function () {
       });
     });
 
-    it ("bad scheme", function () {
+    it('bad scheme', function () {
       assert.deepEqual(result, expect);
     });
   })();

@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-module.exports = function (grunt) {
-  'use strict';
+'use strict';
 
+module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-copyright');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jscs');
@@ -43,7 +43,8 @@ module.exports = function (grunt) {
         '*.js',
         'lib/**/*.js',
         'public/**/*.js',
-        'scripts/**/*.js'
+        'scripts/**/*.js',
+        'test/**/*.js'
       ]
     },
 
