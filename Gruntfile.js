@@ -11,8 +11,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-
     copyright: {
       app: {
         options: {
@@ -21,8 +19,8 @@ module.exports = function (grunt) {
         src: [
           '*.js',
           'lib/**/*.js',
-          'public/**/*.js',
           'public/**/*.css',
+          'public/**/*.js',
           'scripts/**/*',
           'templates/**/*.html'
         ]
@@ -53,12 +51,7 @@ module.exports = function (grunt) {
       options: {
         config: '.jscs.json'
       },
-      src: [
-        '*.js',
-        'lib/**/*.js',
-        'public/**/*.js',
-        'scripts/**/*.js'
-      ]
+      src: ['<%= jshint.src %>']
     },
 
     nodemon: {
