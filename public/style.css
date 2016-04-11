@@ -144,7 +144,6 @@ footer {
 #sriApp iframe#sriSnippet {
   width: calc(100% - 2rem);
   height: 5rem;
-  background-color: #666;
   padding: 1rem;
   border-left: 3px solid #444;
   background-color: #666;
