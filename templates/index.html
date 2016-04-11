@@ -8,6 +8,8 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/style.css" integrity="{{sri "./public/style.css"}}">
     <link rel="stylesheet" href="/badge/badge.css" integrity="{{sri "./public/badge/badge.css"}}">
+    <link rel="stylesheet" href="/badge/will-pass.css">
+    <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha384-INVALIDHASH">
   </head>
   <body>
     <!-- Nav -->
@@ -62,8 +64,6 @@
       <p>To fully test your browser for subresource integrity support, please open <a href="http://w3c-test.org/subresource-integrity/subresource-integrity.sub.html">this page</a>.</p>
 
       <div class="sri-test" id="sri-badge">
-        <link rel="stylesheet" href="/badge/will-pass.css">
-        <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha384-INVALIDHASH">
         <div data-sri-status="pass">
           <img src="/badge/pass.svg">
           <p>Your browser supports SRI</p>
