@@ -19,10 +19,9 @@
   "devDependencies": {
     "coveralls": "^2.11.4",
     "grunt": "^1.0.1",
-    "grunt-cli": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-copyright": "^0.2.0",
-    "grunt-jscs": "^2.1.0",
+    "grunt-jscs": "^2.7.0",
     "grunt-nodemon": "^0.4.0",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.3"
