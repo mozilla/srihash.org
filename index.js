@@ -73,8 +73,7 @@ server.register(require('inert'), function (err) {
       };
       helpers.generate(options, function (result) {
         reply(
-          JSON // jshint ignore:line
-            .stringify(result)
+          JSON.stringify(result)    // jshint ignore:line
         ).type('application/json');
       });
     }

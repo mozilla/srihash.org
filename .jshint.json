@@ -2,7 +2,5 @@
   "enforceall": true,
   "quotmark": "single",
   "singleGroups": false,
-  "node": true,
-
-  "nocomma": false
+  "node": true
 }
