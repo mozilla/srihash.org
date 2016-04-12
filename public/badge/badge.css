@@ -17,16 +17,13 @@
     overflow: hidden;
 }
 
-.sri-test *[data-sri-status] * {
-    display: inline-block;
-    float: left;
-}
-
 .sri-test *[data-sri-status] img {
+    display: block;
     margin-left: 16px;
 }
 
 .sri-test *[data-sri-status] p {
+    float: left;
     position: relative;
     text-align: center;
     top: calc(-64px + 16px - 4px);

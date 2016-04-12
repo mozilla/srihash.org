@@ -4,20 +4,18 @@
 
 @font-face {
   font-family: 'Open Sans';
+  src: local('Open Sans Light'),
+       local('OpenSans-Light'),
+       url('OpenSans-Light.woff') format('woff');
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url('OpenSans-Light.woff') format('woff');
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 300 16px/1.42857143 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
-}
-
-hr {
-  opacity: 0.3;
 }
 
 a {
@@ -31,7 +29,7 @@ a:hover {
 
 h1, h2, h3, h4 {
   font-weight: 300;
-  margin: 0.25rem 0 0.25rem 0;
+  margin: 0.25rem 0;
 }
 h1 {
   font-size: 4rem;
@@ -46,26 +44,8 @@ h4 {
   font-size: 1.25rem;
 }
 
-input:not([type=checkbox]), button, .button {
-  font-size: .9rem;
-  height: 2.25rem;
-  display: inline-block;
-}
-input[type=text] {
-  background-color: white;
-  color: #888;
-  border: 1px solid #ccc;
-}
-input[type=submit], button, .button {
-  cursor: pointer;
-  color: white;
-  background-color: #008cba;
-  border: 1px solid #0079a1;
-}
-button:hover, .button:hover {
-  color: white;
-  background-color: #006687;
-  border: 1px solid #004b63;
+hr {
+  opacity: 0.3;
 }
 
 code {
@@ -76,6 +56,7 @@ code {
   background-color: #3a3a3a;
   color: #ccc;
   font-size: 1rem;
+  line-height: 1;
   margin-top: 1rem;
 }
 
@@ -116,7 +97,7 @@ footer {
 #app {
   color: black;
   background-color: #adbdc6;
-  padding: 4rem 0 4rem 0;
+  padding: 4rem 0;
   max-width: 100%;
 }
 
@@ -127,13 +108,27 @@ footer {
 
 #sriApp {
   font-size: 1.5rem;
-  font-weight: 300;
 }
+
+#sriApp input:not([type=checkbox]) {
+  font-size: .9rem;
+  height: 2.25rem;
+  display: inline-block;
+}
+
 #sriApp input[type=text] {
+  background-color: white;
+  color: #888;
+  border: 1px solid #ccc;
   width: 70%;
-  padding: 0 2% 0 2%;
+  padding: 0 2%;
 }
+
 #sriApp input[type=submit] {
+  cursor: pointer;
+  color: white;
+  background-color: #008cba;
+  border: 1px solid #0079a1;
   width: 25%;
 }
 #sriApp label {
@@ -148,11 +143,10 @@ footer {
   border: none;
   border-left: 3px solid gray;
   background-color: #3a3a3a;
-  margin: 0;
-  margin-top: 1rem;
+  margin: 1rem 0 0 0;
 }
 
-code#sriSnippet {
+#sriSnippet {
   padding: 0;
   margin: 0;
   border: 0;
