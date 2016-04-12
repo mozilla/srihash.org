@@ -1,8 +1,13 @@
 {
-  "enforceall": true,
-  "quotmark": "single",
-  "singleGroups": false,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "latedef": true,
+  "noarg": true,
   "node": true,
-
-  "nocomma": false
+  "noempty": true,
+  "quotmark": "single",
+  "strict": true,
+  "undef": true,
+  "unused": true
 }

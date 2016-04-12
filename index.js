@@ -1,6 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 'use strict';
 
 var Path = require('path');
@@ -19,7 +20,7 @@ server.connection({
   routes: { security: { xframe: 'sameorigin' } }
 });
 
-server.register(require('vision'), function (err) {
+server.register(require('vision'), function () {
   server.views({
     engines: {
       html: handlebars
@@ -28,7 +29,7 @@ server.register(require('vision'), function (err) {
   });
 });
 
-server.register(require('inert'), function (err) {
+server.register(require('inert'), function () {
   /**
    * Serve index.js
    */
@@ -73,8 +74,7 @@ server.register(require('inert'), function (err) {
       };
       helpers.generate(options, function (result) {
         reply(
-          JSON // jshint ignore:line
-            .stringify(result)
+          JSON.stringify(result)
         ).type('application/json');
       });
     }
