@@ -4,7 +4,6 @@
 
 .sri-test {
     display: inline-block;
-    font-family: "open sans";
     font-size: 13px;
 }
 .sri-test:before {
@@ -12,27 +11,22 @@
     content: "[Testing SRI support...]";
 }
 
-#sri-badge {
-    display: inline-block;
-    font-family: "open sans";
-    font-size: 13px;
-}
-#sri-badge *[data-sri-status] {
+.sri-test *[data-sri-status] {
     height: 64px;
     width: 224px;
     overflow: hidden;
 }
 
-#sri-badge *[data-sri-status] * {
+.sri-test *[data-sri-status] * {
     display: inline-block;
     float: left;
 }
 
-#sri-badge *[data-sri-status] img {
+.sri-test *[data-sri-status] img {
     margin-left: 16px;
 }
 
-#sri-badge *[data-sri-status] p {
+.sri-test *[data-sri-status] p {
     position: relative;
     text-align: center;
     top: calc(-64px + 16px - 4px);
@@ -44,9 +38,7 @@
     z-index: -1;
 }
 
-#sri-badge *[data-sri-status="pass"] {
-    display: none;
-}
-#sri-badge *[data-sri-status="fail"] {
+.sri-test *[data-sri-status="pass"],
+.sri-test *[data-sri-status="fail"] {
     display: none;
 }
