@@ -6,10 +6,6 @@
     display: inline-block;
     font-size: 13px;
 }
-.sri-test:before {
-    background-color: yellow;
-    content: "[Testing SRI support...]";
-}
 
 .sri-test *[data-sri-status] {
     height: 64px;
@@ -38,7 +34,6 @@
     z-index: -1;
 }
 
-.sri-test *[data-sri-status="pass"],
-.sri-test *[data-sri-status="fail"] {
-    display: none;
+.sri-test div[data-sri-status] {
+    display: block;
 }
