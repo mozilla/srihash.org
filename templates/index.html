@@ -2,7 +2,7 @@
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/. }}
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
@@ -25,13 +25,13 @@
         {{! section to be replaced with react app }}
         <div id="sriApp">
           <h1>SRI Hash Generator</h1>
-          <div>Enter the URL of the resource you wish to use:</div>
+          <label for="url">Enter the URL of the resource you wish to use:</label>
           <form method="POST" action="/hash" target="sriSnippet">
-            <input name="url" type="text" value="" placeholder="Resource URL" required>
-            <input name="algorithms" value="sha384" type="hidden">
+            <input id="url" name="url" type="text" value="" placeholder="Resource URL" required>
+            <input name="algorithms" type="hidden" value="sha384">
             <input type="submit" value="Hash!">
           </form>
-          <iframe id="sriSnippet" name="sriSnippet" sandbox="allow-same-origin"></iframe>
+          <iframe id="sriSnippet" name="sriSnippet" sandbox="allow-same-origin" title="SRI Hash"></iframe>
         </div>
         {{! end section }}
       </div>
@@ -39,16 +39,16 @@
 
     <!-- About -->
     <div id="about" class="container">
-      <h3>What is Subresource Integrity?</h3>
+      <h2>What is Subresource Integrity?</h2>
       <p>SRI is a new <a href="http://www.w3.org/TR/SRI/">W3C specification</a> that allows web developers to ensure that resources hosted on third-party servers have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.</p>
       <p>Learn more about <a href="https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity">how to use subresource integrity</a> on MDN.</p>
       <hr>
 
-      <h3>How is Subresource Integrity different to HTTPS?</h3>
+      <h2>How is Subresource Integrity different to HTTPS?</h2>
       <p>TLS ensures that the connection between the browser and the server is secure. The resource itself may still be modified server-side by an attacker to include malicious content, yet still be served with a valid TLS certificate. SRI, on the other hand, guarantees that a resource hasn't changed since it was hashed by a web author.</p>
       <hr>
 
-      <h3>How can I generate Integrity hashes?</h3>
+      <h2>How can I generate Integrity hashes?</h2>
       <p>Use the generator above or the following shell command:<br>
         <code>
           openssl dgst -sha384 -binary <strong>FILENAME.js</strong> | openssl base64 -A
@@ -56,7 +56,7 @@
       </p>
       <hr>
 
-      <h3>Test your browser</h3>
+      <h2>Test your browser</h2>
       <p>Both <a href="{{browsers.0.url}}">{{browsers.0.name}}</a> and <a href="{{browsers.1.url}}">{{browsers.1.name}}</a> support SRI.</p>
 
       <p>Check out <a href="http://caniuse.com/#feat=subresource-integrity">SRI on caniuse.com</a> to see specific browser version support information.</p>
