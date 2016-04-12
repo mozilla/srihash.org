@@ -20,7 +20,7 @@ server.connection({
   routes: { security: { xframe: 'sameorigin' } }
 });
 
-server.register(require('vision'), function (err) {
+server.register(require('vision'), function () {
   server.views({
     engines: {
       html: handlebars
@@ -29,7 +29,7 @@ server.register(require('vision'), function (err) {
   });
 });
 
-server.register(require('inert'), function (err) {
+server.register(require('inert'), function () {
   /**
    * Serve index.js
    */
@@ -74,7 +74,7 @@ server.register(require('inert'), function (err) {
       };
       helpers.generate(options, function (result) {
         reply(
-          JSON.stringify(result)    // jshint ignore:line
+          JSON.stringify(result)
         ).type('application/json');
       });
     }
