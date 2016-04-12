@@ -38,7 +38,7 @@
     </div>
 
     <!-- About -->
-    <div id="about" class="container">
+    <section id="about" class="container">
       <h2>What is Subresource Integrity?</h2>
       <p>SRI is a new <a href="http://www.w3.org/TR/SRI/">W3C specification</a> that allows web developers to ensure that resources hosted on third-party servers have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.</p>
       <p>Learn more about <a href="https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity">how to use subresource integrity</a> on MDN.</p>
@@ -54,6 +54,7 @@
           openssl dgst -sha384 -binary <strong>FILENAME.js</strong> | openssl base64 -A
         </code>
       </p>
+
       <hr>
 
       <h2>Test your browser</h2>
@@ -73,7 +74,8 @@
           <p>Your browser does not support SRI</p>
         </div>
       </div>
-    </div>
+    </section>
+
     <hr>
 
     <!-- Footer -->
