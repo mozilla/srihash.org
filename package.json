@@ -31,7 +31,7 @@
     "handlebars": "^4.0.3",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^13.0.0",
-    "inert": "^3.0.2",
+    "inert": "^4.0.0",
     "sri-toolbox": "^0.2.0",
     "vision": "^4.0.1",
     "xhr2": "^0.1.3"
