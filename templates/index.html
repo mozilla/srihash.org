@@ -1,13 +1,13 @@
 {{! This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/. }}
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/style.css" integrity="{{sri "./public/style.css"}}">
-    <link rel="stylesheet" href="/badge/badge.css" integrity="{{sri "./public/badge/badge.css"}}">
+    <link rel="stylesheet" href="/style.css" integrity="{{sri './public/style.css'}}">
+    <link rel="stylesheet" href="/badge/badge.css" integrity="{{sri './public/badge/badge.css'}}">
     <link rel="stylesheet" href="/badge/will-pass.css">
     <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha384-INVALIDHASH">
   </head>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- About -->
-    <div id="about" class="container">
+    <section id="about" class="container">
       <h2>What is Subresource Integrity?</h2>
       <p>SRI is a new <a href="http://www.w3.org/TR/SRI/">W3C specification</a> that allows web developers to ensure that resources hosted on third-party servers have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.</p>
       <p>Learn more about <a href="https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity">how to use subresource integrity</a> on MDN.</p>
@@ -54,6 +54,7 @@
           openssl dgst -sha384 -binary <strong>FILENAME.js</strong> | openssl base64 -A
         </code>
       </p>
+
       <hr>
 
       <h2>Test your browser</h2>
@@ -65,20 +66,21 @@
 
       <div class="sri-test" id="sri-badge">
         <div data-sri-status="pass">
-          <img src="/badge/pass.svg" alt="Pass Badge">
+          <img src="/badge/pass.svg" alt="Pass Badge" width="50" height="64">
           <p>Your browser supports SRI</p>
         </div>
         <div data-sri-status="fail">
-          <img src="/badge/fail.svg" alt="Fail Badge">
+          <img src="/badge/fail.svg" alt="Fail Badge" width="50" height="64">
           <p>Your browser does not support SRI</p>
         </div>
       </div>
-    </div>
+    </section>
+
     <hr>
 
     <!-- Footer -->
     <footer class="container">
-      The code behind this service is hosted on <a href="https://github.com/mozilla/srihash.org">Github</a> and is licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.
+      The code behind this service is hosted on <a href="https://github.com/mozilla/srihash.org">GitHub</a> and is licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.
     </footer>
 
   </body>
