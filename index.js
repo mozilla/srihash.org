@@ -56,7 +56,13 @@ server.register(require('inert'), function () {
     handler: {
       directory: {
         path: 'public',
+        etagMethod: false,
         lookupCompressed: true
+      }
+    },
+    config: {
+      cache: {
+        expiresIn: 60 * 60 * 1000   // 1 hour
       }
     }
   });
