@@ -29,7 +29,7 @@
   "dependencies": {
     "handlebars": "^4.0.3",
     "handlebars-helper-sri": "0.0.0",
-    "hapi": "^13.0.0",
+    "hapi": "^13.5.0",
     "inert": "^4.0.0",
     "sri-toolbox": "^0.2.0",
     "vision": "^4.0.1",
