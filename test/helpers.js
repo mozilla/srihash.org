@@ -8,23 +8,6 @@
 var assert = require('assert');
 var helpers = require('../lib/helpers.js');
 
-/**
- * Simulate a XMLHttpRequest object
- */
-var FauxXHR = function (attributes) {
-  var that = this,
-    headers = {};
-
-  // Store header keys as lowercase
-  Object.keys(attributes.headers).map(function (header) {
-    headers[header.toLowerCase()] = attributes.headers[header];
-  });
-
-  that.getResponseHeader = function (header) {
-    return headers[header.toLowerCase()];
-  };
-};
-
 describe('upgradeToHttps()', function () {
   describe('CDNs', function () {
     it('Known', function () {
@@ -74,7 +57,7 @@ describe('upgradeToHttps()', function () {
 describe('eligibility()', function () {
   describe('Eligible', function () {
     it('CORS', function () {
-      var allGood = new FauxXHR({ headers: { 'access-control-allow-origin': '*' } });
+      var allGood = { headers: { 'access-control-allow-origin': '*' } };
       var result = helpers.eligibility(allGood);
       assert.deepEqual(result, []);
     });
@@ -82,7 +65,7 @@ describe('eligibility()', function () {
 
   describe('Non-eligible', function () {
     it('non-CORS', function () {
-      var nonCORS = new FauxXHR({ headers: { 'dnt': '1' } });
+      var nonCORS = { headers: { 'dnt': '1' } };
       var result = helpers.eligibility(nonCORS);
       assert.deepEqual(result, ['non-cors']);
     });
