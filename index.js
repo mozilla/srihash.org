@@ -6,21 +6,24 @@
 
 var Path = require('path');
 var Hapi = require('hapi');
+var vision = require('vision');
+var inert = require('inert');
 
 var handlebars = require('handlebars');
 handlebars = require('handlebars-helper-sri').register(handlebars);
 
 var helpers = require('./lib/helpers.js');
 
+var server = new Hapi.Server();
+
 var CSP_HEADER = "default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self' ; frame-src 'self'"; // jshint ignore:line
 
-var server = new Hapi.Server();
 server.connection({
   port: process.env.PORT || 4000,
   routes: { security: { xframe: 'sameorigin' } }
 });
 
-server.register(require('vision'), function () {
+server.register(vision, function () {
   server.views({
     engines: {
       html: handlebars
@@ -29,7 +32,7 @@ server.register(require('vision'), function () {
   });
 });
 
-server.register(require('inert'), function () {
+server.register(inert, function () {
   /**
    * Serve index.js
    */
