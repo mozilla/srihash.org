@@ -19,7 +19,7 @@
   "devDependencies": {
     "coveralls": "^2.11.4",
     "grunt": "^1.0.1",
-    "grunt-contrib-csslint": "^1.0.0",
+    "grunt-contrib-csslint": "^2.0.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-copyright": "^0.3.0",
     "grunt-jscs": "^3.0.1",
