@@ -28,7 +28,7 @@
           <h1>SRI Hash Generator</h1>
           <label for="url">Enter the URL of the resource you wish to use:</label>
           <form method="POST" action="/hash" target="sriSnippet">
-            <input id="url" name="url" type="text" value="" placeholder="Resource URL" required>
+            <input id="url" name="url" type="url" value="" placeholder="Resource URL" required>
             <input name="algorithms" type="hidden" value="sha384">
             <input type="submit" value="Hash!">
           </form>
