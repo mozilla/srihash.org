@@ -116,7 +116,7 @@ footer {
   display: inline-block;
 }
 
-#sriApp input[type=text] {
+#sriApp input[type=url] {
   background-color: white;
   color: #888;
   border: 1px solid #ccc;
