@@ -27,6 +27,14 @@ npm start
 
 It will listen on `http://127.0.0.1:4000` by default.
 
+Or run:
+
+```shell
+npm run watch
+```
+
+to run the server and watch for changes.
+
 ## Testing
 
 Run tests with:

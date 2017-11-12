@@ -1,12 +1,14 @@
 {
-    "box-model": false,
-    "bulletproof-font-face": false,
-    "font-sizes": false,
-    "ids": false,
-    "important": false,
-    "order-alphabetical": false,
-    "qualified-headings": false,
-    "unique-headings": false,
-    "universal-selector": false,
-    "unqualified-attributes": false
+  "ignore": [
+    "box-model",
+    "bulletproof-font-face",
+    "font-sizes",
+    "ids",
+    "important",
+    "order-alphabetical",
+    "qualified-headings",
+    "unique-headings",
+    "universal-selector",
+    "unqualified-attributes"
+  ]
 }
