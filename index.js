@@ -17,6 +17,7 @@ var helpers = require('./lib/helpers.js');
 var server = new Hapi.Server();
 
 var CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; form-action 'self'"; // jshint ignore:line
+var REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 
 server.connection({
   port: process.env.PORT || 4000,
@@ -55,7 +56,8 @@ server.register(inert, function () {
       ]);
       reply
         .view('index', { 'title': 'SRI Hash Generator', 'browsers': browsers })
-        .header('Content-Security-Policy', CSP_HEADER);
+        .header('Content-Security-Policy', CSP_HEADER)
+        .header('Referrer-Policy', REFERRER_HEADER);
     }
   });
 
@@ -113,7 +115,8 @@ server.register(inert, function () {
         function (result) {
           reply
             .view('hash', { 'hash': result })
-            .header('Content-Security-Policy', CSP_HEADER);
+            .header('Content-Security-Policy', CSP_HEADER)
+            .header('Referrer-Policy', REFERRER_HEADER);
         }
       );
     }
