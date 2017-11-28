@@ -4,20 +4,22 @@
 
 'use strict';
 
-var Path = require('path');
-var Hapi = require('hapi');
-var vision = require('vision');
-var inert = require('inert');
+const Path = require('path');
+const Hapi = require('hapi');
+const vision = require('vision');
+const inert = require('inert');
 
-var handlebars = require('handlebars');
-handlebars = require('handlebars-helper-sri').register(handlebars);
+const handlebarsHelperSRI = require('handlebars-helper-sri');
+let handlebars = require('handlebars');
 
-var helpers = require('./lib/helpers.js');
+handlebars = handlebarsHelperSRI.register(handlebars);
 
-var server = new Hapi.Server();
+const helpers = require('./lib/helpers.js');
 
-var CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; form-action 'self'"; // jshint ignore:line
-var REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
+const server = new Hapi.Server();
+
+const CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'"; // jshint ignore:line
+const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 
 server.connection({
   port: process.env.PORT || 4000,
@@ -33,7 +35,7 @@ server.connection({
   }
 });
 
-server.register(vision, function () {
+server.register(vision, () => {
   server.views({
     engines: {
       html: handlebars
@@ -42,20 +44,23 @@ server.register(vision, function () {
   });
 });
 
-server.register(inert, function () {
+server.register(inert, () => {
   /**
    * Serve index.js
    */
   server.route({
     method: 'GET',
     path: '/',
-    handler: function (request, reply) {
-      var browsers = helpers.shuffleArray([
+    handler(request, reply) {
+      const browsers = helpers.shuffleArray([
         { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/' },
         { 'name': 'Chrome', 'url': 'https://www.google.com/chrome/browser/desktop/' }
       ]);
       reply
-        .view('index', { 'title': 'SRI Hash Generator', 'browsers': browsers })
+        .view('index', {
+          'title': 'SRI Hash Generator',
+          'browsers': browsers
+        })
         .header('Content-Security-Policy', CSP_HEADER)
         .header('Referrer-Policy', REFERRER_HEADER);
     }
@@ -87,12 +92,12 @@ server.register(inert, function () {
   server.route({
     method: 'POST',
     path: '/generate',
-    handler: function (request, reply) {
-      var options = {
+    handler(request, reply) {
+      const options = {
         url: request.payload.url,
         algorithms: request.payload.algorithms
       };
-      helpers.generate(options, function (result) {
+      helpers.generate(options, (result) => {
         reply(
           JSON.stringify(result)
         ).type('application/json');
@@ -108,11 +113,11 @@ server.register(inert, function () {
   server.route({
     method: 'POST',
     path: '/hash',
-    handler: function (request, reply) {
+    handler(request, reply) {
       helpers.generateElement(
         request.payload.url,
         request.payload.algorithms,
-        function (result) {
+        (result) => {
           reply
             .view('hash', { 'hash': result })
             .header('Content-Security-Policy', CSP_HEADER)
@@ -123,6 +128,6 @@ server.register(inert, function () {
   });
 });
 
-server.start(function () {
+server.start(() => {
   console.log('Server running at:', server.info.uri);
 });

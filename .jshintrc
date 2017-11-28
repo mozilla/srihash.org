@@ -2,6 +2,7 @@
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
+  "esversion": 6,
   "latedef": true,
   "noarg": true,
   "node": true,
@@ -9,5 +10,6 @@
   "quotmark": "single",
   "strict": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "varstmt": true
 }
