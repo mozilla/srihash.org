@@ -16,17 +16,19 @@
   },
   "scripts": {
     "csslint": "csslint public/",
-    "coveralls": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "coveralls": "cross-env NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "dev": "npm run watch",
     "jscs": "jscs index.js lib/ public/ test/",
     "jshint": "jshint index.js lib/ public/ test/",
     "lint": "npm run csslint && npm run jshint && npm run jscs",
     "mocha": "mocha test",
-    "start": "node ./index.js",
+    "start": "cross-env NODE_ENV=production node ./index.js",
+    "start-dev": "cross-env NODE_ENV=development node ./index.js",
     "test": "npm run lint && npm run mocha",
-    "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start\""
+    "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start-dev\""
   },
   "dependencies": {
+    "cross-env": "^5.1.1",
     "handlebars": "^4.0.3",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^16.6.2",
