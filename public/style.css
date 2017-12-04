@@ -2,13 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+/* https://google-webfonts-helper.herokuapp.com/fonts/open-sans?subsets=latin */
+/* open-sans-300 - latin */
 @font-face {
   font-family: 'Open Sans';
-  src: local('Open Sans Light'),
-       local('OpenSans-Light'),
-       url('OpenSans-Light.woff') format('woff');
   font-style: normal;
   font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+       url('open-sans-v15-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('open-sans-v15-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 body {
