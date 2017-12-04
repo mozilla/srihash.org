@@ -8,6 +8,7 @@ const Path = require('path');
 const Hapi = require('hapi');
 const vision = require('vision');
 const inert = require('inert');
+const sitemap = require('hapi-sitemap');
 
 const handlebarsHelperSRI = require('handlebars-helper-sri');
 let handlebars = require('handlebars');
@@ -83,6 +84,11 @@ server.register(inert, () => {
     config: {
       cache: {
         expiresIn: 60 * 60 * 1000   // 1 hour
+      },
+      plugins: {
+        sitemap: {
+          exclude: true
+        }
       }
     }
   });
@@ -103,6 +109,13 @@ server.register(inert, () => {
           JSON.stringify(result)
         ).type('application/json');
       });
+    },
+    config: {
+      plugins: {
+        sitemap: {
+          exclude: true
+        }
+      }
     }
   });
 
@@ -125,8 +138,27 @@ server.register(inert, () => {
             .header('Referrer-Policy', REFERRER_HEADER);
         }
       );
+    },
+    config: {
+      plugins: {
+        sitemap: {
+          exclude: true
+        }
+      }
     }
   });
+});
+
+
+server.register({
+  register: sitemap,
+  options: {
+    baseUri: 'https://www.srihash.org'
+  }
+}, (err) => {
+  if (err) {
+    console.error('Failed to load plugin: ', err);
+  }
 });
 
 server.start(() => {
