@@ -16,15 +16,16 @@
   },
   "scripts": {
     "csslint": "csslint public/",
+    "copyright": "node build/copyright.js",
     "coveralls": "cross-env NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "dev": "npm run watch",
-    "jscs": "jscs index.js lib/ public/ test/",
-    "jshint": "jshint index.js lib/ public/ test/",
+    "jscs": "jscs index.js build/ lib/ public/ test/",
+    "jshint": "jshint index.js build/ lib/ public/ test/",
     "lint": "npm run csslint && npm run jshint && npm run jscs",
     "mocha": "mocha test",
     "start": "cross-env NODE_ENV=production node ./index.js",
     "start-dev": "cross-env NODE_ENV=development node ./index.js",
-    "test": "npm run lint && npm run mocha",
+    "test": "npm run copyright && npm run lint && npm run mocha",
     "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start-dev\""
   },
   "dependencies": {
@@ -39,6 +40,7 @@
   "devDependencies": {
     "coveralls": "^2.11.4",
     "csslint": "^1.0.5",
+    "glob": "^7.1.2",
     "istanbul": "^0.4.0",
     "jscs": "^3.0.7",
     "jshint": "^2.9.5",
