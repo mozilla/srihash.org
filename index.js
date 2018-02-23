@@ -16,7 +16,7 @@ var helpers = require('./lib/helpers.js');
 
 var server = new Hapi.Server();
 
-var CSP_HEADER = "default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self' ; frame-src 'self'"; // jshint ignore:line
+var CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; form-action 'self'"; // jshint ignore:line
 
 server.connection({
   port: process.env.PORT || 4000,
