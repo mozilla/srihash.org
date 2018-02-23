@@ -20,7 +20,16 @@ var CSP_HEADER = "default-src 'none'; img-src 'self'; style-src 'self'; font-src
 
 server.connection({
   port: process.env.PORT || 4000,
-  routes: { security: { xframe: 'sameorigin' } }
+  routes: {
+    security: {
+      hsts: {
+        includeSubDomains: true,
+        maxAge: 31536000,
+        preload: true
+      },
+      xframe: 'sameorigin'
+    }
+  }
 });
 
 server.register(vision, function () {
