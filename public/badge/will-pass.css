@@ -3,9 +3,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 .sri-test:before {
-    content: "" !important;
-    display: none;
+  content: "" !important;
+  display: none;
 }
 .sri-test *[data-sri-status="pass"] {
-    display: block !important;
+  display: block !important;
 }

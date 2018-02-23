@@ -3,14 +3,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 .sri-test *[data-sri-status="pass"] {
-    display: none !important;
+  display: none !important;
 }
 .sri-test *[data-sri-status="fail"] {
-    display: block !important;
+  display: block !important;
 }
 
 /* Just in case will-pass.css failed to load */
 .sri-test:before {
-    content: none !important;
-    display: none;
+  content: none !important;
+  display: none;
 }

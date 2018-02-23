@@ -3,39 +3,39 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 .sri-test {
-    display: inline-block;
-    font-size: 13px;
+  display: inline-block;
+  font-size: 13px;
 }
 .sri-test:before {
-    background-color: yellow;
-    content: "[Testing SRI support...]";
+  background-color: yellow;
+  content: "[Testing SRI support...]";
 }
 
 .sri-test *[data-sri-status] {
-    height: 64px;
-    width: 224px;
-    overflow: hidden;
+  height: 64px;
+  width: 224px;
+  overflow: hidden;
 }
 
 .sri-test *[data-sri-status] img {
-    display: block;
-    margin-left: 16px;
+  display: block;
+  margin-left: 16px;
 }
 
 .sri-test *[data-sri-status] p {
-    float: left;
-    position: relative;
-    text-align: center;
-    top: calc(-64px + 16px - 4px);
-    left: 0;
-    margin: 0;
-    width: calc(100% - 80px - 26px);
-    padding: 2px 24px 2px 80px;
-    background-color: #eee;
-    z-index: -1;
+  float: left;
+  position: relative;
+  text-align: center;
+  top: calc(-64px + 16px - 4px);
+  left: 0;
+  margin: 0;
+  width: calc(100% - 80px - 26px);
+  padding: 2px 24px 2px 80px;
+  background-color: #eee;
+  z-index: -1;
 }
 
 .sri-test *[data-sri-status="pass"],
 .sri-test *[data-sri-status="fail"] {
-    display: none;
+  display: none;
 }
