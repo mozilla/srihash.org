@@ -1,5 +1,5 @@
 /* Any copyright is dedicated to the Public Domain.
- * http://creativecommons.org/publicdomain/zero/1.0/ */
+ * https://creativecommons.org/publicdomain/zero/1.0/ */
 
 /* jshint mocha:true */
 
@@ -268,7 +268,7 @@ describe('generate()', function () {
 describe('generateElement()', function () {
   (function (result) {
     var url = 'https://www.google-analytics.com/ga.js';
-    var expect = 'Error: this resource is not eligible for integrity checks. See http://enable-cors.org/server.html';
+    var expect = 'Error: this resource is not eligible for integrity checks. See https://enable-cors.org/server.html';
 
     before(function (done) {
       helpers.generateElement(url, 'sha384', function (data) {
