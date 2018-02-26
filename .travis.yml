@@ -1,12 +1,13 @@
 language: node_js
 
+sudo: false
+
 node_js:
-  - 4
+  - "6"
 
-before_install:
-  - npm config set spin false
+after_script:
+  - NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 
-script:
-  - npm test
-
-after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+cache:
+  directories:
+    - node_modules
