@@ -4,6 +4,7 @@
     "font-sizes": false,
     "ids": false,
     "important": false,
+    "order-alphabetical": false,
     "qualified-headings": false,
     "unique-headings": false,
     "universal-selector": false,
