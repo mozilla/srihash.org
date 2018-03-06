@@ -36,6 +36,7 @@
     "handlebars": "^4.4.3",
     "handlebars-helper-sri": "0.0.0",
     "handlebars-partial-file": "^1.0.0",
+    "hapi-require-https": "^4.0.0",
     "node-fetch": "^2.6.0",
     "sri-toolbox": "^0.2.0"
   },
