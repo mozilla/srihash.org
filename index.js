@@ -8,18 +8,19 @@ const path = require('path');
 const Hapi = require('@hapi/hapi');
 const vision = require('@hapi/vision');
 const inert = require('@hapi/inert');
-
+const requireHttps = require('hapi-require-https');
 const handlebarsHelperSRI = require('handlebars-helper-sri');
 let handlebars = require('handlebars');
-
-handlebars = handlebarsHelperSRI.register(handlebars);
 
 const generate = require('./lib/generate');
 const generateElement = require('./lib/generateElement');
 
+handlebars = handlebarsHelperSRI.register(handlebars);
+
 // eslint-disable-next-line quotes
 const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; style-src 'self'";
 const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
+const PLUGINS = [vision, inert];
 
 (async() => {
   try {
@@ -37,7 +38,11 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       }
     });
 
-    await server.register([vision, inert]);
+    if (process.env.NODE_ENV === 'production') {
+      PLUGINS.push(requireHttps);
+    }
+
+    await server.register(PLUGINS);
 
     server.views({
       engines: {
