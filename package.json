@@ -33,6 +33,7 @@
     "handlebars": "^4.1.1",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^16.6.3",
+    "hapi-require-https": "^2.1.0",
     "hapi-sitemap": "^1.0.3",
     "inert": "^4.2.1",
     "sri-toolbox": "^0.2.0",

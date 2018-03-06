@@ -9,6 +9,7 @@ const Hapi = require('hapi');
 const vision = require('vision');
 const inert = require('inert');
 const sitemap = require('hapi-sitemap');
+const requireHttps = require('hapi-require-https');
 
 const handlebarsHelperSRI = require('handlebars-helper-sri');
 let handlebars = require('handlebars');
@@ -144,6 +145,15 @@ server.register(inert, () => {
     }
   });
 });
+
+if (process.env.NODE_ENV === 'production') {
+  server.register({
+    register: requireHttps,
+    options: {
+      proxy: false
+    }
+  });
+}
 
 server.register({
   register: sitemap,
