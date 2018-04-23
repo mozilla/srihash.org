@@ -21,12 +21,12 @@
     "eslint": "eslint .",
     "stylelint": "stylelint \"**/*.css\"",
     "lint": "npm run stylelint && npm run eslint",
-    "mocha": "mocha test",
-    "start": "cross-env NODE_ENV=production node ./index.js",
-    "start-dev": "cross-env NODE_ENV=development node ./index.js",
+    "mocha": "mocha",
+    "server": "node ./index.js",
+    "start": "cross-env NODE_ENV=production npm run server",
     "test": "npm run copyright && npm run lint && npm run mocha",
     "travis": "nyc npm test",
-    "watch": "nodemon index.js --ext css,js,html --exec \"npm run start-dev\""
+    "watch": "nodemon index.js --ext css,js,html --exec \"npm run server\""
   },
   "dependencies": {
     "cross-env": "^5.2.0",
