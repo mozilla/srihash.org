@@ -54,6 +54,7 @@ server.register(inert, () => {
     handler(request, reply) {
       const browsers = helpers.shuffleArray([
         { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/' },
+        { 'name': 'Safari', 'url': 'https://www.apple.com/safari/' },
         { 'name': 'Chrome', 'url': 'https://www.google.com/chrome/browser/desktop/' }
       ]);
       reply
