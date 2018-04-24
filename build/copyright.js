@@ -6,16 +6,16 @@
 
 'use strict';
 
-var fs = require('fs');
-var glob = require('glob');
+const fs = require('fs');
+const glob = require('glob');
 
 function findCopyright(fileGlobs, opts) {
-  var options = opts || {};
+  const options = opts || {};
 
-  var files = fileGlobs.filter(function (fileGlob) {
-    var fileStr = '';
+  const files = fileGlobs.filter((fileGlob) => {
+    let fileStr = '';
 
-    glob.sync(fileGlob).forEach(function (file) {
+    glob.sync(fileGlob).forEach((file) => {
       fileStr = fs.readFileSync(file, 'utf8');
     });
 
@@ -25,14 +25,14 @@ function findCopyright(fileGlobs, opts) {
   if (files.length) {
     console.log('The following files don\'t match the specified pattern:\n> %s\n', options.pattern);
 
-    files.forEach(function (file) {
-      console.log('- ' + file);
+    files.forEach((file) => {
+      console.log(`- ${file}`);
     });
   }
 }
 
 function main() {
-  var fileGlobs = [
+  let fileGlobs = [
     '*.js',
     'lib/**/*.js',
     'public/**/*.css',
