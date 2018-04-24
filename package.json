@@ -1,35 +1,35 @@
 {
   "name": "srihash.org",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Subresource Integrity attribute generator",
+  "author": "Francois Marier <francois@mozilla.com>",
+  "license": "MPL-2.0",
   "homepage": "https://www.srihash.org/",
   "private": true,
   "main": "index.js",
-  "scripts": {
-    "start": "node ./index.js",
-    "test": "mocha test && grunt"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/mozilla/srihash.org.git"
   },
-  "author": "Francois Marier <francois@mozilla.com>",
-  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/mozilla/srihash.org/issues"
   },
-  "devDependencies": {
-    "coveralls": "^2.11.4",
-    "grunt": "^1.0.1",
-    "grunt-contrib-csslint": "^2.0.0",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-copyright": "^0.3.0",
-    "grunt-jscs": "^3.0.1",
-    "grunt-nodemon": "^0.4.2",
-    "istanbul": "^0.4.0",
-    "mocha": "^3.0.0"
+  "scripts": {
+    "csslint": "csslint public/",
+    "copyright": "node build/copyright.js",
+    "coveralls": "cross-env NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "dev": "npm run watch",
+    "jscs": "jscs index.js build/ lib/ public/ test/",
+    "jshint": "jshint index.js build/ lib/ public/ test/",
+    "lint": "npm run csslint && npm run jshint && npm run jscs",
+    "mocha": "mocha test",
+    "start": "cross-env NODE_ENV=production node ./index.js",
+    "start-dev": "cross-env NODE_ENV=development node ./index.js",
+    "test": "npm run copyright && npm run lint && npm run mocha",
+    "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start-dev\""
   },
   "dependencies": {
+    "cross-env": "^5.1.1",
     "handlebars": "^4.0.3",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^16.6.2",
@@ -37,7 +37,17 @@
     "sri-toolbox": "^0.2.0",
     "vision": "^4.0.1"
   },
+  "devDependencies": {
+    "coveralls": "^2.11.4",
+    "csslint": "^1.0.5",
+    "glob": "^7.1.2",
+    "istanbul": "^0.4.0",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.5",
+    "mocha": "^3.0.0",
+    "nodemon": "^1.12.1"
+  },
   "engines": {
-    "node": ">= 6"
+    "node": ">=8"
   }
 }

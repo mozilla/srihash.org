@@ -9,7 +9,7 @@ This is the code behind the <https://www.srihash.org/> website. It generates [su
 
 ## Install
 
-You'll need node 0.10.x or higher and npm to run the server.
+You'll need node.js 8.x and npm to run the server.
 
 Clone the git repository and install dependencies:
 
@@ -26,6 +26,14 @@ npm start
 ```
 
 It will listen on `http://127.0.0.1:4000` by default.
+
+Or run:
+
+```shell
+npm run watch
+```
+
+to run the server and watch for changes.
 
 ## Testing
 
