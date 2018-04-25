@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+/* eslint-disable no-console */
+
 'use strict';
 
 const Path = require('path');
@@ -19,7 +21,7 @@ const helpers = require('./lib/helpers.js');
 
 const server = new Hapi.Server();
 
-const CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'"; // jshint ignore:line
+const CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'"; // eslint-disable-line quotes
 const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 
 server.connection({
