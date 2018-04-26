@@ -134,7 +134,7 @@
     ],
     "new-cap": "error",
     "new-parens": "error",
-    "newline-after-var": "off",
+    "newline-after-var": "error",
     "newline-before-return": "off",
     "newline-per-chained-call": "error",
     "no-alert": "error",
