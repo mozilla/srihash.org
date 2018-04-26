@@ -65,7 +65,7 @@ describe('eligibility()', () => {
 
   describe('Non-eligible', () => {
     it('non-CORS', () => {
-      const nonCORS = { headers: { 'dnt': '1' } };
+      const nonCORS = { headers: { dnt: '1' } };
       const result = helpers.eligibility(nonCORS);
       assert.deepEqual(result, ['non-cors']);
     });

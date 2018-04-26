@@ -56,14 +56,14 @@ server.register(inert, () => {
     path: '/',
     handler(request, reply) {
       const browsers = helpers.shuffleArray([
-        { 'name': 'Firefox', 'url': 'https://www.mozilla.org/firefox/' },
-        { 'name': 'Safari', 'url': 'https://www.apple.com/safari/' },
-        { 'name': 'Chrome', 'url': 'https://www.google.com/chrome/browser/desktop/' }
+        { name: 'Firefox', url: 'https://www.mozilla.org/firefox/' },
+        { name: 'Safari', url: 'https://www.apple.com/safari/' },
+        { name: 'Chrome', url: 'https://www.google.com/chrome/browser/desktop/' }
       ]);
       reply
         .view('index', {
-          'title': 'SRI Hash Generator',
-          'browsers': browsers
+          title: 'SRI Hash Generator',
+          browsers
         })
         .header('Content-Security-Policy', CSP_HEADER)
         .header('Referrer-Policy', REFERRER_HEADER);
@@ -135,7 +135,7 @@ server.register(inert, () => {
         request.payload.algorithms,
         (result) => {
           reply
-            .view('hash', { 'hash': result })
+            .view('hash', { hash: result })
             .header('Content-Security-Policy', CSP_HEADER)
             .header('Referrer-Policy', REFERRER_HEADER);
         }
