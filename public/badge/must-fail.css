@@ -5,12 +5,13 @@
 .sri-test *[data-sri-status="pass"] {
   display: none !important;
 }
+
 .sri-test *[data-sri-status="fail"] {
   display: block !important;
 }
 
 /* Just in case will-pass.css failed to load */
-.sri-test:before {
+.sri-test::before {
   content: none !important;
   display: none;
 }
