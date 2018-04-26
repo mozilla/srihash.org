@@ -305,6 +305,22 @@ describe('generateElement()', () => {
   }))();
 
   (((result) => {
+    const url = 'http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js';
+    const expect = '<script src="http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js" integrity="sha384-5z5Xzy2KLn1l/Q0rWj1TYy+VXyLHqWrwDKCCLG++mTDqiJr4uRbP9f37MKAm4ca8" crossorigin="anonymous"></script>';
+
+    before((done) => {
+      helpers.generateElement(url, 'sha384', (data) => {
+        result = data;
+        done();
+      });
+    });
+
+    it('css (http)', () => {
+      assert.strictEqual(result, expect);
+    });
+  }))();
+
+  (((result) => {
     const url = 'code.jquery.com/jquery-1.11.2.min.js';
     const expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74" crossorigin="anonymous"></script>';
 
