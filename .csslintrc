@@ -1,7 +1,6 @@
 {
   "ignore": [
     "box-model",
-    "bulletproof-font-face",
     "font-sizes",
     "ids",
     "important",
