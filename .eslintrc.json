@@ -239,7 +239,7 @@
             "error",
             "always"
         ],
-        "object-shorthand": "off",
+        "object-shorthand": "error",
         "one-var": [
             "error",
             "never"
@@ -263,7 +263,7 @@
         "prefer-template": "error",
         "quote-props": [
             "error",
-            "consistent"
+            "as-needed"
         ],
         "quotes": [
             "error",

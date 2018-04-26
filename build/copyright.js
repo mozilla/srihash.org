@@ -24,7 +24,7 @@ function findCopyright(fileGlobs, opts) {
     return !fileStr.match(options.pattern);
   });
 
-  if (files.length) {
+  if (files.length > 0) {
     console.log('The following files don\'t match the specified pattern:\n> %s\n', options.pattern);
 
     files.forEach((file) => {
