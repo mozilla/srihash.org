@@ -289,6 +289,22 @@ describe('generateElement()', () => {
   }))();
 
   (((result) => {
+    const url = 'code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css';
+    const expect = '<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css" integrity="sha384-w/LBTbFO0P4C3wi1uA2RpBjIEBMRuH15ue80rElDXquOVM6x7Cw3nsOqy7vSBid9" crossorigin="anonymous">';
+
+    before((done) => {
+      helpers.generateElement(url, 'sha384', (data) => {
+        result = data;
+        done();
+      });
+    });
+
+    it('css', () => {
+      assert.deepEqual(result, expect);
+    });
+  }))();
+
+  (((result) => {
     const url = 'code.jquery.com/jquery-1.11.2.min.js';
     const expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74" crossorigin="anonymous"></script>';
 
