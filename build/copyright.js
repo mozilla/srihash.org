@@ -13,27 +13,44 @@ const glob = require('glob');
 
 function findCopyright(fileGlobs, opts) {
   const options = opts || {};
+  let error = 0;
+  const failedFiles = [];
 
-  const files = fileGlobs.filter((fileGlob) => {
-    let fileStr = '';
-
+  const checkFileGlob = (fileGlob) => {
     glob.sync(fileGlob).forEach((file) => {
-      fileStr = fs.readFileSync(file, 'utf8');
+      const fileStr = fs.readFileSync(file, 'utf8');
+
+      if (!fileStr.match(options.pattern)) {
+        error++;
+        failedFiles.push(file);
+      }
     });
 
-    return !fileStr.match(options.pattern);
-  });
+    return {
+      error,
+      failedFiles
+    };
+  };
 
-  if (files.length > 0) {
-    console.log('The following files don\'t match the specified pattern:\n> %s\n', options.pattern);
+  let result = {};
 
-    files.forEach((file) => {
+  for (const fileGlob of fileGlobs) {
+    result = checkFileGlob(fileGlob);
+  }
+
+  if (result.error > 0) {
+    console.log('\nThe following files don\'t match the specified pattern:\n> %s\n', options.pattern);
+
+    result.failedFiles.forEach((file) => {
       console.log(`- ${file}`);
     });
   }
+
+  return result.error;
 }
 
 function main() {
+  let result = 0;
   let fileGlobs = [
     '*.js',
     'lib/**/*.js',
@@ -41,7 +58,7 @@ function main() {
     'templates/**/*.html'
   ];
 
-  findCopyright(fileGlobs, {
+  result = findCopyright(fileGlobs, {
     pattern: 'This Source Code Form is subject to the terms of the Mozilla Public'
   });
 
@@ -49,9 +66,11 @@ function main() {
     'test/*.js'
   ];
 
-  findCopyright(fileGlobs, {
+  result += findCopyright(fileGlobs, {
     pattern: 'Any copyright is dedicated to the Public Domain.'
   });
+
+  process.exit(result);
 }
 
 main();
