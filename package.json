@@ -28,8 +28,8 @@
     "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start-dev\""
   },
   "dependencies": {
-    "cross-env": "^5.1.1",
-    "handlebars": "^4.0.3",
+    "cross-env": "^5.2.0",
+    "handlebars": "^4.0.11",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^16.6.2",
     "hapi-sitemap": "^1.0.3",
@@ -38,15 +38,15 @@
     "vision": "^4.0.1"
   },
   "devDependencies": {
-    "coveralls": "^2.11.4",
+    "coveralls": "^3.0.2",
     "csslint": "^1.0.5",
     "glob": "^7.1.2",
-    "eslint": "^4.18.1",
-    "istanbul": "^0.4.0",
-    "mocha": "^3.0.0",
-    "nodemon": "^1.12.1"
+    "eslint": "^5.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   }
 }
