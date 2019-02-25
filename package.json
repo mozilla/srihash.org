@@ -21,7 +21,7 @@
     "eslint": "eslint .",
     "stylelint": "stylelint \"**/*.css\"",
     "lint": "npm run stylelint && npm run eslint",
-    "mocha": "mocha test",
+    "mocha": "mocha --exit",
     "start": "cross-env NODE_ENV=production node ./index.js",
     "start-dev": "cross-env NODE_ENV=development node ./index.js",
     "test": "npm run copyright && npm run lint && npm run mocha",
