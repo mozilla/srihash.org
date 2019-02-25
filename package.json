@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.1.0",
     "handlebars-helper-sri": "0.0.0",
     "hapi": "^16.6.3",
     "hapi-sitemap": "^1.0.3",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "coveralls": "^3.0.2",
     "csslint": "^1.0.5",
-    "eslint": "^5.1.0",
+    "eslint": "^5.14.1",
     "glob": "^7.1.2",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",

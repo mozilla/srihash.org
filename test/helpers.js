@@ -12,32 +12,32 @@ describe('upgradeToHttps()', () => {
   describe('CDNs', () => {
     it('Known', () => {
       const knownHttpsUrl = helpers.upgradeToHttps('https://code.jquery.com/script.js');
-      assert.equal(knownHttpsUrl, 'https://code.jquery.com/script.js');
+      assert.strictEqual(knownHttpsUrl, 'https://code.jquery.com/script.js');
       const knownHttpUrl = helpers.upgradeToHttps('http://code.jquery.com/script.js');
-      assert.equal(knownHttpUrl, 'https://code.jquery.com/script.js');
+      assert.strictEqual(knownHttpUrl, 'https://code.jquery.com/script.js');
     });
 
     it('Unknown', () => {
       const unknownHttpsUrl = helpers.upgradeToHttps('https://example.com/script.js');
-      assert.equal(unknownHttpsUrl, 'https://example.com/script.js');
+      assert.strictEqual(unknownHttpsUrl, 'https://example.com/script.js');
       const unknownHttpUrl = helpers.upgradeToHttps('http://example.com/script.js');
-      assert.equal(unknownHttpUrl, 'http://example.com/script.js');
+      assert.strictEqual(unknownHttpUrl, 'http://example.com/script.js');
     });
   });
 
   describe('URLs', () => {
     it('Schemeless', () => {
       const schemelessUnknownUrl = helpers.upgradeToHttps('example.com/script.js');
-      assert.equal(schemelessUnknownUrl, 'http://example.com/script.js');
+      assert.strictEqual(schemelessUnknownUrl, 'http://example.com/script.js');
       const schemelessKnownUrl = helpers.upgradeToHttps('code.jquery.com/script.js');
-      assert.equal(schemelessKnownUrl, 'https://code.jquery.com/script.js');
+      assert.strictEqual(schemelessKnownUrl, 'https://code.jquery.com/script.js');
     });
 
     it('Relative', () => {
       const relativeUnknownUrl = helpers.upgradeToHttps('//example.com/script.js');
-      assert.equal(relativeUnknownUrl, 'https://example.com/script.js');
+      assert.strictEqual(relativeUnknownUrl, 'https://example.com/script.js');
       const relativeKnownUrl = helpers.upgradeToHttps('//code.jquery.com/script.js');
-      assert.equal(relativeKnownUrl, 'https://code.jquery.com/script.js');
+      assert.strictEqual(relativeKnownUrl, 'https://code.jquery.com/script.js');
     });
   });
 
@@ -49,7 +49,7 @@ describe('upgradeToHttps()', () => {
 
     it('Bare hostname', () => {
       const bareHostname = helpers.upgradeToHttps('foobar');
-      assert.equal(bareHostname, 'http://foobar/');
+      assert.strictEqual(bareHostname, 'http://foobar/');
     });
   });
 });
@@ -59,7 +59,7 @@ describe('eligibility()', () => {
     it('CORS', () => {
       const allGood = { headers: { 'access-control-allow-origin': '*' } };
       const result = helpers.eligibility(allGood);
-      assert.deepEqual(result, []);
+      assert.deepStrictEqual(result, []);
     });
   });
 
@@ -67,7 +67,7 @@ describe('eligibility()', () => {
     it('non-CORS', () => {
       const nonCORS = { headers: { dnt: '1' } };
       const result = helpers.eligibility(nonCORS);
-      assert.deepEqual(result, ['non-cors']);
+      assert.deepStrictEqual(result, ['non-cors']);
     });
   });
 });
@@ -77,7 +77,7 @@ describe('shuffleArray()', () => {
     it('preserves length', () => {
       const a = ['a', 'b', 'c', 'd'];
       const result = helpers.shuffleArray(a);
-      assert.equal(result.length, a.length);
+      assert.strictEqual(result.length, a.length);
     });
 
     it('returns all elements', () => {
@@ -101,56 +101,56 @@ describe('guessResourceType()', () => {
     describe('Content-type', () => {
       it('js', () => {
         const jsCt1 = helpers.guessResourceType({ ct: 'text/javascript' });
-        assert.deepEqual(jsCt1, 'js');
+        assert.strictEqual(jsCt1, 'js');
         const jsCt2 = helpers.guessResourceType({ ct: 'application/javascript' });
-        assert.deepEqual(jsCt2, 'js');
+        assert.strictEqual(jsCt2, 'js');
         const jsCt3 = helpers.guessResourceType({ ct: 'application/x-javascript' });
-        assert.deepEqual(jsCt3, 'js');
+        assert.strictEqual(jsCt3, 'js');
       });
 
       it('css', () => {
         const cssCt1 = helpers.guessResourceType({ ct: 'text/css' });
-        assert.deepEqual(cssCt1, 'css');
+        assert.strictEqual(cssCt1, 'css');
       });
 
       it('.forbidden', () => {
         const forbiddenCt1 = helpers.guessResourceType({ ct: 'text/plain' });
-        assert.deepEqual(forbiddenCt1, '.forbidden');
+        assert.strictEqual(forbiddenCt1, '.forbidden');
         const forbiddenCt2 = helpers.guessResourceType({ ct: 'text/xml' });
-        assert.deepEqual(forbiddenCt2, '.forbidden');
+        assert.strictEqual(forbiddenCt2, '.forbidden');
         const forbiddenCt3 = helpers.guessResourceType({ ct: 'application/octet-stream' });
-        assert.deepEqual(forbiddenCt3, '.forbidden');
+        assert.strictEqual(forbiddenCt3, '.forbidden');
         const forbiddenCt4 = helpers.guessResourceType({ ct: 'application/xml' });
-        assert.deepEqual(forbiddenCt4, '.forbidden');
+        assert.strictEqual(forbiddenCt4, '.forbidden');
       });
     });
 
     describe('Extension', () => {
       it('js', () => {
         const jsUrl1 = helpers.guessResourceType({ url: 'https://example.com/file.min.js' });
-        assert.deepEqual(jsUrl1, 'js');
+        assert.strictEqual(jsUrl1, 'js');
       });
 
       it('css', () => {
         const cssUrl1 = helpers.guessResourceType({ url: 'http://example.com/file.css' });
-        assert.deepEqual(cssUrl1, 'css');
+        assert.strictEqual(cssUrl1, 'css');
         const cssUrl2 = helpers.guessResourceType({ url: 'http://example.com/STYLES.CSS' });
-        assert.deepEqual(cssUrl2, 'css');
+        assert.strictEqual(cssUrl2, 'css');
       });
 
       it('URL parameters', () => {
         const urlWithQuery = helpers.guessResourceType({ url: 'http://example.com/file.css?v=1.0.2' });
-        assert.deepEqual(urlWithQuery, 'css');
+        assert.strictEqual(urlWithQuery, 'css');
         const urlWithHash = helpers.guessResourceType({ url: 'http://example.com/file.css#v=1.0.2' });
-        assert.deepEqual(urlWithHash, 'css');
+        assert.strictEqual(urlWithHash, 'css');
       });
 
       // The internal label ".forbidden" must never be detected as a file ext
       it('NOT .forbidden', () => {
         const forbiddenUrl1 = helpers.guessResourceType({ url: 'http://example.com/file.forbidden' });
-        assert.deepEqual(forbiddenUrl1, null);
+        assert.strictEqual(forbiddenUrl1, null);
         const forbiddenUrl2 = helpers.guessResourceType({ url: 'http://example.com/file..forbidden' });
-        assert.deepEqual(forbiddenUrl2, null);
+        assert.strictEqual(forbiddenUrl2, null);
       });
     });
   });
@@ -161,22 +161,22 @@ describe('guessResourceType()', () => {
         ct: 'invalid/type',
         url: 'http://example.com'
       });
-      assert.deepEqual(pdfCt1, null);
+      assert.strictEqual(pdfCt1, null);
     });
 
     it('Invalid extension', () => {
       const jsUrl2 = helpers.guessResourceType({ url: 'https://example.com/file.ZZZ' });
-      assert.deepEqual(jsUrl2, null);
+      assert.strictEqual(jsUrl2, null);
     });
 
     it('Missing extension', () => {
       const jsUrl3 = helpers.guessResourceType({ url: 'https://example.com/file' });
-      assert.deepEqual(jsUrl3, null);
+      assert.strictEqual(jsUrl3, null);
     });
 
     it('Empty path', () => {
       const jsUrl4 = helpers.guessResourceType({ url: 'https://example.com' });
-      assert.deepEqual(jsUrl4, null);
+      assert.strictEqual(jsUrl4, null);
     });
   });
 
@@ -186,7 +186,7 @@ describe('guessResourceType()', () => {
         ct: 'text/css',
         url: 'https://example.com/file.min.js'
       });
-      assert.deepEqual(cssUrl2, 'css');
+      assert.strictEqual(cssUrl2, 'css');
     });
   });
 });
@@ -216,7 +216,7 @@ describe('generate()', () => {
     });
 
     it('js', () => {
-      assert.deepEqual(result, expect);
+      assert.deepStrictEqual(result, expect);
     });
   }))();
 
@@ -242,7 +242,7 @@ describe('generate()', () => {
     });
 
     it('css', () => {
-      assert.deepEqual(result, expect);
+      assert.deepStrictEqual(result, expect);
     });
   }))();
 
@@ -264,7 +264,7 @@ describe('generate()', () => {
     });
 
     it('404', () => {
-      assert.deepEqual(result, expect);
+      assert.deepStrictEqual(result, expect);
     });
   }))();
 });
@@ -284,7 +284,7 @@ describe('generateElement()', () => {
     });
 
     it('non-CORS', () => {
-      assert.deepEqual(result, expect);
+      assert.strictEqual(result, expect);
     });
   }))();
 
@@ -300,7 +300,23 @@ describe('generateElement()', () => {
     });
 
     it('css', () => {
-      assert.deepEqual(result, expect);
+      assert.strictEqual(result, expect);
+    });
+  }))();
+
+  (((result) => {
+    const url = 'http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js';
+    const expect = '<script src="http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js" integrity="sha384-5z5Xzy2KLn1l/Q0rWj1TYy+VXyLHqWrwDKCCLG++mTDqiJr4uRbP9f37MKAm4ca8" crossorigin="anonymous"></script>';
+
+    before((done) => {
+      helpers.generateElement(url, 'sha384', (data) => {
+        result = data;
+        done();
+      });
+    });
+
+    it('css (http)', () => {
+      assert.strictEqual(result, expect);
     });
   }))();
 
@@ -316,7 +332,7 @@ describe('generateElement()', () => {
     });
 
     it('js', () => {
-      assert.deepEqual(result, expect);
+      assert.strictEqual(result, expect);
     });
   }))();
 
@@ -332,7 +348,24 @@ describe('generateElement()', () => {
     });
 
     it('404', () => {
-      assert.deepEqual(result, expect);
+      assert.strictEqual(result, expect);
+    });
+  }))();
+
+  (((result) => {
+    const url = 'https://stackpath.bootstrapcdn.com/twitter-bootstrap/2.0.4/img/glyphicons-halflings.png';
+    const expect = `<!-- Warning: Unrecognized content-type. Are you sure this is the right resource? -->
+          <script src="https://stackpath.bootstrapcdn.com/twitter-bootstrap/2.0.4/img/glyphicons-halflings.png" integrity="sha384-c9lMzzhAB7gpgb7lXNeNoigdEkAKXMNRWTRoSODIc/tNrxSItcZOOSP+xtG2De5i" crossorigin="anonymous"></script>`;
+
+    before((done) => {
+      helpers.generateElement(url, 'sha384', (data) => {
+        result = data;
+        done();
+      });
+    });
+
+    it('unrecognized content-type', () => {
+      assert.strictEqual(result, expect);
     });
   }))();
 
@@ -348,7 +381,7 @@ describe('generateElement()', () => {
     });
 
     it('bad scheme', () => {
-      assert.deepEqual(result, expect);
+      assert.strictEqual(result, expect);
     });
   }))();
 });
