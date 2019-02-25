@@ -2,8 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-/* eslint-disable no-console */
-
 'use strict';
 
 const Path = require('path');
@@ -79,7 +77,7 @@ server.register(inert, () => {
     },
     config: {
       cache: {
-        expiresIn: 60 * 60 * 1000   // 1 hour
+        expiresIn: 60 * 60 * 1000 // 1 hour
       },
       plugins: {
         sitemap: {
@@ -153,7 +151,7 @@ server.register({
   }
 }, (err) => {
   if (err) {
-    console.error('Failed to load plugin: ', err);
+    console.error('Failed to load plugin:', err);
   }
 });
 
