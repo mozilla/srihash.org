@@ -31,11 +31,11 @@
     "cross-env": "^5.2.0",
     "handlebars": "^4.1.0",
     "handlebars-helper-sri": "0.0.0",
-    "hapi": "^16.6.3",
+    "hapi": "^18.1.0",
     "hapi-sitemap": "^1.0.3",
-    "inert": "^4.2.1",
+    "inert": "^5.1.2",
     "sri-toolbox": "^0.2.0",
-    "vision": "^4.1.1"
+    "vision": "^5.4.4"
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
