@@ -21,7 +21,7 @@ const helpers = require('./lib/helpers.js');
 
 const server = new Hapi.Server();
 
-const CSP_HEADER = "default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'self'; frame-src 'self'; frame-ancestors 'self'"; // eslint-disable-line quotes
+const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; style-src 'self'"; // eslint-disable-line quotes
 const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 
 server.connection({
