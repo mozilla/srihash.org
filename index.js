@@ -5,10 +5,9 @@
 'use strict';
 
 const Path = require('path');
-const Hapi = require('hapi');
-const vision = require('vision');
-const inert = require('inert');
-const sitemap = require('hapi-sitemap');
+const Hapi = require('@hapi/hapi');
+const vision = require('@hapi/vision');
+const inert = require('@hapi/inert');
 
 const handlebarsHelperSRI = require('handlebars-helper-sri');
 let handlebars = require('handlebars');
@@ -18,144 +17,114 @@ handlebars = handlebarsHelperSRI.register(handlebars);
 const generate = require('./lib/generate');
 const generateElement = require('./lib/generateElement');
 
-const server = new Hapi.Server();
-
 // eslint-disable-next-line quotes
 const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; style-src 'self'";
 const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 
-server.connection({
-  port: process.env.PORT || 4000,
-  routes: {
-    security: {
-      hsts: {
-        includeSubDomains: true,
-        maxAge: 31536000,
-        preload: true
+(async() => {
+  try {
+    const server = Hapi.server({
+      host: 'localhost',
+      port: process.env.PORT || 4000,
+      routes: {
+        security: {
+          hsts: {
+            includeSubDomains: true,
+            maxAge: 31536000,
+            preload: true
+          },
+          xframe: 'sameorigin'
+        }
+      }
+    });
+
+    await server.register([vision, inert]);
+
+    server.views({
+      engines: {
+        html: handlebars
       },
-      xframe: 'sameorigin'
-    }
-  }
-});
+      path: Path.join(__dirname, 'templates')
+    });
 
-server.register(vision, () => {
-  server.views({
-    engines: {
-      html: handlebars
-    },
-    path: Path.join(__dirname, 'templates')
-  });
-});
-
-server.register(inert, () => {
-  /**
-   * Serve index.js
-   */
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler(request, reply) {
-      reply
-        .view('index', {
+    /**
+     * Serve index.js
+     */
+    server.route({
+      method: 'GET',
+      path: '/',
+      handler(request, h) {
+        return h.view('index', {
           title: 'SRI Hash Generator'
         })
-        .header('Content-Security-Policy', CSP_HEADER)
-        .header('Referrer-Policy', REFERRER_HEADER);
-    }
-  });
-
-  /**
-   * Serve public files
-   */
-  server.route({
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-      directory: {
-        path: 'public',
-        etagMethod: false,
-        lookupCompressed: true
+          .header('Content-Security-Policy', CSP_HEADER)
+          .header('Referrer-Policy', REFERRER_HEADER);
       }
-    },
-    config: {
-      cache: {
-        expiresIn: 60 * 60 * 1000 // 1 hour
+    });
+
+    /**
+     * Serve public files
+     */
+    server.route({
+      method: 'GET',
+      path: '/{param*}',
+      handler: {
+        directory: {
+          path: 'public',
+          etagMethod: false,
+          lookupCompressed: true
+        }
       },
-      plugins: {
-        sitemap: {
-          exclude: true
+      options: {
+        cache: {
+          expiresIn: 60 * 60 * 1000 // 1 hour
         }
       }
-    }
-  });
+    });
 
-  /**
-   * Return SRI lookup in JSON format
-   */
-  server.route({
-    method: 'POST',
-    path: '/generate',
-    handler(request, reply) {
-      const options = {
-        url: request.payload.url,
-        algorithms: request.payload.algorithms
-      };
+    /**
+     * Return SRI lookup in JSON format
+     */
+    server.route({
+      method: 'POST',
+      path: '/generate',
+      handler(request, h) {
+        const options = {
+          url: request.payload.url,
+          algorithms: request.payload.algorithms
+        };
 
-      generate(options, (result) => {
-        reply(
-          JSON.stringify(result)
-        ).type('application/json');
-      });
-    },
-    config: {
-      plugins: {
-        sitemap: {
-          exclude: true
-        }
+        generate(options, (result) => {
+          return h.response(
+            JSON.stringify(result)
+          ).type('application/json');
+        });
       }
-    }
-  });
+    });
 
-  /**
-   * Return SRI lookup in HTML format.
-   * Deprecated, pending move to isomorphic app.
-   */
-  server.route({
-    method: 'POST',
-    path: '/hash',
-    handler(request, reply) {
-      generateElement(
-        request.payload.url,
-        request.payload.algorithms,
-        (result) => {
-          reply
-            .view('hash', { hash: result })
-            .header('Content-Security-Policy', CSP_HEADER)
-            .header('Referrer-Policy', REFERRER_HEADER);
-        }
-      );
-    },
-    config: {
-      plugins: {
-        sitemap: {
-          exclude: true
-        }
+    /**
+     * Return SRI lookup in HTML format.
+     * Deprecated, pending move to isomorphic app.
+     */
+    server.route({
+      method: 'POST',
+      path: '/hash',
+      handler(request, h) {
+        generateElement(
+          request.payload.url,
+          request.payload.algorithms,
+          (result) => {
+            return h.view('hash', { hash: result })
+              .header('Content-Security-Policy', CSP_HEADER)
+              .header('Referrer-Policy', REFERRER_HEADER);
+          }
+        );
       }
-    }
-  });
-});
+    });
 
-server.register({
-  register: sitemap,
-  options: {
-    baseUri: 'https://www.srihash.org'
+    await server.start();
+    console.log(`Server running at: ${server.info.uri}`);
+  } catch (error) {
+    console.log(error);
   }
-}, (err) => {
-  if (err) {
-    console.error('Failed to load plugin:', err);
-  }
-});
-
-server.start(() => {
-  console.log('Server running at:', server.info.uri);
-});
+})();
