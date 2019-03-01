@@ -88,17 +88,14 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
     server.route({
       method: 'POST',
       path: '/generate',
-      handler(request, h) {
+      handler: async(request, h) => {
         const options = {
           url: request.payload.url,
           algorithms: request.payload.algorithms
         };
+        const result = await generate(options);
 
-        generate(options, (result) => {
-          return h.response(
-            JSON.stringify(result)
-          ).type('application/json');
-        });
+        return h.response(JSON.stringify(result)).type('application/json');
       }
     });
 
