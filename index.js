@@ -106,16 +106,15 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
     server.route({
       method: 'POST',
       path: '/hash',
-      handler(request, h) {
-        generateElement(
+      handler: async(request, h) => {
+        const result = await generateElement(
           request.payload.url,
-          request.payload.algorithms,
-          (result) => {
-            return h.view('hash', { hash: result })
-              .header('Content-Security-Policy', CSP_HEADER)
-              .header('Referrer-Policy', REFERRER_HEADER);
-          }
+          request.payload.algorithms
         );
+
+        return h.view('hash', { hash: result })
+          .header('Content-Security-Policy', CSP_HEADER)
+          .header('Referrer-Policy', REFERRER_HEADER);
       }
     });
 
