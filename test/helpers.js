@@ -25,31 +25,10 @@ describe('upgradeToHttps()', () => {
     });
   });
 
-  describe('URLs', () => {
-    it('Schemeless', () => {
-      const schemelessUnknownUrl = helpers.upgradeToHttps('example.com/script.js');
-      assert.strictEqual(schemelessUnknownUrl, 'http://example.com/script.js');
-      const schemelessKnownUrl = helpers.upgradeToHttps('code.jquery.com/script.js');
-      assert.strictEqual(schemelessKnownUrl, 'https://code.jquery.com/script.js');
-    });
-
-    it('Relative', () => {
-      const relativeUnknownUrl = helpers.upgradeToHttps('//example.com/script.js');
-      assert.strictEqual(relativeUnknownUrl, 'https://example.com/script.js');
-      const relativeKnownUrl = helpers.upgradeToHttps('//code.jquery.com/script.js');
-      assert.strictEqual(relativeKnownUrl, 'https://code.jquery.com/script.js');
-    });
-  });
-
   describe('Invalid URLs', () => {
     it('Invalid scheme', () => {
       const ftpScheme = helpers.upgradeToHttps('ftp://example.com/script.js');
       assert.strictEqual(ftpScheme, false);
-    });
-
-    it('Bare hostname', () => {
-      const bareHostname = helpers.upgradeToHttps('foobar');
-      assert.strictEqual(bareHostname, 'http://foobar/');
     });
   });
 });
@@ -287,7 +266,7 @@ describe('generateElement()', () => {
   })();
 
   ((result) => {
-    const url = 'code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css';
+    const url = 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css';
     const expect = '<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css" integrity="sha384-w/LBTbFO0P4C3wi1uA2RpBjIEBMRuH15ue80rElDXquOVM6x7Cw3nsOqy7vSBid9" crossorigin="anonymous">';
 
     before((done) => {
@@ -319,7 +298,7 @@ describe('generateElement()', () => {
   })();
 
   ((result) => {
-    const url = 'code.jquery.com/jquery-1.11.2.min.js';
+    const url = 'https://code.jquery.com/jquery-1.11.2.min.js';
     const expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74" crossorigin="anonymous"></script>';
 
     before((done) => {
