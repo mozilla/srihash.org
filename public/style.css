@@ -16,24 +16,32 @@ a {
   color: #ff3d2e;
   text-decoration: none;
 }
+
 a:hover {
   color: #cc3a2b;
   text-decoration: underline;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 300;
   margin: 0.25rem 0;
 }
+
 h1 {
   font-size: 4rem;
 }
+
 h2 {
   font-size: 2rem;
 }
+
 h3 {
   font-size: 1.5rem;
 }
+
 h4 {
   font-size: 1.25rem;
 }
@@ -57,11 +65,13 @@ code {
 nav {
   background-color: #333;
 }
+
 nav a {
   color: white;
   float: right;
   padding: 0.5rem 1rem 0.5rem 0;
 }
+
 nav a:hover {
   color: white;
 }
@@ -83,11 +93,9 @@ footer {
   clear: both;
 }
 
-
 /*
  * App container
  */
-
 #app {
   color: black;
   background-color: #adbdc6;
@@ -95,22 +103,20 @@ footer {
   max-width: 100%;
 }
 
-
 /*
  * App
  */
-
 #sriApp {
   font-size: 1.5rem;
 }
 
-#sriApp input:not([type=checkbox]) {
-  font-size: .9rem;
+#sriApp input:not([type="checkbox"]) {
+  font-size: 0.9rem;
   height: 2.25rem;
   display: inline-block;
 }
 
-#sriApp input[type=url] {
+#sriApp input[type="url"] {
   background-color: white;
   color: #888;
   border: 1px solid #ccc;
@@ -118,13 +124,14 @@ footer {
   padding: 0 2%;
 }
 
-#sriApp input[type=submit] {
+#sriApp input[type="submit"] {
   cursor: pointer;
   color: white;
   background-color: #008cba;
   border: 1px solid #0079a1;
   width: 25%;
 }
+
 #sriApp label {
   font-size: 1.5rem;
   padding-right: 1rem;

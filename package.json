@@ -15,12 +15,12 @@
     "url": "https://github.com/mozilla/srihash.org/issues"
   },
   "scripts": {
-    "csslint": "csslint public/",
     "copyright": "node build/copyright.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dev": "npm run watch",
     "eslint": "eslint .",
-    "lint": "npm run csslint && npm run eslint",
+    "stylelint": "stylelint \"**/*.css\"",
+    "lint": "npm run stylelint && npm run eslint",
     "mocha": "mocha test",
     "start": "cross-env NODE_ENV=production node ./index.js",
     "start-dev": "cross-env NODE_ENV=development node ./index.js",
@@ -40,12 +40,13 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
-    "csslint": "^1.0.5",
     "eslint": "^5.14.1",
     "glob": "^7.1.3",
     "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
-    "nyc": "^13.3.0"
+    "nyc": "^13.3.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0"
   },
   "engines": {
     "node": ">=8"

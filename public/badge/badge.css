@@ -6,7 +6,8 @@
   display: inline-block;
   font-size: 13px;
 }
-.sri-test:before {
+
+.sri-test::before {
   background-color: yellow;
   content: "[Testing SRI support...]";
 }
