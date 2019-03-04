@@ -26,7 +26,7 @@
     "start-dev": "cross-env NODE_ENV=development node ./index.js",
     "test": "npm run copyright && npm run lint && npm run mocha",
     "travis": "nyc npm test",
-    "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start-dev\""
+    "watch": "nodemon index.js --ext css,js,html --exec \"npm run start-dev\""
   },
   "dependencies": {
     "cross-env": "^5.2.0",
