@@ -24,7 +24,8 @@
     "mocha": "mocha test",
     "start": "cross-env NODE_ENV=production node ./index.js",
     "start-dev": "cross-env NODE_ENV=development node ./index.js",
-    "test": "npm run copyright && npm run lint && nyc npm run mocha",
+    "test": "npm run copyright && npm run lint && npm run mocha",
+    "travis": "nyc npm test",
     "watch": "nodemon index.js --ext css,js,json,html,svg,yml,woff,woff2 --exec \"npm run start-dev\""
   },
   "dependencies": {
@@ -48,5 +49,10 @@
   },
   "engines": {
     "node": ">=8"
+  },
+  "nyc": {
+    "include": [
+      "lib"
+    ]
   }
 }

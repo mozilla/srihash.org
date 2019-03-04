@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - "8"
 
+script:
+  - npm run travis
+
 after_success:
   - npm run coveralls
 
