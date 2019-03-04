@@ -12,3 +12,6 @@ after_success:
 cache:
   directories:
     - "$HOME/.npm"
+
+notifications:
+  email: false
