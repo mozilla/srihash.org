@@ -37,7 +37,10 @@ function findCopyright(fileGlobs, opts) {
   }
 
   if (result.error > 0) {
-    console.log('\nThe following files don\'t match the specified pattern:\n> %s\n', options.pattern);
+    console.log(`
+The following file${result.error === 1 ? '' : 's'} ${result.error === 1 ? 'doesn\'t' : 'don\'t'} match the specified pattern:
+"${options.pattern}"
+`);
 
     result.failedFiles.forEach((file) => {
       console.log(`- ${file}`);
@@ -51,6 +54,7 @@ function main() {
   let result = 0;
   let fileGlobs = [
     '*.js',
+    'build/**/*.js',
     'lib/**/*.js',
     'public/**/*.css',
     'templates/**/*.html'
