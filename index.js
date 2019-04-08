@@ -15,7 +15,8 @@ let handlebars = require('handlebars');
 
 handlebars = handlebarsHelperSRI.register(handlebars);
 
-const helpers = require('./lib/helpers.js');
+const generate = require('./lib/generate');
+const generateElement = require('./lib/generateElement');
 
 const server = new Hapi.Server();
 
@@ -99,7 +100,8 @@ server.register(inert, () => {
         url: request.payload.url,
         algorithms: request.payload.algorithms
       };
-      helpers.generate(options, (result) => {
+
+      generate(options, (result) => {
         reply(
           JSON.stringify(result)
         ).type('application/json');
@@ -114,7 +116,6 @@ server.register(inert, () => {
     }
   });
 
-
   /**
    * Return SRI lookup in HTML format.
    * Deprecated, pending move to isomorphic app.
@@ -123,7 +124,7 @@ server.register(inert, () => {
     method: 'POST',
     path: '/hash',
     handler(request, reply) {
-      helpers.generateElement(
+      generateElement(
         request.payload.url,
         request.payload.algorithms,
         (result) => {
@@ -143,7 +144,6 @@ server.register(inert, () => {
     }
   });
 });
-
 
 server.register({
   register: sitemap,
