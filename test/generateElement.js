@@ -17,7 +17,7 @@ describe('generateElement()', () => {
   });
 
   it('css', async() => {
-    const url = 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css';
+    const url = 'code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css';
     const expect = '<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css" integrity="sha384-w/LBTbFO0P4C3wi1uA2RpBjIEBMRuH15ue80rElDXquOVM6x7Cw3nsOqy7vSBid9" crossorigin="anonymous">';
     const result = await generateElement(url, 'sha384');
 
@@ -33,7 +33,7 @@ describe('generateElement()', () => {
   });
 
   it('js', async() => {
-    const url = 'https://code.jquery.com/jquery-1.11.2.min.js';
+    const url = 'code.jquery.com/jquery-1.11.2.min.js';
     const expect = '<script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74" crossorigin="anonymous"></script>';
     const result = await generateElement(url, 'sha384');
 

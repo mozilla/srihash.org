@@ -25,11 +25,35 @@ describe('upgradeToHttps()', () => {
     });
   });
 
+  describe('URLs', () => {
+    it('Schemeless', () => {
+      const schemelessUnknownUrl = upgradeToHttps('example.com/script.js');
+      const schemelessKnownUrl = upgradeToHttps('code.jquery.com/script.js');
+
+      assert.equal(schemelessUnknownUrl, 'http://example.com/script.js');
+      assert.equal(schemelessKnownUrl, 'https://code.jquery.com/script.js');
+    });
+
+    it('Relative', () => {
+      const relativeUnknownUrl = upgradeToHttps('//example.com/script.js');
+      const relativeKnownUrl = upgradeToHttps('//code.jquery.com/script.js');
+
+      assert.equal(relativeUnknownUrl, 'https://example.com/script.js');
+      assert.equal(relativeKnownUrl, 'https://code.jquery.com/script.js');
+    });
+  });
+
   describe('Invalid URLs', () => {
     it('Invalid scheme', () => {
       const ftpScheme = upgradeToHttps('ftp://example.com/script.js');
 
       assert.equal(ftpScheme, false);
+    });
+
+    it('Bare hostname', () => {
+      const bareHostname = upgradeToHttps('foobar.com');
+
+      assert.equal(bareHostname, 'http://foobar.com/');
     });
   });
 });
