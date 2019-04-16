@@ -7,28 +7,26 @@ const assert = require('assert').strict;
 const shuffleArray = require('../lib/shuffleArray');
 
 describe('shuffleArray()', () => {
-  describe('Array Shuffling', () => {
-    it('preserves length', () => {
-      const a = ['a', 'b', 'c', 'd'];
-      const result = shuffleArray(a);
+  it('preserves length', () => {
+    const a = ['a', 'b', 'c', 'd'];
+    const result = shuffleArray(a);
 
-      assert.equal(result.length, a.length);
-    });
+    assert.equal(result.length, a.length);
+  });
 
-    it('returns all elements', () => {
-      const a = ['a', 'b'];
-      const result = shuffleArray(a);
+  it('returns all elements', () => {
+    const a = ['a', 'b'];
+    const result = shuffleArray(a);
 
-      assert.equal(result[0] === 'a' || result[1] === 'a', true);
-      assert.equal(result[0] === 'b' || result[1] === 'b', true);
-    });
+    assert.equal(result[0] === 'a' || result[1] === 'a', true);
+    assert.equal(result[0] === 'b' || result[1] === 'b', true);
+  });
 
-    it('clones the array', () => {
-      const a = ['a'];
-      const result = shuffleArray(a);
+  it('clones the array', () => {
+    const a = ['a'];
+    const result = shuffleArray(a);
 
-      a[0] = 'b';
-      assert.equal(result[0], 'a');
-    });
+    a[0] = 'b';
+    assert.equal(result[0], 'a');
   });
 });
