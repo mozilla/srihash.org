@@ -8,7 +8,7 @@ const generate = require('../lib/generate');
 
 // Ideally we should find a way to test this without using the network
 describe('generate()', () => {
-  (() => {
+  it('js', (done) => {
     const resource = {
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       algorithms: ['sha384']
@@ -21,21 +21,14 @@ describe('generate()', () => {
       integrity: 'sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74',
       eligibility: []
     };
-    let result = {};
 
-    before((done) => {
-      generate(resource, (data) => {
-        result = data;
-        done();
-      });
+    generate(resource, (data) => {
+      assert.deepEqual(data, expect);
+      done();
     });
+  });
 
-    it('js', () => {
-      assert.deepEqual(result, expect);
-    });
-  })();
-
-  (() => {
+  it('css', (done) => {
     const resource = {
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
       algorithms: ['sha384']
@@ -48,21 +41,14 @@ describe('generate()', () => {
       integrity: 'sha384-w/LBTbFO0P4C3wi1uA2RpBjIEBMRuH15ue80rElDXquOVM6x7Cw3nsOqy7vSBid9',
       eligibility: []
     };
-    let result = {};
 
-    before((done) => {
-      generate(resource, (data) => {
-        result = data;
-        done();
-      });
+    generate(resource, (data) => {
+      assert.deepEqual(data, expect);
+      done();
     });
+  });
 
-    it('css', () => {
-      assert.deepEqual(result, expect);
-    });
-  })();
-
-  (() => {
+  it('404', (done) => {
     const resource = {
       url: 'https://code.jquery.com/jquery-1.11.2-notfound.min.js',
       algorithms: ['sha384']
@@ -71,17 +57,10 @@ describe('generate()', () => {
       success: false,
       status: 404
     };
-    let result = {};
 
-    before((done) => {
-      generate(resource, (data) => {
-        result = data;
-        done();
-      });
+    generate(resource, (data) => {
+      assert.deepEqual(data, expect);
+      done();
     });
-
-    it('404', () => {
-      assert.deepEqual(result, expect);
-    });
-  })();
+  });
 });
