@@ -24,7 +24,6 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 (async() => {
   try {
     const server = Hapi.server({
-      host: 'localhost',
       port: process.env.PORT || 4000,
       routes: {
         security: {
