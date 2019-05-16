@@ -9,9 +9,7 @@ script:
 after_success:
   - npm run coveralls
 
-cache:
-  directories:
-    - "$HOME/.npm"
+cache: npm
 
 notifications:
   email: false
