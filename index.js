@@ -4,7 +4,7 @@
 
 'use strict';
 
-const Path = require('path');
+const path = require('path');
 const Hapi = require('@hapi/hapi');
 const vision = require('@hapi/vision');
 const inert = require('@hapi/inert');
@@ -43,7 +43,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       engines: {
         html: handlebars
       },
-      path: Path.join(__dirname, 'templates')
+      path: path.join(__dirname, 'templates')
     });
 
     /**
