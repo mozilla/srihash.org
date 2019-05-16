@@ -8,7 +8,7 @@ const generate = require('../lib/generate');
 
 // Ideally we should find a way to test this without using the network
 describe('generate()', () => {
-  it('js', (done) => {
+  it('js', async() => {
     const resource = {
       url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       algorithms: ['sha384']
@@ -21,14 +21,12 @@ describe('generate()', () => {
       integrity: 'sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74',
       eligibility: []
     };
+    const result = await generate(resource);
 
-    generate(resource, (data) => {
-      assert.deepEqual(data, expect);
-      done();
-    });
+    assert.deepEqual(result, expect);
   });
 
-  it('css', (done) => {
+  it('css', async() => {
     const resource = {
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
       algorithms: ['sha384']
@@ -41,14 +39,12 @@ describe('generate()', () => {
       integrity: 'sha384-w/LBTbFO0P4C3wi1uA2RpBjIEBMRuH15ue80rElDXquOVM6x7Cw3nsOqy7vSBid9',
       eligibility: []
     };
+    const result = await generate(resource);
 
-    generate(resource, (data) => {
-      assert.deepEqual(data, expect);
-      done();
-    });
+    assert.deepEqual(result, expect);
   });
 
-  it('404', (done) => {
+  it('404', async() => {
     const resource = {
       url: 'https://code.jquery.com/jquery-1.11.2-notfound.min.js',
       algorithms: ['sha384']
@@ -57,10 +53,8 @@ describe('generate()', () => {
       success: false,
       status: 404
     };
+    const result = await generate(resource);
 
-    generate(resource, (data) => {
-      assert.deepEqual(data, expect);
-      done();
-    });
+    assert.deepEqual(result, expect);
   });
 });

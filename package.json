@@ -18,8 +18,8 @@
     "copyright": "node build/copyright.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dev": "npm run watch",
-    "eslint": "eslint . --cache --cache-location .cache/.eslintcache",
-    "stylelint": "stylelint \"public/**/*.css\" --cache --cache-location .cache/.stylelintcache",
+    "eslint": "eslint . --cache --cache-location node_modules/.cache/.eslintcache",
+    "stylelint": "stylelint \"public/**/*.css\" --cache --cache-location node_modules/.cache/.stylelintcache",
     "lint": "npm run stylelint && npm run eslint",
     "mocha": "mocha",
     "server": "node ./index.js",
@@ -29,27 +29,26 @@
     "watch": "nodemon --ext css,js,html --exec \"npm run server\""
   },
   "dependencies": {
+    "@hapi/hapi": "^18.3.1",
+    "@hapi/inert": "^5.2.0",
+    "@hapi/vision": "^5.5.2",
     "cross-env": "^5.2.0",
     "handlebars": "^4.1.2",
     "handlebars-helper-sri": "0.0.0",
-    "hapi": "^16.6.3",
-    "hapi-sitemap": "^1.0.3",
-    "inert": "^4.2.1",
-    "sri-toolbox": "^0.2.0",
-    "vision": "^4.1.1"
+    "sri-toolbox": "^0.2.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
     "eslint": "^5.16.0",
-    "glob": "^7.1.3",
+    "glob": "^7.1.4",
     "mocha": "^6.1.4",
-    "nodemon": "^1.18.11",
-    "nyc": "^14.0.0",
+    "nodemon": "^1.19.0",
+    "nyc": "^14.1.1",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0"
   },
   "engines": {
-    "node": ">=8"
+    "node": "10.x"
   },
   "nyc": {
     "include": [
