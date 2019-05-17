@@ -45,7 +45,7 @@ const PLUGINS = [vision, inert];
       }
     });
 
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.SRIHASH_FORCE_SSL === 'true') {
       PLUGINS.push(requireHttps);
     }
 
