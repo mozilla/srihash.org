@@ -1,6 +1,11 @@
 {
   "name": "srihash",
   "scripts": {},
-  "env": {},
+  "env": {
+    "SRIHASH_FORCE_SSL": {
+      "description": "Force SSL redirection",
+      "value": "true"
+    }
+  },
   "addons": []
 }
