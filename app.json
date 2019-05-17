@@ -5,6 +5,10 @@
     "SRIHASH_FORCE_SSL": {
       "description": "Force SSL redirection",
       "value": "true"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Set `NPM_CONFIG_PRODUCTION`",
+      "value": "true"
     }
   },
   "addons": []
