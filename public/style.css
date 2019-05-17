@@ -4,7 +4,7 @@
 
 body {
   color: #333;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
@@ -54,9 +54,10 @@ code {
   word-break: break-all;
   display: inline-block;
   padding: 1rem;
-  border-left: 3px solid gray;
+  border-left: 3px solid #808080;
   background-color: #3a3a3a;
   color: #ccc;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1rem;
   line-height: 1;
   margin-top: 1rem;
@@ -64,16 +65,18 @@ code {
 
 nav {
   background-color: #333;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 nav a {
-  color: white;
+  color: #fff;
   float: right;
-  padding: 0.5rem 1rem 0.5rem 0;
+  padding: 0.5rem 1rem;
 }
 
 nav a:hover {
-  color: white;
+  color: #fff;
 }
 
 footer {
@@ -84,9 +87,8 @@ footer {
 .container {
   width: auto;
   max-width: 960px;
-  margin: auto;
+  margin: auto auto 2rem;
   padding: 1rem;
-  margin-bottom: 2rem;
 }
 
 .clear {
@@ -97,7 +99,7 @@ footer {
  * App container
  */
 #app {
-  color: black;
+  color: #000;
   background-color: #adbdc6;
   padding: 4rem 0;
   max-width: 100%;
@@ -110,14 +112,14 @@ footer {
   font-size: 1.5rem;
 }
 
-#sriApp input:not([type="checkbox"]) {
+#sriApp input {
   font-size: 0.9rem;
   height: 2.25rem;
   display: inline-block;
 }
 
 #sriApp input[type="url"] {
-  background-color: white;
+  background-color: #fff;
   color: #888;
   border: 1px solid #ccc;
   width: 70%;
@@ -126,7 +128,7 @@ footer {
 
 #sriApp input[type="submit"] {
   cursor: pointer;
-  color: white;
+  color: #fff;
   background-color: #008cba;
   border: 1px solid #0079a1;
   width: 25%;
@@ -142,9 +144,9 @@ footer {
   height: 5rem;
   padding: 1rem;
   border: none;
-  border-left: 3px solid gray;
+  border-left: 3px solid #808080;
   background-color: #3a3a3a;
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 0;
 }
 
 #sriSnippet {
@@ -158,7 +160,7 @@ footer {
  * Mobile styling
  */
 
-@media all and (max-width: 960px) {
+@media (max-width: 960px) {
   nav {
     padding: 0.75rem 0;
     text-align: center;
@@ -178,7 +180,7 @@ footer {
   }
 
   #app {
-    padding: 1rem 0 0.25rem 0;
+    padding: 1rem 0 0.25rem;
     text-align: center;
   }
 
