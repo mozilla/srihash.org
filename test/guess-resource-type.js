@@ -4,7 +4,7 @@
 'use strict';
 
 const assert = require('assert').strict;
-const guessResourceType = require('../lib/guessResourceType');
+const guessResourceType = require('../lib/guess-resource-type');
 
 describe('guessResourceType()', () => {
   describe('Matching', () => {

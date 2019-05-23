@@ -4,7 +4,7 @@
 'use strict';
 
 const assert = require('assert').strict;
-const upgradeToHttps = require('../lib/upgradeToHttps');
+const upgradeToHttps = require('../lib/upgrade-to-https');
 
 describe('upgradeToHttps()', () => {
   describe('CDNs', () => {

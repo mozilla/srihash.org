@@ -15,7 +15,7 @@ let handlebars = require('handlebars');
 handlebars = handlebarsHelperSRI.register(handlebars);
 
 const generate = require('./lib/generate');
-const generateElement = require('./lib/generateElement');
+const generateElement = require('./lib/generate-element');
 
 // eslint-disable-next-line quotes
 const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; style-src 'self'";

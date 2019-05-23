@@ -4,7 +4,7 @@
 'use strict';
 
 const assert = require('assert').strict;
-const shuffleArray = require('../lib/shuffleArray');
+const shuffleArray = require('../lib/shuffle-array');
 
 describe('shuffleArray()', () => {
   it('preserves length', () => {

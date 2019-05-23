@@ -4,7 +4,7 @@
 'use strict';
 
 const assert = require('assert').strict;
-const generateElement = require('../lib/generateElement');
+const generateElement = require('../lib/generate-element');
 
 // Ideally we should find a way to test this without using the network
 describe('generateElement()', () => {
