@@ -26,6 +26,33 @@ describe('generate()', () => {
     assert.deepEqual(result, expect);
   });
 
+  it('redirect', async() => {
+    // https://bit.ly/2JZNTBH redirect to https://code.jquery.com/jquery-1.11.2.min.js
+    const resource = {
+      url: 'https://bit.ly/2JZNTBH',
+      algorithms: ['sha384']
+    };
+
+    const resourceWithoutRedirect = {
+      url: 'https://code.jquery.com/jquery-1.11.2.min.js',
+      algorithms: ['sha384']
+    };
+
+    const expect = {
+      success: true,
+      status: 200,
+      url: 'https://code.jquery.com/jquery-1.11.2.min.js',
+      type: 'js',
+      integrity: 'sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74',
+      eligibility: []
+    };
+    const result = await generate(resource);
+    const resultWithoutRedirect = await generate(resourceWithoutRedirect);
+
+    assert.deepEqual(result, expect);
+    assert.deepEqual(result.integrity, resultWithoutRedirect.integrity);
+  });
+
   it('css', async() => {
     const resource = {
       url: 'https://code.jquery.com/ui/1.11.3/themes/black-tie/jquery-ui.css',
