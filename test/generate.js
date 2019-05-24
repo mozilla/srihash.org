@@ -27,7 +27,7 @@ describe('generate()', () => {
   });
 
   it('redirect', async() => {
-    // https://bit.ly/2JZNTBH redirect to https://code.jquery.com/jquery-1.11.2.min.js
+    // https://bit.ly/2JZNTBH is redirected to https://code.jquery.com/jquery-1.11.2.min.js
     const resource = {
       url: 'https://bit.ly/2JZNTBH',
       algorithms: ['sha384']
