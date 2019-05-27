@@ -55,25 +55,25 @@ describe('generate()', () => {
 
   it('multi redirect', async() => {
     /**
-     * https://bit.ly/2X6ThH3 is redirected to https://gitcdn.xyz/repo/mozilla/srihash.org/master/index.js
-     * which is redirect to https://gitcdn.xyz/cdn/mozilla/srihash.org/e6a30b7403defe47af01a86e03a83c11b8a73786/index.js
+     * https://urlzs.com/Nj9wc is redirected to https://bit.ly/2X6ThH3
+     * which is redirected to https://code.jquery.com/jquery-1.11.2.min.js
      */
     const resource = {
-      url: 'https://bit.ly/2X6ThH3',
+      url: 'https://urlzs.com/Nj9wc',
       algorithms: ['sha384']
     };
 
     const resourceWithoutRedirect = {
-      url: 'https://gitcdn.xyz/cdn/mozilla/srihash.org/e6a30b7403defe47af01a86e03a83c11b8a73786/index.js',
+      url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       algorithms: ['sha384']
     };
 
     const expect = {
       success: true,
       status: 200,
-      url: 'https://gitcdn.xyz/cdn/mozilla/srihash.org/e6a30b7403defe47af01a86e03a83c11b8a73786/index.js',
+      url: 'https://code.jquery.com/jquery-1.11.2.min.js',
       type: 'js',
-      integrity: 'sha384-6ZfLLCEAJcSxt9bD8PaRKJhpgbSPZj9GUFuGSikIgVaBpaQWpkXkwyu63GHVA3sp',
+      integrity: 'sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74',
       eligibility: []
     };
     const result = await generate(resource);
