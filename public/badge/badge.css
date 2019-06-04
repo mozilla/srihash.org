@@ -8,7 +8,7 @@
 }
 
 .sri-test::before {
-  background-color: yellow;
+  background-color: #ff0;
   content: "[Testing SRI support...]";
 }
 
