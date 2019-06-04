@@ -75,7 +75,8 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       },
       options: {
         cache: {
-          expiresIn: 60 * 60 * 1000 // 1 hour
+          // 1 hour for production, 0 for the other cases
+          expiresIn: process.env.NODE_ENV === 'production' ? 60 * 60 * 1000 : 0
         }
       }
     });
