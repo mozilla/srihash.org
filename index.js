@@ -43,6 +43,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       engines: {
         html: handlebars
       },
+      partialsPath: path.join(__dirname, 'templates/partials'),
       path: path.join(__dirname, 'templates')
     });
 
