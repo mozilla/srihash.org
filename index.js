@@ -47,7 +47,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
     });
 
     /**
-     * Serve index.js
+     * Serve index page
      */
     server.route({
       method: 'GET',
@@ -70,8 +70,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       handler: {
         directory: {
           path: 'public',
-          etagMethod: false,
-          lookupCompressed: true
+          etagMethod: false
         }
       },
       options: {
@@ -94,7 +93,8 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
         };
         const result = await generate(options);
 
-        return h.response(JSON.stringify(result)).type('application/json');
+        return h.response(JSON.stringify(result))
+          .type('application/json');
       }
     });
 
