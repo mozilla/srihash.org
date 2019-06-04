@@ -10,8 +10,11 @@ describe('eligibility()', () => {
   describe('Eligible', () => {
     it('CORS', () => {
       const allGood = {
-        headers: {
+        headersMap: {
           'access-control-allow-origin': '*'
+        },
+        headers: {
+          get: (key) => allGood.headersMap[key]
         }
       };
       const result = eligibility(allGood);
@@ -23,8 +26,11 @@ describe('eligibility()', () => {
   describe('Non-eligible', () => {
     it('non-CORS', () => {
       const nonCORS = {
-        headers: {
+        headersMap: {
           dnt: '1'
+        },
+        headers: {
+          get: (key) => nonCORS.headersMap[key]
         }
       };
       const result = eligibility(nonCORS);

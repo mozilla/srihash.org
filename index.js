@@ -47,7 +47,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
     });
 
     /**
-     * Serve index.js
+     * Serve index page
      */
     server.route({
       method: 'GET',
@@ -70,13 +70,13 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       handler: {
         directory: {
           path: 'public',
-          etagMethod: false,
-          lookupCompressed: true
+          etagMethod: false
         }
       },
       options: {
         cache: {
-          expiresIn: 60 * 60 * 1000 // 1 hour
+          // 1 hour for production, 0 for the other cases
+          expiresIn: process.env.NODE_ENV === 'production' ? 60 * 60 * 1000 : 0
         }
       }
     });
@@ -94,7 +94,8 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
         };
         const result = await generate(options);
 
-        return h.response(JSON.stringify(result)).type('application/json');
+        return h.response(JSON.stringify(result))
+          .type('application/json');
       }
     });
 
