@@ -42,3 +42,9 @@ Run tests with:
 ```shell
 npm test
 ```
+
+## Production Releases
+
+The main development branch is the `master` one. When we want to make a production release, we make a PR targetting the `production` branch.
+
+**Please make sure not to use Squash and Merge or Rebase when merging the production PRs, because then the commits will differ.**
