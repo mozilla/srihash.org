@@ -118,6 +118,22 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       }
     });
 
+    server.route({
+      method: 'GET',
+      path: '/favicon.ico',
+      handler: (request, h) => {
+        return h.redirect('/favicons/favicon.ico').permanent();
+      }
+    });
+
+    server.route({
+      method: 'GET',
+      path: '/apple-touch-icon.png',
+      handler: (request, h) => {
+        return h.redirect('/favicons/apple-touch-icon.png').permanent();
+      }
+    });
+
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
   } catch (error) {
