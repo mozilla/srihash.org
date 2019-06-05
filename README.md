@@ -43,6 +43,10 @@ Run tests with:
 npm test
 ```
 
+## `master` branch previews
+
+You can preview the `master` branch deployments on <https://srihash-staging.herokuapp.com/>. The `production` deployment is on <https://www.srihash.org/>.
+
 ## Production Releases
 
 The main development branch is the `master` one. When we want to make a production release, we make a PR targetting the `production` branch.
