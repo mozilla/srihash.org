@@ -29,9 +29,9 @@
     "watch": "nodemon --ext css,js,html --exec \"npm run server\""
   },
   "dependencies": {
-    "@hapi/hapi": "^18.3.1",
+    "@hapi/hapi": "^18.3.2",
     "@hapi/inert": "^5.2.1",
-    "@hapi/vision": "^5.5.2",
+    "@hapi/vision": "^5.5.3",
     "cross-env": "^5.2.0",
     "handlebars": "^4.1.2",
     "handlebars-helper-sri": "0.0.0",
@@ -39,8 +39,8 @@
     "sri-toolbox": "^0.2.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.5",
-    "eslint": "^6.1.0",
+    "coveralls": "^3.0.6",
+    "eslint": "^6.2.2",
     "glob": "^7.1.4",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
@@ -50,7 +50,7 @@
     "stylelint-config-standard": "^18.3.0"
   },
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "nyc": {
     "include": [

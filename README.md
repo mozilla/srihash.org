@@ -9,7 +9,7 @@ This is the code behind the <https://www.srihash.org/> website. It generates [su
 
 ## Install
 
-You'll need Node.js 10.x and npm to run the server.
+You'll need Node.js 12.x and npm to run the server.
 
 Clone the git repository and install dependencies:
 
@@ -49,6 +49,6 @@ You can preview the `master` branch deployments on <https://srihash-staging.hero
 
 ## Production Releases
 
-The main development branch is the `master` one. When we want to make a production release, we make a PR targetting the `production` branch.
+The main development branch is the `master` one. When we want to make a production release, we make a PR targeting the `production` branch.
 
 **Please make sure not to use Squash and Merge or Rebase when merging the production PRs, because then the commits will differ.**
