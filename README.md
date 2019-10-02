@@ -3,7 +3,7 @@
 This is the code behind the <https://www.srihash.org/> website. It generates [subresource integrity](https://www.w3.org/TR/SRI/) hashes.
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/mozilla/srihash.org.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mozilla/srihash.org/alerts/)
-[![Build Status](https://travis-ci.org/mozilla/srihash.org.svg?branch=master)](https://travis-ci.org/mozilla/srihash.org)
+[![Build Status](https://github.com/mozilla/srihash.org/workflows/Tests/badge.svg)](https://github.com/mozilla/srihash.org/actions?workflow=Tests)
 [![Coverage Status](https://coveralls.io/repos/mozilla/srihash.org/badge.svg?branch=master)](https://coveralls.io/r/mozilla/srihash.org?branch=master)
 [![dependencies Status](https://david-dm.org/mozilla/srihash.org/status.svg)](https://david-dm.org/mozilla/srihash.org)
 [![devDependencies Status](https://david-dm.org/mozilla/srihash.org/dev-status.svg)](https://david-dm.org/mozilla/srihash.org?type=dev)

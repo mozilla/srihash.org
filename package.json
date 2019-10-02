@@ -16,7 +16,6 @@
   },
   "scripts": {
     "copyright": "node build/copyright.js",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dev": "npm run watch",
     "eslint": "eslint . --cache --cache-location node_modules/.cache/.eslintcache",
     "stylelint": "stylelint \"public/**/*.css\"",
@@ -26,7 +25,7 @@
     "server": "node ./index.js",
     "start": "cross-env NODE_ENV=production npm run server",
     "test": "npm-run-all --parallel copyright lint --sequential mocha",
-    "travis": "nyc npm test",
+    "test:cov": "nyc npm test",
     "watch": "nodemon --ext css,js,html --exec \"npm run server\""
   },
   "dependencies": {
@@ -43,7 +42,6 @@
     "sri-toolbox": "^0.2.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.11",
     "eslint": "^6.8.0",
     "glob": "^7.1.6",
     "lockfile-lint": "^4.2.2",
@@ -60,6 +58,11 @@
   "nyc": {
     "include": [
       "lib"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text-summary"
     ]
   }
 }
