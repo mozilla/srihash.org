@@ -32,15 +32,15 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
     "@hapi/vision": "^5.5.4",
-    "cross-env": "^6.0.0",
-    "handlebars": "^4.4.0",
+    "cross-env": "^6.0.3",
+    "handlebars": "^4.4.2",
     "handlebars-helper-sri": "0.0.0",
     "node-fetch": "^2.6.0",
     "sri-toolbox": "^0.2.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.6",
-    "eslint": "^6.5.0",
+    "eslint": "^6.5.1",
     "glob": "^7.1.4",
     "mocha": "^6.2.1",
     "nodemon": "^1.19.3",
