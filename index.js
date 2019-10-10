@@ -8,14 +8,20 @@ const path = require('path');
 const Hapi = require('@hapi/hapi');
 const vision = require('@hapi/vision');
 const inert = require('@hapi/inert');
-
 const handlebarsHelperSRI = require('handlebars-helper-sri');
+const handlebarsPartialFile = require('handlebars-partial-file');
+const generate = require('./lib/generate');
+const generateElement = require('./lib/generateElement');
+
 let handlebars = require('handlebars');
 
 handlebars = handlebarsHelperSRI.register(handlebars);
 
-const generate = require('./lib/generate');
-const generateElement = require('./lib/generateElement');
+const hbsPartialFile = handlebarsPartialFile({
+  referenceDir: path.join(__dirname, 'public')
+});
+
+hbsPartialFile.registerDirectory('badge', 'svg');
 
 // eslint-disable-next-line quotes
 const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; style-src 'self'";
