@@ -40,7 +40,7 @@
     "sri-toolbox": "^0.2.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.6",
+    "coveralls": "^3.0.7",
     "eslint": "^6.5.1",
     "glob": "^7.1.4",
     "mocha": "^6.2.1",
