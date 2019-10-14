@@ -13,12 +13,12 @@ body {
 }
 
 a {
-  color: #ff3d2e;
+  color: #ee0701;
   text-decoration: none;
 }
 
 a:hover {
-  color: #cc3a2b;
+  color: #890400;
   text-decoration: underline;
 }
 
@@ -120,7 +120,7 @@ footer {
 
 #sriApp input[type="url"] {
   background-color: #fff;
-  color: #888;
+  color: #767676;
   border: 1px solid #ccc;
   width: 70%;
   padding: 0 2%;
@@ -129,8 +129,8 @@ footer {
 #sriApp input[type="submit"] {
   cursor: pointer;
   color: #fff;
-  background-color: #008cba;
-  border: 1px solid #0079a1;
+  background-color: #007da6;
+  border: 1px solid #006a8e;
   width: 25%;
 }
 
