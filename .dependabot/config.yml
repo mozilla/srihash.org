@@ -8,6 +8,7 @@ update_configs:
     update_schedule: "live"
     # Apply default reviewer and label to created pull requests
     default_reviewers:
+      - "mozfreddyb"
       - "XhmikosR"
     default_labels:
       - "dependencies"
