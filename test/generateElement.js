@@ -9,7 +9,7 @@ const generateElement = require('../lib/generateElement');
 // Ideally we should find a way to test this without using the network
 describe('generateElement()', () => {
   it('non-CORS', async() => {
-    const url = 'https://www.google-analytics.com/ga.js';
+    const url = 'https://maps.googleapis.com/maps/api/js';
     const expect = 'Error: this resource is not eligible for integrity checks. See https://enable-cors.org/server.html';
     const result = await generateElement(url, 'sha384');
 
