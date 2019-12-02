@@ -19,7 +19,7 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dev": "npm run watch",
     "eslint": "eslint . --cache --cache-location node_modules/.cache/.eslintcache",
-    "stylelint": "stylelint \"public/**/*.css\" --cache --cache-location node_modules/.cache/.stylelintcache",
+    "stylelint": "stylelint \"public/**/*.css\"",
     "lint": "npm-run-all --continue-on-error --parallel stylelint eslint",
     "mocha": "mocha",
     "server": "node ./index.js",
