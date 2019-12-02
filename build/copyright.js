@@ -57,6 +57,7 @@ function main() {
     'build/**/*.js',
     'lib/**/*.js',
     'public/**/*.css',
+    'public/**/*.js',
     'templates/**/*.html'
   ];
 

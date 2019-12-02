@@ -35,7 +35,7 @@ const CSP = {
   frameSrc: '\'self\'',
   imgSrc: 'self',
   manifestSrc: '\'self\'',
-  scriptSrc: 'none',
+  scriptSrc: '\'self\'',
   styleSrc: '\'self\'',
   workerSrc: 'none'
 };

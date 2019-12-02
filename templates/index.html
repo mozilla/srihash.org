@@ -11,8 +11,6 @@
     <link rel="canonical" href="https://www.srihash.org/">
     <link rel="stylesheet" href="/style.css" integrity="{{sri './public/style.css'}}">
     <link rel="stylesheet" href="/badge/badge.css" integrity="{{sri './public/badge/badge.css'}}">
-    <link rel="stylesheet" href="/badge/will-pass.css">
-    <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha384-INVALIDHASH">
 
     <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -95,6 +93,8 @@
     <footer class="container">
       The code behind this service is hosted on <a href="https://github.com/mozilla/srihash.org">GitHub</a> and is licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.
     </footer>
+
+    <script src="script.js" integrity="{{sri './public/script.js'}}" async defer></script>
 
   </body>
 </html>

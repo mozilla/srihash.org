@@ -3,27 +3,23 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 .sri-test {
-  display: inline-block;
+  display: none;
   font-size: 13px;
 }
 
-.sri-test::before {
-  background-color: #ff0;
-  content: "[Testing SRI support...]";
-}
-
-.sri-test *[data-sri-status] {
-  height: 64px;
+.sri-test div[data-sri-status] {
+  display: none;
   width: 224px;
+  height: 64px;
   overflow: hidden;
 }
 
-.sri-test *[data-sri-status] svg {
+.sri-test div[data-sri-status] svg {
   display: block;
   margin-left: 16px;
 }
 
-.sri-test *[data-sri-status] p {
+.sri-test div[data-sri-status] p {
   float: left;
   position: relative;
   text-align: center;
@@ -34,9 +30,4 @@
   padding: 2px 24px 2px 80px;
   background-color: #eee;
   z-index: -1;
-}
-
-.sri-test *[data-sri-status="pass"],
-.sri-test *[data-sri-status="fail"] {
-  display: none;
 }

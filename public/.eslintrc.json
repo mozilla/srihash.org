@@ -1,0 +1,19 @@
+{
+  "extends": "../.eslintrc.json",
+  "env": {
+    "browser": true,
+    "es6": false,
+    "node": false
+  },
+  "parserOptions": {
+    "ecmaVersion": 3,
+    "sourceType": "script"
+  },
+  "rules": {
+    "func-names": [
+      "error",
+      "never"
+    ],
+    "no-var": "off"
+  }
+}
