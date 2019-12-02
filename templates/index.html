@@ -94,7 +94,9 @@
       The code behind this service is hosted on <a href="https://github.com/mozilla/srihash.org">GitHub</a> and is licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.
     </footer>
 
-    <script src="script.js" integrity="{{sri './public/script.js'}}" async defer></script>
+    <script nonce="{{script-nonce}}">
+      {{~> mainJs~}}
+    </script>
 
   </body>
 </html>
