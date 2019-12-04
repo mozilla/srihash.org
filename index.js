@@ -25,9 +25,11 @@ const hbsPartialFile = handlebarsPartialFile({
 
 hbsPartialFile.registerDirectory('badge', 'svg');
 hbsPartialFile.registerFile('script.js', 'mainJs');
+hbsPartialFile.registerFile('style.css', 'mainCss');
+hbsPartialFile.registerFile('badge/badge.css', 'badgeCss');
 
 const CSP = {
-  generateNonces: 'script',
+  generateNonces: true,
   defaultSrc: 'none',
   baseUri: 'none',
   connectSrc: 'none',
@@ -37,7 +39,7 @@ const CSP = {
   imgSrc: 'self',
   manifestSrc: '\'self\'',
   scriptSrc: '\'self\' \'unsafe-inline\'',
-  styleSrc: '\'self\'',
+  styleSrc: '\'self\' \'unsafe-inline\'',
   workerSrc: 'none'
 };
 
