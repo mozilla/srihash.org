@@ -25,7 +25,6 @@ hbsPartialFile.registerDirectory('badge', 'svg');
 
 // eslint-disable-next-line quotes
 const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; style-src 'self'";
-const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
 
 (async() => {
   try {
@@ -38,6 +37,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
             maxAge: 31536000,
             preload: true
           },
+          referrer: 'strict-origin-when-cross-origin',
           xframe: 'sameorigin'
         }
       }
@@ -62,8 +62,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
         return h.view('index', {
           title: 'SRI Hash Generator'
         })
-          .header('Content-Security-Policy', CSP_HEADER)
-          .header('Referrer-Policy', REFERRER_HEADER);
+          .header('Content-Security-Policy', CSP_HEADER);
       }
     });
 
@@ -119,8 +118,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
         );
 
         return h.view('hash', { hash: result })
-          .header('Content-Security-Policy', CSP_HEADER)
-          .header('Referrer-Policy', REFERRER_HEADER);
+          .header('Content-Security-Policy', CSP_HEADER);
       }
     });
 
