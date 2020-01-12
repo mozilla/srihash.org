@@ -33,7 +33,7 @@
     "@hapi/inert": "^6.0.0",
     "@hapi/vision": "^5.5.4",
     "cross-env": "^6.0.3",
-    "handlebars": "^4.6.0",
+    "handlebars": "^4.7.0",
     "handlebars-helper-sri": "0.0.0",
     "handlebars-partial-file": "^1.0.0",
     "node-fetch": "^2.6.0",
