@@ -30,7 +30,7 @@
     "watch": "nodemon --ext css,js,html --exec \"npm run server\""
   },
   "dependencies": {
-    "@hapi/hapi": "^19.0.2",
+    "@hapi/hapi": "^19.0.4",
     "@hapi/inert": "^6.0.1",
     "@hapi/scooter": "^5.1.1",
     "@hapi/vision": "^6.0.0",
