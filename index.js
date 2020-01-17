@@ -8,6 +8,8 @@ const path = require('path');
 const Hapi = require('@hapi/hapi');
 const vision = require('@hapi/vision');
 const inert = require('@hapi/inert');
+const Blankie = require('blankie');
+const Scooter = require('@hapi/scooter');
 const handlebarsHelperSRI = require('handlebars-helper-sri');
 const handlebarsPartialFile = require('handlebars-partial-file');
 const generate = require('./lib/generate');
@@ -23,9 +25,20 @@ const hbsPartialFile = handlebarsPartialFile({
 
 hbsPartialFile.registerDirectory('badge', 'svg');
 
-// eslint-disable-next-line quotes
-const CSP_HEADER = "default-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; style-src 'self'";
-const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
+const CSP = {
+  generateNonces: false,
+  defaultSrc: 'none',
+  baseUri: 'none',
+  connectSrc: 'none',
+  formAction: '\'self\'',
+  frameAncestors: '\'self\'',
+  frameSrc: '\'self\'',
+  imgSrc: 'self',
+  manifestSrc: '\'self\'',
+  scriptSrc: 'none',
+  styleSrc: '\'self\'',
+  workerSrc: 'none'
+};
 
 (async() => {
   try {
@@ -38,12 +51,16 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
             maxAge: 31536000,
             preload: true
           },
+          referrer: 'strict-origin-when-cross-origin',
           xframe: 'sameorigin'
         }
       }
     });
 
-    await server.register([vision, inert]);
+    await server.register([vision, inert, Scooter, {
+      plugin: Blankie,
+      options: CSP
+    }]);
 
     server.views({
       engines: {
@@ -61,9 +78,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
       handler(request, h) {
         return h.view('index', {
           title: 'SRI Hash Generator'
-        })
-          .header('Content-Security-Policy', CSP_HEADER)
-          .header('Referrer-Policy', REFERRER_HEADER);
+        });
       }
     });
 
@@ -118,9 +133,7 @@ const REFERRER_HEADER = 'no-referrer, strict-origin-when-cross-origin';
           request.payload.algorithms
         );
 
-        return h.view('hash', { hash: result })
-          .header('Content-Security-Policy', CSP_HEADER)
-          .header('Referrer-Policy', REFERRER_HEADER);
+        return h.view('hash', { hash: result });
       }
     });
 
