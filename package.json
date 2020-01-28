@@ -35,7 +35,7 @@
     "@hapi/scooter": "^6.0.0",
     "@hapi/vision": "^6.0.0",
     "blankie": "^4.1.1",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "handlebars": "^4.7.2",
     "handlebars-helper-sri": "0.0.0",
     "handlebars-partial-file": "^1.0.0",
