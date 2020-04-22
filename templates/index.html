@@ -9,6 +9,9 @@
     <meta name="description" content="Generate Subresource Integrity (SRI) attributes, easily and fast">
     <title>{{title}}</title>
     <link rel="canonical" href="https://www.srihash.org/">
+
+    <link rel="preload" href="/style.css" integrity="{{sri './public/style.css'}}" as="style">
+    <link rel="preload" href="/badge/badge.css" integrity="{{sri './public/badge/badge.css'}}" as="style">
     <link rel="stylesheet" href="/style.css" integrity="{{sri './public/style.css'}}">
     <link rel="stylesheet" href="/badge/badge.css" integrity="{{sri './public/badge/badge.css'}}">
 
