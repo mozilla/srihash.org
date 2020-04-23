@@ -55,7 +55,7 @@
     "stylelint-config-twbs-bootstrap": "^2.0.1"
   },
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "nyc": {
     "include": [
