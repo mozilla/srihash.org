@@ -7,7 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hash</title>
-    <link rel="stylesheet" href="/style.css" integrity="{{sri './public/style.css'}}">
+    <style nonce="{{style-nonce}}">
+      {{~> mainCss~}}
+    </style>
   </head>
   <body>
     <code id="sriSnippet" name="sriSnippet">{{hash}}</code>
