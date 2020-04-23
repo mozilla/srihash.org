@@ -16,9 +16,9 @@ function findCopyright(fileGlobs, opts) {
 
   const checkFileGlob = (fileGlob) => {
     glob.sync(fileGlob).forEach((file) => {
-      const fileStr = fs.readFileSync(file, 'utf8');
+      const fileString = fs.readFileSync(file, 'utf8');
 
-      if (!fileStr.match(options.pattern)) {
+      if (!fileString.match(options.pattern)) {
         error++;
         failedFiles.push(file);
       }
