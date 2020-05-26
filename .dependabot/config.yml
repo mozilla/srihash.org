@@ -9,6 +9,5 @@ update_configs:
     # Apply default reviewer and label to created pull requests
     default_reviewers:
       - "mozfreddyb"
-      - "XhmikosR"
     default_labels:
       - "dependencies"
