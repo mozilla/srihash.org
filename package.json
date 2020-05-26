@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "glob": "^7.1.6",
     "lockfile-lint": "^4.3.6",
     "mocha": "^7.1.2",
