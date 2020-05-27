@@ -14,9 +14,11 @@ function getErrorText(url) {
 }
 
 function resetInterface() {
-    console.log("Please ignore SRI warnings above this line, as they are part of the SRI support check (badge at the bottom of the page).")
-    document.getElementById("sriSnippet").innerText = "";
-    document.getElementById("sriError").innerText = "";
+  console.log(
+    "Please ignore SRI warnings above this line, as they are part of the SRI support check (badge at the bottom of the page)."
+  );
+  document.getElementById("sriSnippet").innerText = "";
+  document.getElementById("sriError").innerText = "";
 }
 
 async function hashText(message) {
