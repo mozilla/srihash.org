@@ -1,16 +1,22 @@
 "use strict";
 
 function getErrorText(url) {
-  return `
-  Could not fetch from URL <a href="${encodeURI(url)}">${url}</a>.
-  This issue could be one of the following:
-  <ul>
-    <li>The URL does not exist.
-    <li>The URL does not support <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS)</a>,
-        when it should send a response header like <code>Access-Control-Allow-Origin: *</code>
-  </ul>
-  Please see your Browser Developer Tools for additional details.
-`;
+  const printableURL = encodeURI(url);
+
+  if (url.startsWith("http")) {
+    return `
+    Could not fetch from URL <em><a href="${printableURL}">${printableURL}</a></em>.<br>
+    Your issue could be one of the following:
+    <ul>
+        <li>The URL does not exist.
+        <li>The URL does not support <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS)</a>,
+            when it should send a response header like <code>Access-Control-Allow-Origin: *</code>
+    </ul>
+    Please see your <a href="https://developer.mozilla.org/en-US/docs/Tools">Browser Developer Tools</a> for additional details.
+    `;
+  }
+  return `Could not fetch from <em>${printableURL}</em>, which doesn't look like a valid URL.`;
+
 }
 
 function resetInterface() {
@@ -52,6 +58,7 @@ async function formSubmit(event) {
       const scriptEl = `<script src="${encodeURI(
         url
       )}" integrity="${integrityMetadata}" crossorigin="anonymous></script>`;
+
       resultDiv.innerText = scriptEl;
     } else {
       console.log("Non-OK HTTP response status. Error:", e);
