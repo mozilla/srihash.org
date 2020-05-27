@@ -1,16 +1,13 @@
-{{! This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. }}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Generate Subresource Integrity (SRI) attributes, easily and fast">
-    <title>{{title}}</title>
+    <title>SRI Hash Generator</title>
     <link rel="canonical" href="https://www.srihash.org/">
-    <link rel="stylesheet" href="/style.css" integrity="{{sri './public/style.css'}}">
-    <link rel="stylesheet" href="/badge/badge.css" integrity="{{sri './public/badge/badge.css'}}">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/badge/badge.css" integrity="sha256-W/HJOs3990RCHyGg0j2NjYy4xSrtLhIe1hbzdzDYzXE&#x3D;">
     <link rel="stylesheet" href="/badge/will-pass.css">
     <link rel="stylesheet" href="/badge/must-fail.css" integrity="sha384-INVALIDHASH">
 
@@ -37,18 +34,16 @@
     <!-- Banner -->
     <div id="app" class="container">
       <div class="container" id="sriAppContainer">
-        {{! section to be replaced with react app }}
         <div id="sriApp">
           <h1>SRI Hash Generator</h1>
           <label for="url">Enter the URL of the resource you wish to use:</label>
-          <form method="POST" action="/hash" target="sriSnippet">
-            <input id="url" name="url" type="url" value="" placeholder="Resource URL" required autofocus>
-            <input name="algorithms" type="hidden" value="sha384">
-            <input type="submit" value="Hash!">
+          <form id="sriForm" action="#">
+            <input id="url" name="url" type="url" value="" placeholder="Resource URL" required autofocus spellcheck="false">
+            <input id="sriSubmit" type="submit" value="Hash!">
           </form>
-          <iframe id="sriSnippet" name="sriSnippet" sandbox="allow-same-origin" title="SRI Hash"></iframe>
+          <pre id="sriSnippet" name="sriSnippet"></pre>
+          <div id="sriError"></div>
         </div>
-        {{! end section }}
       </div>
     </div>
 
@@ -75,15 +70,21 @@
       <h2>Test your browser</h2>
       <p>Check out <a href="https://caniuse.com/#feat=subresource-integrity">SRI on caniuse.com</a> to see specific browser version support information.</p>
 
-      <p>To fully test your browser for subresource integrity support, please open <a href="https://w3c-test.org/subresource-integrity/subresource-integrity.sub.html">this page</a>.</p>
+      <p>To fully test your browser for subresource integrity support, please open <a href="https://w3c-test.org/subresource-integrity/subresource-integrity.html">this page</a>.</p>
 
       <div class="sri-test" id="sri-badge">
         <div data-sri-status="pass">
-          <img src="/badge/pass.svg" alt="Pass Badge" width="50" height="64">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="64" focusable="false">
+            <title>Pass</title>
+            <path fill="#79bd8f" d="M0 8.383c8.291 0 19.824-2.551 25-8.383 5.195 5.832 16.7 8.383 25 8.383C50 55.797 25 64 25 64S0 55.747 0 8.383z"/>
+          </svg>
           <p>Your browser supports SRI</p>
         </div>
         <div data-sri-status="fail">
-          <img src="/badge/fail.svg" alt="Fail Badge" width="50" height="64">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="64" focusable="false">
+            <title>Fail</title>
+            <path fill="#ff6138" d="M25 0c-3.2 3.63-8.9 6.02-14.8 7.28L25 21.98l14.8-14.7C33.9 6.02 28.2 3.63 25 0zM0 11.2c.284 13 2.51 22.8 5.5 30.3l12.4-12.4L0 11.2zm50 0L32.1 29.1l12.4 12.4c3-7.5 5.2-17.3 5.5-30.3zm-25 25L10.3 50.9C17.2 61.4 25 64 25 64s7.8-2.6 14.7-13.1L25 36.2z"/>
+          </svg>
           <p>Your browser does not support SRI</p>
         </div>
       </div>
@@ -95,6 +96,6 @@
     <footer class="container">
       The code behind this service is hosted on <a href="https://github.com/mozilla/srihash.org">GitHub</a> and is licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.
     </footer>
-
+  <script src="/app.js"></script>
   </body>
 </html>

@@ -2,10 +2,9 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2020
   },
   "extends": "eslint:recommended",
   "rules": {
@@ -268,10 +267,6 @@
     "quote-props": [
       "error",
       "as-needed"
-    ],
-    "quotes": [
-      "error",
-      "single"
     ],
     "radix": [
       "error",

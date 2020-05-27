@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.sri-test *[data-sri-status] img {
+.sri-test *[data-sri-status] svg {
   display: block;
   margin-left: 16px;
 }
