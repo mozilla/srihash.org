@@ -6,8 +6,8 @@ function getErrorText(url) {
   This issue could be one of the following:
   <ul>
     <li>The URL does not exist.
-    <li>The URL does not support <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS)</a>.
-    <li>The URL does not point to a script file.
+    <li>The URL does not support <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS)</a>,
+        when it should send a response header like <code>Access-Control-Allow-Origin: *</code>
   </ul>
   Please see your Browser Developer Tools for additional details.
 `;
