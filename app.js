@@ -16,7 +16,6 @@ function getErrorText(url) {
     `;
   }
   return `Could not fetch from <em>${printableURL}</em>, which doesn't look like a valid URL.`;
-
 }
 
 function resetInterface() {
@@ -43,11 +42,11 @@ async function formSubmit(event) {
   const resultDiv = document.getElementById("sriSnippet");
   const errorDiv = document.getElementById("sriError");
 
-  console.log("Trying", url);
+  console.info("Trying", url);
   try {
     const response = await fetch(url);
 
-    console.log("Response", response);
+    console.info("Response", response);
     if (response.status === 200) {
       const text = await response.text();
       const hashBuffer = await hashText(text); // Array Buffer
@@ -61,11 +60,11 @@ async function formSubmit(event) {
 
       resultDiv.innerText = scriptEl;
     } else {
-      console.log("Non-OK HTTP response status. Error:", e);
+      console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
     }
   } catch (e) {
-    console.log("Fetch Error: ", e);
+    console.error("Fetch Error: ", e);
     errorDiv.innerHTML = getErrorText(url);
   }
 }

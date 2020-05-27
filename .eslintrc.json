@@ -161,7 +161,7 @@
     "no-extra-parens": "error",
     "no-floating-decimal": "error",
     "no-implicit-coercion": "error",
-    "no-implicit-globals": "error",
+    "no-implicit-globals": "off",
     "no-implied-eval": "error",
     "no-inline-comments": "off",
     "no-invalid-this": "error",
@@ -299,7 +299,7 @@
       "error",
       "always"
     ],
-    "strict": "error",
+    "strict": "off",
     "switch-colon-spacing": "error",
     "symbol-description": "error",
     "template-curly-spacing": [
