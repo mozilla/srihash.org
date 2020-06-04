@@ -9,7 +9,7 @@ This is the code behind the <https://www.srihash.org/> website. It generates [su
 
 ## Install
 
-You'll need Node.js 10.x and npm to run the server.
+You'll need Node.js 10.x and npm for linting and a local server for testing
 
 Clone the git repository and install dependencies:
 
@@ -19,36 +19,15 @@ cd srihash.org
 npm install
 ```
 
-To start the server, run:
-
-```shell
-npm start
-```
-
-It will listen on `http://127.0.0.1:4000` by default.
-
-Or run:
-
-```shell
-npm run watch
-```
-
-to run the server and watch for changes.
-
-## Testing
+## Linters
 
 Run tests with:
 
 ```shell
-npm test
+npm run lint
 ```
 
-## `master` branch previews
-
-You can preview the `master` branch deployments on <https://srihash-staging.herokuapp.com/>. The `production` deployment is on <https://www.srihash.org/>.
-
-## Production Releases
-
-The main development branch is the `master` one. When we want to make a production release, we make a PR targetting the `production` branch.
-
-**Please make sure not to use Squash and Merge or Rebase when merging the production PRs, because then the commits will differ.**
+## Code of Conduct
+This repository is governed by Mozilla's code of conduct and etiquette guidelines.
+For more details, please read the
+[Mozilla Community Participation Guidelines](https://www.mozilla.org/about/governance/policies/participation/) or [CODE_OF_CONDUCT.md].
