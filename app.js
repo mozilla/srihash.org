@@ -56,7 +56,7 @@ async function formSubmit(event) {
       const integrityMetadata = `sha384-${base64string}`;
       const scriptEl = `<script src="${encodeURI(
         url
-      )}" integrity="${integrityMetadata}" crossorigin="anonymous></script>`;
+      )}" integrity="${integrityMetadata}" crossorigin="anonymous"></script>`;
 
       resultDiv.innerText = scriptEl;
     } else {
