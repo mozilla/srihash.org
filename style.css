@@ -152,13 +152,13 @@ footer {
   margin: 0;
   border: 0;
   white-space: pre-line;
-  background-color: darkgray;
-  color: white;
+  background-color: #a9a9a9;
+  color: #fff;
 }
 #sriError {
   font-size: 16pt;
   text-align: left;
-  background-color: lightpink;
+  background-color: #ffb6c1;
 }
 
 /*
