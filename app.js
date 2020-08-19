@@ -24,6 +24,9 @@ function resetInterface() {
   );
   document.getElementById("sriSnippet").innerText = "";
   document.getElementById("sriError").innerText = "";
+  if (document.getElementById("sriCopy")) {
+    document.getElementById("sriCopy").remove();
+  }
 }
 
 async function hashText(message) {
@@ -32,6 +35,18 @@ async function hashText(message) {
   const hash384 = await crypto.subtle.digest("SHA-384", data);
 
   return hash384;
+}
+
+function copyText(text) {
+  const str = text;
+
+  function listener(e) {
+    e.clipboardData.setData("text/plain", str);
+    e.preventDefault();
+    document.removeEventListener("copy", listener);
+  }
+  document.addEventListener("copy", listener);
+  document.execCommand("copy");
 }
 
 async function formSubmit(event) {
@@ -59,6 +74,12 @@ async function formSubmit(event) {
       )}" integrity="${integrityMetadata}" crossorigin="anonymous"></script>`;
 
       resultDiv.innerText = scriptEl;
+      const copyButton = `<button id="sriCopy">Copy</button>`;
+
+      resultDiv.insertAdjacentHTML('afterend', copyButton);
+      const sriCopy = document.getElementById("sriCopy");
+
+      sriCopy.addEventListener("click", copyText(scriptEl));
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
