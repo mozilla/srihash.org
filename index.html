@@ -84,26 +84,16 @@
 
       <hr>
 
-      <h2>What is the crossorigin attribute?</h2>
+      <h2>Why do I need to include <code class="inline">crossorigin="anonymous"</code>?</h2>
       <p>
-        When the request is not on the same origin the crossorigin attribute must be present to check the integrity of the
+        When the request is not on the same origin the <code class="inline">crossorigin</code> attribute must be present to check the integrity of the
         file.<br>
-        Without a crossorigin attribute, the browser will choose to 'fail-open' which
-        means it will load the resource as if the integrity attribute was not set.<br><br>
-        The possible values for this attribute:
-        <ul>
-          <li>
-            anonymous - No credentials are sent (no cookies, no X.509 certificate, and no HTTP Basic authentication)
-            to the cross-origin site. If the server does not give credentials to the origin site (by not setting the
-            Access-Control-Allow-Origin: HTTP header), the resource will be tainted and its usage restricted.
-          </li>
-          <li>
-            use-credentials - A cross-origin request with credentials is sent (for example a cookie, a certificate, or HTTP Basic authentication is performed).
-            If the server does not give credentials to the origin site (through the Access-Control-Allow-Credentials HTTP header), the resource will be tainted
-            and its usage restricted.
-          </li>
-        </ul>
-        In both cases, the Origin HTTP header is sent.
+        Without a <code class="inline">crossorigin</code> attribute, the browser will choose to 'fail-open' which
+        means it will load the resource as if the integrity attribute was not set, effectively losing all the security SRI brings in the first place.<br><br>
+        <code class="inline">crossorigin="anonymous"</code> results that no credentials are sent to the cross-origin site hosting the content. However,
+        it will send an <code class="inline">Origin</code> HTTP header. If the server denies including the resource (by not setting the <code class="inline">Access-Control-Allow-Origin</code> HTTP header),
+        the resource will not be used by the browser.<br>
+        You can find more information on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin" target="_blank" rel="noopener noreferrer">MDN.</a>
       </p>
 
       <hr>
