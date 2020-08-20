@@ -156,9 +156,19 @@ footer {
   background-color: #a9a9a9;
   color: #fff;
 }
+
+#hiddenArea {
+  /*display: none;
+  visibility: hidden;
+  opacity: 0;*/
+  position:fixed;
+  left:100vw
+}
+
 #sriCopy {
   width: 4rem;
 }
+
 #sriError {
   font-size: 16pt;
   text-align: left;

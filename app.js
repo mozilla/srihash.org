@@ -37,18 +37,6 @@ async function hashText(message) {
   return hash384;
 }
 
-function copyText(text) {
-  const str = text;
-
-  function listener(e) {
-    e.clipboardData.setData("text/plain", str);
-    e.preventDefault();
-    document.removeEventListener("copy", listener);
-  }
-  document.addEventListener("copy", listener);
-  document.execCommand("copy");
-}
-
 async function formSubmit(event) {
   event.preventDefault();
   resetInterface();
@@ -74,12 +62,15 @@ async function formSubmit(event) {
       )}" integrity="${integrityMetadata}" crossorigin="anonymous"></script>`;
 
       resultDiv.innerText = scriptEl;
-      const copyButton = `<button id="sriCopy">Copy</button>`;
+      const copyButton = `<button id="sriCopy" data-clipboard-text='${scriptEl}'>Copy</button>`;
 
       resultDiv.insertAdjacentHTML('afterend', copyButton);
       const sriCopy = document.getElementById("sriCopy");
 
-      sriCopy.addEventListener("click", copyText(scriptEl));
+      sriCopy.addEventListener("click", () => {
+      // eslint-disable-next-line no-new
+        new ClipboardJS("#sriCopy"); // eslint-disable-line no-undef
+      });
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
