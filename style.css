@@ -151,9 +151,14 @@ footer {
   margin: 0;
   border: 0;
   white-space: pre-line;
-  background-color: #a9a9a9;
+  background-color: #3a3a3a;
   color: #fff;
 }
+
+#sriSnippet.is-active {
+  padding: 1rem;
+}
+
 #sriError {
   font-size: 16pt;
   text-align: left;
