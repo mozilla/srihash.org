@@ -27,6 +27,7 @@ function resetInterface() {
   if (document.getElementById("sriCopy")) {
     document.getElementById("sriCopy").remove();
   }
+  document.getElementById("sriSnippet").classList.remove('is-active');
 }
 
 async function hashText(message) {
@@ -110,9 +111,9 @@ async function formSubmit(event) {
         String.fromCharCode(...new Uint8Array(hashBuffer))
       );
       const integrityMetadata = `sha384-${base64string}`;
-      const scriptEl = `<script src="${encodeURI(
+      const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
         url
-      )}" integrity="${integrityMetadata}" crossorigin="anonymous"></script>`;
+      )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrityMetadata}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
 
       resultDiv.innerText = scriptEl;
       const copyButton = `<button id="sriCopy" data-clipboard-text='${scriptEl}'>Copy</button>`;
@@ -123,6 +124,8 @@ async function formSubmit(event) {
       sriCopy.addEventListener("click", () => {
         copyText(scriptEl);
       });
+      resultDiv.classList.add("is-active");
+      resultDiv.innerHTML = scriptEl;
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
