@@ -24,6 +24,7 @@ function resetInterface() {
   );
   document.getElementById("sriSnippet").innerText = "";
   document.getElementById("sriError").innerText = "";
+  document.getElementById("sriSnippet").classList.remove('is-active');
 }
 
 async function hashText(message) {
