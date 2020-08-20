@@ -25,14 +25,14 @@
     <!-- meta tags for social media-->
     <meta name="title" content="SRI Hash Generator">
     <meta name="description" content="Generate Subresource Integrity (SRI) attributes, easily and fast">
-    
+
     <!--  Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.srihash.org/">
     <meta property="og:title" content="SRI Hash Generator">
     <meta property="og:description" content="Generate Subresource Integrity (SRI) attributes, easily and fast">
     <meta property="og:image" content="">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.srihash.org/">
@@ -80,6 +80,29 @@
         <code>
           openssl dgst -sha384 -binary <strong>FILENAME.js</strong> | openssl base64 -A
         </code>
+      </p>
+      <hr>
+
+      <h2>What is the crossorigin attribute?</h2>
+      <p>
+        When the request is not on the same origin the crossorigin attribute must be present to check the integrity of the
+        file.<br>
+        Without a crossorigin attribute, the browser will choose to 'fail-open' which
+        means it will load the resource as if the integrity attribute was not set.<br><br>
+        The possible values for this attribute:
+        <ul>
+          <li>
+            anonymous - No credentials are sent (no cookies, no X.509 certificate, and no HTTP Basic authentication)
+            to the cross-origin site. If the server does not give credentials to the origin site (by not setting the
+            Access-Control-Allow-Origin: HTTP header), the resource will be tainted and its usage restricted.
+          </li>
+          <li>
+            use-credentials - A cross-origin request with credentials is sent (for example a cookie, a certificate, or HTTP Basic authentication is performed).
+            If the server does not give credentials to the origin site (through the Access-Control-Allow-Credentials HTTP header), the resource will be tainted
+            and its usage restricted.
+          </li>
+        </ul>
+        In both cases, the Origin HTTP header is sent.
       </p>
 
       <hr>
