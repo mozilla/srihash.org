@@ -157,14 +157,6 @@ footer {
   color: #fff;
 }
 
-#hiddenArea {
-  /*display: none;
-  visibility: hidden;
-  opacity: 0;*/
-  position:fixed;
-  left:100vw
-}
-
 #sriCopy {
   width: 4rem;
 }
