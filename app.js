@@ -38,59 +38,6 @@ async function hashText(message) {
   return hash384;
 }
 
-function createNode(text) {
-  const node = document.createElement('pre');
-
-  node.style.width = '1px';
-  node.style.height = '1px';
-  node.style.position = 'fixed';
-  node.style.top = '5px';
-  node.textContent = text;
-  return node;
-}
-
-function copyNode(node) {
-  if ('clipboard' in navigator) {
-    return navigator.clipboard.writeText(node.textContent || '');
-  }
-
-  const selection = getSelection();
-
-  if (selection === null) {
-    return Promise.reject(new Error());
-  }
-
-  selection.removeAllRanges();
-
-  const range = document.createRange();
-
-  range.selectNodeContents(node);
-  selection.addRange(range);
-
-  document.execCommand('copy');
-  selection.removeAllRanges();
-  return Promise.resolve();
-}
-
-function copyText(text) {
-  if ('clipboard' in navigator) {
-    return navigator.clipboard.writeText(text);
-  }
-
-  const { body } = document;
-
-  if (!body) {
-    return Promise.reject(new Error());
-  }
-
-  const node = createNode(text);
-
-  body.appendChild(node);
-  copyNode(node);
-  body.removeChild(node);
-  return Promise.resolve();
-}
-
 async function formSubmit(event) {
   event.preventDefault();
   resetInterface();
@@ -115,14 +62,15 @@ async function formSubmit(event) {
         url
       )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrityMetadata}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
 
-      resultDiv.innerText = scriptEl;
-      const copyButton = `<button id="sriCopy" data-clipboard-text='${scriptEl}'>Copy</button>`;
+      resultDiv.innerHTML = scriptEl;
+      const copyButton = `<button id="sriCopy">Copy</button>`;
 
       resultDiv.insertAdjacentHTML('afterend', copyButton);
       const sriCopy = document.getElementById("sriCopy");
 
       sriCopy.addEventListener("click", () => {
-        copyText(scriptEl);
+        // eslint-disable-next-line no-undef
+        copyText(resultDiv.innerText);
       });
       resultDiv.classList.add("is-active");
       resultDiv.innerHTML = scriptEl;
