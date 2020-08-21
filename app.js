@@ -73,7 +73,6 @@ async function formSubmit(event) {
         copyText(resultDiv.innerText);
       });
       resultDiv.classList.add("is-active");
-      resultDiv.innerHTML = scriptEl;
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
