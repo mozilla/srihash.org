@@ -61,6 +61,13 @@ code {
   margin-top: 1rem;
 }
 
+code.inline {
+  margin-top: 0;
+  padding: 0.1rem;
+  border-left: 0;
+  font-size: inherit;
+}
+
 nav {
   background-color: #333;
   padding-top: 0.5rem;
@@ -153,12 +160,14 @@ footer {
   margin: 0;
   border: 0;
   white-space: pre-line;
-  background-color: #a9a9a9;
+  background-color: #3a3a3a;
   color: #fff;
 }
-#sriCopy {
-  width: 50px;
+
+#sriSnippet.is-active {
+  padding: 1rem;
 }
+
 #sriError {
   font-size: 16pt;
   text-align: left;
