@@ -131,9 +131,7 @@ footer {
   padding: 0 2%;
 }
 
-#sriApp input[type="submit"],
-
-#sriCopy {
+#sriApp input[type="submit"] {
   cursor: pointer;
   color: #fff;
   background-color: #007da6;
