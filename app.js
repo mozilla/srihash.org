@@ -1,3 +1,5 @@
+/* global copyText */
+
 "use strict";
 
 function getErrorText(url) {
@@ -69,7 +71,6 @@ async function formSubmit(event) {
       const sriCopy = document.getElementById("sriCopy");
 
       sriCopy.addEventListener("click", () => {
-        // eslint-disable-next-line no-undef
         copyText(resultDiv.innerText);
       });
       resultDiv.classList.add("is-active");
