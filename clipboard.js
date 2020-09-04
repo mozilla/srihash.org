@@ -34,6 +34,7 @@ function copyNode(node) {
   return Promise.resolve();
 }
 
+// eslint-disable-next-line no-unused-vars
 function copyText(text) {
   if ('clipboard' in navigator) {
     return navigator.clipboard.writeText(text);
