@@ -117,25 +117,35 @@ footer {
   font-size: 1.5rem;
 }
 
-#sriApp input {
+#sriApp input,
+#sriApp select {
   font-size: 0.9rem;
   height: 2.25rem;
   display: inline-block;
 }
 
-#sriApp input[type="url"] {
+#sriApp input[type="url"],
+#sriApp select {
   background-color: #fff;
   color: #767676;
   border: 1px solid #ccc;
-  width: 70%;
+}
+
+#sriApp input[type="url"] {
+  width: 60%;
   padding: 0 2%;
+}
+
+#sriApp select {
+  width: 10%;
+  text-align: center;
 }
 
 #sriApp input[type="submit"] {
   cursor: pointer;
   color: #fff;
   background-color: #007da6;
-  width: 25%;
+  width: 20%;
 }
 
 #sriApp label {
