@@ -3,7 +3,7 @@
 function getErrorText(url) {
   const printableURL = encodeURI(url);
 
-  if (url.startsWith("http")) {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
     return `
     Could not fetch from URL <em><a href="${printableURL}">${printableURL}</a></em>.<br>
     Your issue could be one of the following:
