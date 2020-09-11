@@ -35,11 +35,14 @@ async function hashText(message) {
   return hash384;
 }
 
-function parseContentType(res) {
-  const type = res.headers.get("content-type").split(";");
+function parseContentType(type) {
+  if (!type) {
+    return "script";
+  }
+  const fileType = type.split(";");
 
   const REGEX = /^text\/css$/;
-  const isStylesheet = REGEX.test(type[0]);
+  const isStylesheet = REGEX.test(fileType[0]);
 
   if (isStylesheet) {
     return 'style';
@@ -58,17 +61,19 @@ async function integrityMetadata(text) {
 
 async function displayResult(resultDiv, url, contentType, text) {
   const integrity = await integrityMetadata(text);
-  const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
-    url
-  )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
-  const linkEl = `<span style="color: #ffa07a">&lt;link rel="stylesheet" href=</span><span style="color:#abe338">&quot;${encodeURI(
-    url
-  )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;</span>`;
 
   resultDiv.classList.add("is-active");
   if (contentType === "script") {
+    const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
+      url
+    )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
+
     resultDiv.innerHTML = scriptEl;
   } else {
+    const linkEl = `<span style="color: #ffa07a">&lt;link rel="stylesheet" href=</span><span style="color:#abe338">&quot;${encodeURI(
+      url
+    )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;</span>`;
+
     resultDiv.innerHTML = linkEl;
   }
 }
@@ -87,7 +92,8 @@ async function formSubmit(event) {
 
     console.info("Response", response);
     if (response.status === 200) {
-      const contentType = parseContentType(response);
+      const type = response.headers.get("content-type");
+      const contentType = parseContentType(type);
       const text = await response.text();
 
       displayResult(resultDiv, url, contentType, text);
