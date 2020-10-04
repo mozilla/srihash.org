@@ -28,4 +28,4 @@ npm run lint
 ## Code of Conduct
 This repository is governed by Mozilla's code of conduct and etiquette guidelines.
 For more details, please read the
-[Mozilla Community Participation Guidelines](https://www.mozilla.org/about/governance/policies/participation/) or [CODE_OF_CONDUCT.md].
+[Mozilla Community Participation Guidelines](https://www.mozilla.org/about/governance/policies/participation/) or [CODE_OF_CONDUCT.md](https://github.com/srihash.org/blob/gh-pages/CODE_OF_CONDUCT.md).
