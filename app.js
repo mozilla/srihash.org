@@ -5,7 +5,7 @@
 function getErrorText(url) {
   const printableURL = encodeURI(url);
 
-  if (url.startsWith("http")) {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
     return `
     Could not fetch from URL <em><a href="${printableURL}">${printableURL}</a></em>.<br>
     Your issue could be one of the following:
@@ -40,6 +40,49 @@ async function hashText(message) {
   return hash384;
 }
 
+function parseContentType(type) {
+  if (!type) {
+    return "script";
+  }
+  const fileType = type.split(";");
+
+  const REGEX = /^text\/css$/;
+  const isStylesheet = REGEX.test(fileType[0]);
+
+  if (isStylesheet) {
+    return 'style';
+  }
+  return 'script';
+}
+
+async function integrityMetadata(text) {
+  const hashBuffer = await hashText(text); // Array Buffer
+  const base64string = btoa(
+    String.fromCharCode(...new Uint8Array(hashBuffer))
+  );
+
+  return `sha384-${base64string}`;
+}
+
+async function displayResult(resultDiv, url, contentType, text) {
+  const integrity = await integrityMetadata(text);
+
+  resultDiv.classList.add("is-active");
+  if (contentType === "script") {
+    const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
+      url
+    )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
+
+    resultDiv.innerHTML = scriptEl;
+  } else {
+    const linkEl = `<span style="color: #ffa07a">&lt;link rel=<span style="color:#abe338">"stylesheet"</span> href=</span><span style="color:#abe338">&quot;${encodeURI(
+      url
+    )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;</span>`;
+
+    resultDiv.innerHTML = linkEl;
+  }
+}
+
 async function formSubmit(event) {
   event.preventDefault();
   resetInterface();
@@ -54,26 +97,11 @@ async function formSubmit(event) {
 
     console.info("Response", response);
     if (response.status === 200) {
+      const type = response.headers.get("content-type");
+      const contentType = parseContentType(type);
       const text = await response.text();
-      const hashBuffer = await hashText(text); // Array Buffer
-      const base64string = btoa(
-        String.fromCharCode(...new Uint8Array(hashBuffer))
-      );
-      const integrityMetadata = `sha384-${base64string}`;
-      const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
-        url
-      )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrityMetadata}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
-
-      resultDiv.innerHTML = scriptEl;
-      const copyButton = `<button id="sriCopy">Copy</button>`;
-
-      resultDiv.insertAdjacentHTML('afterend', copyButton);
-      const sriCopy = document.getElementById("sriCopy");
-
-      sriCopy.addEventListener("click", () => {
-        copyText(resultDiv.innerText);
-      });
-      resultDiv.classList.add("is-active");
+      
+      displayResult(resultDiv, url, contentType, text);
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
