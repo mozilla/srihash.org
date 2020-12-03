@@ -70,7 +70,7 @@ async function displayResult(resultDiv, url, contentType, text) {
 
     resultDiv.innerHTML = scriptEl;
   } else {
-    const linkEl = `<span style="color: #ffa07a">&lt;link rel="stylesheet" href=</span><span style="color:#abe338">&quot;${encodeURI(
+    const linkEl = `<span style="color: #ffa07a">&lt;link rel=<span style="color:#abe338">"stylesheet"</span> href=</span><span style="color:#abe338">&quot;${encodeURI(
       url
     )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;</span>`;
 
