@@ -81,6 +81,15 @@ async function displayResult(resultDiv, url, contentType, text) {
 
     resultDiv.innerHTML = linkEl;
   }
+  const copyButton = `<button id="sriCopy">Copy</button>`;
+
+  console.log("It's working")
+  resultDiv.insertAdjacentHTML('afterend', copyButton);
+  const sriCopy = document.getElementById("sriCopy");
+
+  sriCopy.addEventListener("click", () => {
+    copyText(resultDiv.innerText);
+  });
 }
 
 async function formSubmit(event) {
