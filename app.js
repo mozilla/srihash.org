@@ -109,7 +109,7 @@ async function formSubmit(event) {
       const type = response.headers.get("content-type");
       const contentType = parseContentType(type);
       const text = await response.text();
-      
+
       displayResult(resultDiv, url, contentType, text);
     } else {
       console.error("Non-OK HTTP response status. Error.");
