@@ -1,3 +1,5 @@
+/* global copyText */
+
 "use strict";
 
 function getErrorText(url) {
@@ -24,6 +26,9 @@ function resetInterface() {
   );
   document.getElementById("sriSnippet").innerText = "";
   document.getElementById("sriError").innerText = "";
+  if (document.getElementById("sriCopy")) {
+    document.getElementById("sriCopy").remove();
+  }
   document.getElementById("sriSnippet").classList.remove('is-active');
 }
 
@@ -76,6 +81,15 @@ async function displayResult(resultDiv, url, contentType, text) {
 
     resultDiv.innerHTML = linkEl;
   }
+  const copyButton = `<button id="sriCopy">Copy</button>`;
+
+  console.log("It's working")
+  resultDiv.insertAdjacentHTML('afterend', copyButton);
+  const sriCopy = document.getElementById("sriCopy");
+
+  sriCopy.addEventListener("click", () => {
+    copyText(resultDiv.innerText);
+  });
 }
 
 async function formSubmit(event) {
