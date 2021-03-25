@@ -25,14 +25,14 @@
     <!-- meta tags for social media-->
     <meta name="title" content="SRI Hash Generator">
     <meta name="description" content="Generate Subresource Integrity (SRI) attributes, easily and fast">
-    
+
     <!--  Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.srihash.org/">
     <meta property="og:title" content="SRI Hash Generator">
     <meta property="og:description" content="Generate Subresource Integrity (SRI) attributes, easily and fast">
     <meta property="og:image" content="">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.srihash.org/">
@@ -56,6 +56,11 @@
           <label for="url">Enter the URL of the resource you wish to use:</label>
           <form id="sriForm" action="#">
             <input id="url" name="url" type="url" value="" placeholder="Resource URL" required autofocus spellcheck="false">
+            <select id="sriHash" type="select">
+              <option value="sha256">SHA-256</option>
+              <option value="sha384" selected>SHA-384</option>
+              <option value="sha512">SHA-512</option>
+            </select>
             <input id="sriSubmit" type="submit" value="Hash!">
           </form>
           <pre id="sriSnippet" name="sriSnippet"></pre>
@@ -80,6 +85,20 @@
         <code>
           openssl dgst -sha384 -binary <strong>FILENAME.js</strong> | openssl base64 -A
         </code>
+      </p>
+
+      <hr>
+
+      <h2>Why do I need to include <code class="inline">crossorigin="anonymous"</code>?</h2>
+      <p>
+        When the request is not on the same origin the <code class="inline">crossorigin</code> attribute must be present to check the integrity of the
+        file.<br>
+        Without a <code class="inline">crossorigin</code> attribute, the browser will choose to 'fail-open' which
+        means it will load the resource as if the integrity attribute was not set, effectively losing all the security SRI brings in the first place.<br><br>
+        <code class="inline">crossorigin="anonymous"</code> results that no credentials are sent to the cross-origin site hosting the content. However,
+        it will send an <code class="inline">Origin</code> HTTP header. If the server denies including the resource (by not setting the <code class="inline">Access-Control-Allow-Origin</code> HTTP header),
+        the resource will not be used by the browser.<br>
+        You can find more information on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin" target="_blank" rel="noopener noreferrer">MDN.</a>
       </p>
 
       <hr>

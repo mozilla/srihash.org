@@ -24,35 +24,31 @@ function resetInterface() {
   );
   document.getElementById("sriSnippet").innerText = "";
   document.getElementById("sriError").innerText = "";
-  if (document.getElementById("sriCopy")) {
-    document.getElementById("sriCopy").remove();
+  document.getElementById("sriSnippet").classList.remove('is-active');
+}
+
+function digestName(hashAlgorithm) {
+  switch (hashAlgorithm) {
+    case "sha256": return "SHA-256";
+    case "sha384": return "SHA-384";
+    case "sha512": return "SHA-512";
+    default: throw new Error(`invalid hashing algorithm: ${hashAlgorithm}`);
   }
 }
 
-async function hashText(message) {
+async function hashText(message, algorithm) {
   const encoder = new TextEncoder();
   const data = encoder.encode(message);
-  const hash384 = await crypto.subtle.digest("SHA-384", data);
+  const digest = await crypto.subtle.digest(digestName(algorithm), data);
 
-  return hash384;
-}
-
-function copyText(text) {
-  const str = text;
-
-  function listener(e) {
-    e.clipboardData.setData("text/plain", str);
-    e.preventDefault();
-    document.removeEventListener("copy", listener);
-  }
-  document.addEventListener("copy", listener);
-  document.execCommand("copy");
+  return digest;
 }
 
 async function formSubmit(event) {
   event.preventDefault();
   resetInterface();
   const inputEl = document.getElementById("url");
+  const hashEl = document.getElementById("sriHash");
   const url = inputEl.value;
   const resultDiv = document.getElementById("sriSnippet");
   const errorDiv = document.getElementById("sriError");
@@ -64,22 +60,18 @@ async function formSubmit(event) {
     console.info("Response", response);
     if (response.status === 200) {
       const text = await response.text();
-      const hashBuffer = await hashText(text); // Array Buffer
+      const hashAlgorithm = hashEl.value;
+      const hashBuffer = await hashText(text, hashAlgorithm); // Array Buffer
       const base64string = btoa(
         String.fromCharCode(...new Uint8Array(hashBuffer))
       );
-      const integrityMetadata = `sha384-${base64string}`;
-      const scriptEl = `<script src="${encodeURI(
+      const integrityMetadata = `${hashAlgorithm}-${base64string}`;
+      const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
         url
-      )}" integrity="${integrityMetadata}" crossorigin="anonymous"></script>`;
+      )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrityMetadata}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
 
-      resultDiv.innerText = scriptEl;
-      const copyButton = `<button id="sriCopy">Copy</button>`;
-
-      resultDiv.insertAdjacentHTML('afterend', copyButton);
-      const sriCopy = document.getElementById("sriCopy");
-
-      sriCopy.addEventListener("click", copyText(scriptEl));
+      resultDiv.classList.add("is-active");
+      resultDiv.innerHTML = scriptEl;
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
