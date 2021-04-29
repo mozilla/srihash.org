@@ -1,0 +1,21 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 99
+  reviewers:
+  - mozfreddyb
+  labels:
+  - dependencies
+  ignore:
+  - dependency-name: eslint
+    versions:
+    - 7.20.0
+    - 7.21.0
+    - 7.23.0
+    - 7.24.0
+  - dependency-name: stylelint
+    versions:
+    - 13.10.0
