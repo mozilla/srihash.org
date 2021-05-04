@@ -17,8 +17,7 @@
     "eslint": "eslint . --cache --cache-location node_modules/.cache/.eslintcache",
     "stylelint": "stylelint \"*.css\" --cache --cache-location node_modules/.cache/.stylelintcache",
     "lint": "npm-run-all --continue-on-error --parallel stylelint eslint",
-    "test": "npm run lint",
-    "travis": "npm run lint"
+    "test": "npm run lint"
   },
   "devDependencies": {
     "eslint": "^7.22.0",

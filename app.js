@@ -83,7 +83,7 @@ async function displayResult(resultDiv, url, contentType, text) {
   }
   const copyButton = `<button id="sriCopy">Copy</button>`;
 
-  console.log("It's working")
+  console.log("It's working");
   resultDiv.insertAdjacentHTML('afterend', copyButton);
   const sriCopy = document.getElementById("sriCopy");
 
