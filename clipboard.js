@@ -2,6 +2,7 @@
 
 function createNode(text) {
   const node = document.getElementById('forCopy');
+
   node.textContent = text;
   return node;
 }
