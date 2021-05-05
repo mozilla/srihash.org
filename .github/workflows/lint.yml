@@ -5,7 +5,9 @@ name: Lint
 on: 
   pull_request:
     branches: [ $default-branch ]
-  [push]
+  push:
+    branches:
+      - "**"
 jobs: 
   Lint:
     runs-on: ubuntu-latest
