@@ -2,7 +2,10 @@
 # https://github.com/actions/starter-workflows/blob/main/ci/node.js.yml
 
 name: Lint
-on: [push]
+on: 
+  pull_request:
+    branches: [ $default-branch ]
+  [push]
 jobs: 
   Lint:
     runs-on: ubuntu-latest
