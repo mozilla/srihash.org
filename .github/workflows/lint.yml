@@ -4,10 +4,9 @@
 name: Lint
 on: 
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ gh-pages ]
   push:
-    branches:
-      - "**"
+    branches: [ "**" ]
 jobs: 
   Lint:
     runs-on: ubuntu-latest
