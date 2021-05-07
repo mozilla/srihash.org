@@ -89,6 +89,10 @@ footer {
   opacity: 0.7;
 }
 
+#forCopy {
+  display: none;
+}
+
 .container {
   width: auto;
   max-width: 960px;
@@ -141,7 +145,8 @@ footer {
   text-align: center;
 }
 
-#sriApp input[type="submit"] {
+#sriApp input[type="submit"],
+#sriCopy {
   cursor: pointer;
   color: #fff;
   background-color: #007da6;
@@ -170,6 +175,10 @@ footer {
   white-space: pre-line;
   background-color: #3a3a3a;
   color: #fff;
+}
+
+#sriCopy {
+  width: 4rem;
 }
 
 #sriSnippet.is-active {

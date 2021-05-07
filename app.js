@@ -1,9 +1,11 @@
+/* global copyText */
+
 "use strict";
 
 function getErrorText(url) {
   const printableURL = encodeURI(url);
 
-  if (url.startsWith("http")) {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
     return `
     Could not fetch from URL <em><a href="${printableURL}">${printableURL}</a></em>.<br>
     Your issue could be one of the following:
@@ -24,6 +26,9 @@ function resetInterface() {
   );
   document.getElementById("sriSnippet").innerText = "";
   document.getElementById("sriError").innerText = "";
+  if (document.getElementById("sriCopy")) {
+    document.getElementById("sriCopy").remove();
+  }
   document.getElementById("sriSnippet").classList.remove('is-active');
 }
 
@@ -44,6 +49,58 @@ async function hashText(message, algorithm) {
   return digest;
 }
 
+function parseContentType(type) {
+  if (!type) {
+    return "script";
+  }
+  const fileType = type.split(";");
+
+  const REGEX = /^text\/css$/;
+  const isStylesheet = REGEX.test(fileType[0]);
+
+  if (isStylesheet) {
+    return 'style';
+  }
+  return 'script';
+}
+
+async function integrityMetadata(text) {
+  const hashBuffer = await hashText(text); // Array Buffer
+  const base64string = btoa(
+    String.fromCharCode(...new Uint8Array(hashBuffer))
+  );
+
+  return `sha384-${base64string}`;
+}
+
+async function displayResult(resultDiv, url, contentType, text) {
+  const integrity = await integrityMetadata(text);
+
+  resultDiv.classList.add("is-active");
+  if (contentType === "script") {
+    const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
+      url
+    )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
+
+    resultDiv.innerHTML = scriptEl;
+  } else {
+    const linkEl = `<span style="color: #ffa07a">&lt;link rel=<span style="color:#abe338">"stylesheet"</span> href=</span><span style="color:#abe338">&quot;${encodeURI(
+      url
+    )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrity}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;</span>`;
+
+    resultDiv.innerHTML = linkEl;
+  }
+  const copyButton = `<button id="sriCopy">Copy</button>`;
+
+  console.log("It's working");
+  resultDiv.insertAdjacentHTML('afterend', copyButton);
+  const sriCopy = document.getElementById("sriCopy");
+
+  sriCopy.addEventListener("click", () => {
+    copyText(resultDiv.innerText);
+  });
+}
+
 async function formSubmit(event) {
   event.preventDefault();
   resetInterface();
@@ -59,6 +116,8 @@ async function formSubmit(event) {
 
     console.info("Response", response);
     if (response.status === 200) {
+      const type = response.headers.get("content-type");
+      const contentType = parseContentType(type);
       const text = await response.text();
       const hashAlgorithm = hashEl.value;
       const hashBuffer = await hashText(text, hashAlgorithm); // Array Buffer

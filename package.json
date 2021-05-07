@@ -17,15 +17,14 @@
     "eslint": "eslint . --cache --cache-location node_modules/.cache/.eslintcache",
     "stylelint": "stylelint \"*.css\" --cache --cache-location node_modules/.cache/.stylelintcache",
     "lint": "npm-run-all --continue-on-error --parallel stylelint eslint",
-    "test": "npm run lint",
-    "travis": "npm run lint"
+    "test": "npm run lint"
   },
   "devDependencies": {
-    "eslint": "^7.7.0",
+    "eslint": "^7.25.0",
     "glob": "^7.1.4",
     "npm-run-all": "^4.1.5",
-    "stylelint": "^13.6.1",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0"
   },
   "engines": {
     "node": "10.x"
