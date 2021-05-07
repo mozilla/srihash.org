@@ -64,18 +64,16 @@ function parseContentType(type) {
   return 'script';
 }
 
-async function integrityMetadata(text) {
-  const hashBuffer = await hashText(text); // Array Buffer
+async function integrityMetadata(text, algorithm) {
+  const hashBuffer = await hashText(text, algorithm); // Array Buffer
   const base64string = btoa(
     String.fromCharCode(...new Uint8Array(hashBuffer))
   );
 
-  return `sha384-${base64string}`;
+  return `${algorithm}-${base64string}`;
 }
 
-async function displayResult(resultDiv, url, contentType, text) {
-  const integrity = await integrityMetadata(text);
-
+function displayResult(resultDiv, url, contentType, integrity) {
   resultDiv.classList.add("is-active");
   if (contentType === "script") {
     const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
@@ -120,17 +118,9 @@ async function formSubmit(event) {
       const contentType = parseContentType(type);
       const text = await response.text();
       const hashAlgorithm = hashEl.value;
-      const hashBuffer = await hashText(text, hashAlgorithm); // Array Buffer
-      const base64string = btoa(
-        String.fromCharCode(...new Uint8Array(hashBuffer))
-      );
-      const integrityMetadata = `${hashAlgorithm}-${base64string}`;
-      const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
-        url
-      )}&quot;</span> <span style="color: #ffa07a">integrity=</span><span style="color:#abe338">&quot;${integrityMetadata}&quot;</span> <span style="color: #ffa07a">crossorigin=</span><span style="color:#abe338">&quot;anonymous&quot;</span><span style="color: #ffa07a">&gt;&lt;/script&gt;</span>`;
+      const integrity = await integrityMetadata(text, hashAlgorithm);
 
-      resultDiv.classList.add("is-active");
-      resultDiv.innerHTML = scriptEl;
+      displayResult(resultDiv, url, contentType, integrity);
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
