@@ -37,7 +37,7 @@ function digestName(hashAlgorithm) {
     case "sha256": return "SHA-256";
     case "sha384": return "SHA-384";
     case "sha512": return "SHA-512";
-    default: throw new Error(`invalid hashing algorithm: ${hashAlgorithm}`);
+    default: return "SHA-384";
   }
 }
 
