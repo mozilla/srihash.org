@@ -32,12 +32,21 @@ function resetInterface() {
   document.getElementById("sriSnippet").classList.remove('is-active');
 }
 
-async function hashText(message) {
+function digestName(hashAlgorithm) {
+  switch (hashAlgorithm) {
+    case "sha256": return "SHA-256";
+    case "sha384": return "SHA-384";
+    case "sha512": return "SHA-512";
+    default: return "SHA-384";
+  }
+}
+
+async function hashText(message, algorithm) {
   const encoder = new TextEncoder();
   const data = encoder.encode(message);
-  const hash384 = await crypto.subtle.digest("SHA-384", data);
+  const digest = await crypto.subtle.digest(digestName(algorithm), data);
 
-  return hash384;
+  return digest;
 }
 
 function parseContentType(type) {
@@ -55,18 +64,16 @@ function parseContentType(type) {
   return 'script';
 }
 
-async function integrityMetadata(text) {
-  const hashBuffer = await hashText(text); // Array Buffer
+async function integrityMetadata(text, algorithm) {
+  const hashBuffer = await hashText(text, algorithm); // Array Buffer
   const base64string = btoa(
     String.fromCharCode(...new Uint8Array(hashBuffer))
   );
 
-  return `sha384-${base64string}`;
+  return `${algorithm}-${base64string}`;
 }
 
-async function displayResult(resultDiv, url, contentType, text) {
-  const integrity = await integrityMetadata(text);
-
+function displayResult(resultDiv, url, contentType, integrity) {
   resultDiv.classList.add("is-active");
   if (contentType === "script") {
     const scriptEl = `<span style="color: #ffa07a">&lt;script src=</span><span style="color:#abe338">&quot;${encodeURI(
@@ -96,6 +103,7 @@ async function formSubmit(event) {
   event.preventDefault();
   resetInterface();
   const inputEl = document.getElementById("url");
+  const hashEl = document.getElementById("sriHash");
   const url = inputEl.value;
   const resultDiv = document.getElementById("sriSnippet");
   const errorDiv = document.getElementById("sriError");
@@ -109,8 +117,10 @@ async function formSubmit(event) {
       const type = response.headers.get("content-type");
       const contentType = parseContentType(type);
       const text = await response.text();
+      const hashAlgorithm = hashEl.value;
+      const integrity = await integrityMetadata(text, hashAlgorithm);
 
-      displayResult(resultDiv, url, contentType, text);
+      displayResult(resultDiv, url, contentType, integrity);
     } else {
       console.error("Non-OK HTTP response status. Error.");
       errorDiv.innerHTML = getErrorText(url);
