@@ -168,7 +168,7 @@ footer {
   margin: 1rem 0 0;
 }
 
-#sriSnippet {
+#sri-snippet {
   padding: 0;
   margin: 0;
   border: 0;
@@ -181,7 +181,7 @@ footer {
   width: 4rem;
 }
 
-#sriSnippet.is-active {
+#sri-snippet.is-active {
   padding: 1rem;
   word-break: break-all;
 }
@@ -232,7 +232,7 @@ footer {
   #sri-app select {
     min-width: 100px;
   }
-  #sriSnippet {
+  #sri-snippet {
     font-size: 0.9rem;
   }
 }

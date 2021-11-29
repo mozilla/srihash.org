@@ -24,12 +24,12 @@ function resetInterface() {
   console.log(
     "Please ignore SRI warnings above this line, as they are part of the SRI support check (badge at the bottom of the page)."
   );
-  document.getElementById("sriSnippet").innerText = "";
+  document.getElementById("sri-snippet").innerText = "";
   document.getElementById("sriError").innerText = "";
   if (document.getElementById("sri-copy")) {
     document.getElementById("sri-copy").remove();
   }
-  document.getElementById("sriSnippet").classList.remove('is-active');
+  document.getElementById("sri-snippet").classList.remove('is-active');
 }
 
 function digestName(hashAlgorithm) {
@@ -105,7 +105,7 @@ async function formSubmit(event) {
   const inputEl = document.getElementById("url");
   const hashEl = document.getElementById("sriHash");
   const url = inputEl.value;
-  const resultDiv = document.getElementById("sriSnippet");
+  const resultDiv = document.getElementById("sri-snippet");
   const errorDiv = document.getElementById("sriError");
 
   console.info("Trying", url);
