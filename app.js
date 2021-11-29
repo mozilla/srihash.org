@@ -25,7 +25,7 @@ function resetInterface() {
     "Please ignore SRI warnings above this line, as they are part of the SRI support check (badge at the bottom of the page)."
   );
   document.getElementById("sri-snippet").innerText = "";
-  document.getElementById("sriError").innerText = "";
+  document.getElementById("sri-error").innerText = "";
   if (document.getElementById("sri-copy")) {
     document.getElementById("sri-copy").remove();
   }
@@ -106,7 +106,7 @@ async function formSubmit(event) {
   const hashEl = document.getElementById("sriHash");
   const url = inputEl.value;
   const resultDiv = document.getElementById("sri-snippet");
-  const errorDiv = document.getElementById("sriError");
+  const errorDiv = document.getElementById("sri-error");
 
   console.info("Trying", url);
   try {
