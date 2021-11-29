@@ -146,7 +146,7 @@ footer {
 }
 
 #sri-app input[type="submit"],
-#sriCopy {
+#sri-copy {
   cursor: pointer;
   color: #fff;
   background-color: #007da6;
@@ -177,7 +177,7 @@ footer {
   color: #fff;
 }
 
-#sriCopy {
+#sri-copy {
   width: 4rem;
 }
 
