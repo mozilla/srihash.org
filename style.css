@@ -89,7 +89,7 @@ footer {
   opacity: 0.7;
 }
 
-#forCopy {
+#for-copy {
   display: none;
 }
 
@@ -117,48 +117,48 @@ footer {
 /*
  * App
  */
-#sriApp {
+#sri-app {
   font-size: 1.5rem;
 }
 
-#sriApp input,
-#sriApp select {
+#sri-app input,
+#sri-app select {
   font-size: 0.9rem;
   height: 2.25rem;
   display: inline-block;
 }
 
-#sriApp input[type="url"],
-#sriApp select {
+#sri-app input[type="url"],
+#sri-app select {
   background-color: #fff;
   color: #767676;
   border: 1px solid #ccc;
 }
 
-#sriApp input[type="url"] {
+#sri-app input[type="url"] {
   width: 60%;
   padding: 0 2%;
 }
 
-#sriApp select {
+#sri-app select {
   width: 10%;
   text-align: center;
 }
 
-#sriApp input[type="submit"],
-#sriCopy {
+#sri-app input[type="submit"],
+#sri-copy {
   cursor: pointer;
   color: #fff;
   background-color: #007da6;
   width: 20%;
 }
 
-#sriApp label {
+#sri-app label {
   font-size: 1.5rem;
   padding-right: 1rem;
 }
 
-#sriApp iframe {
+#sri-app iframe {
   width: calc(100% - 2rem);
   height: 5rem;
   padding: 1rem;
@@ -168,7 +168,7 @@ footer {
   margin: 1rem 0 0;
 }
 
-#sriSnippet {
+#sri-snippet {
   padding: 0;
   margin: 0;
   border: 0;
@@ -177,16 +177,16 @@ footer {
   color: #fff;
 }
 
-#sriCopy {
+#sri-copy {
   width: 4rem;
 }
 
-#sriSnippet.is-active {
+#sri-snippet.is-active {
   padding: 1rem;
   word-break: break-all;
 }
 
-#sriError {
+#sri-error {
   font-size: 16pt;
   text-align: left;
   background-color: #ffb6c1;
@@ -220,19 +220,19 @@ footer {
     text-align: center;
   }
 
-  #sriForm {
+  #sri-form {
     margin-bottom: 0.75rem;
   }
-  #sriApp input {
+  #sri-app input {
     margin-top: 0.75rem;
   }
-  #sriApp input[type="url"] {
+  #sri-app input[type="url"] {
     width: 96%; /* 100% - 2%(padding) * 2(both side) */
   }
-  #sriApp select {
+  #sri-app select {
     min-width: 100px;
   }
-  #sriSnippet {
+  #sri-snippet {
     font-size: 0.9rem;
   }
 }

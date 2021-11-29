@@ -24,12 +24,12 @@ function resetInterface() {
   console.log(
     "Please ignore SRI warnings above this line, as they are part of the SRI support check (badge at the bottom of the page)."
   );
-  document.getElementById("sriSnippet").innerText = "";
-  document.getElementById("sriError").innerText = "";
-  if (document.getElementById("sriCopy")) {
-    document.getElementById("sriCopy").remove();
+  document.getElementById("sri-snippet").innerText = "";
+  document.getElementById("sri-error").innerText = "";
+  if (document.getElementById("sri-copy")) {
+    document.getElementById("sri-copy").remove();
   }
-  document.getElementById("sriSnippet").classList.remove('is-active');
+  document.getElementById("sri-snippet").classList.remove('is-active');
 }
 
 function digestName(hashAlgorithm) {
@@ -88,11 +88,11 @@ function displayResult(resultDiv, url, contentType, integrity) {
 
     resultDiv.innerHTML = linkEl;
   }
-  const copyButton = `<button id="sriCopy">Copy</button>`;
+  const copyButton = `<button id="sri-copy">Copy</button>`;
 
   console.log("It's working");
   resultDiv.insertAdjacentHTML('afterend', copyButton);
-  const sriCopy = document.getElementById("sriCopy");
+  const sriCopy = document.getElementById("sri-copy");
 
   sriCopy.addEventListener("click", () => {
     copyText(resultDiv.innerText);
@@ -105,8 +105,8 @@ async function formSubmit(event) {
   const inputEl = document.getElementById("url");
   const hashEl = document.getElementById("sriHash");
   const url = inputEl.value;
-  const resultDiv = document.getElementById("sriSnippet");
-  const errorDiv = document.getElementById("sriError");
+  const resultDiv = document.getElementById("sri-snippet");
+  const errorDiv = document.getElementById("sri-error");
 
   console.info("Trying", url);
   try {
@@ -132,5 +132,5 @@ async function formSubmit(event) {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  document.getElementById("sriForm").addEventListener("submit", formSubmit);
+  document.getElementById("sri-form").addEventListener("submit", formSubmit);
 });

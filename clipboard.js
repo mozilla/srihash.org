@@ -1,7 +1,7 @@
 "use strict";
 
 function createNode(text) {
-  const node = document.getElementById('forCopy');
+  const node = document.getElementById('for-copy');
 
   node.textContent = text;
   return node;
