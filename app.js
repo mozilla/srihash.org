@@ -132,5 +132,5 @@ async function formSubmit(event) {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  document.getElementById("sriForm").addEventListener("submit", formSubmit);
+  document.getElementById("sri-form").addEventListener("submit", formSubmit);
 });
