@@ -192,6 +192,14 @@ footer {
   background-color: #ffb6c1;
 }
 
+#warning {
+  background: #d5e47f;
+  margin: 0.8rem 0 0;
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 /*
  * Mobile styling
  */
