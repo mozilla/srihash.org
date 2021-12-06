@@ -77,13 +77,14 @@ function checkBrowserDependency(url) {
   const URL_LIST = [
     'fonts.googleapis.com'
   ];
-  const [, domain] = url.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
+  const u = new URL(url);
+  const hostName = u.hostname;
 
-  if (URL_LIST.find((e) => e === domain)) {
-    return [true, domain];
+  if (URL_LIST.find((e) => e === hostName)) {
+    return [true, hostName];
   }
 
-  return [false, domain];
+  return [false, hostName];
 }
 
 function displayResult(resultDiv, url, contentType, integrity) {
