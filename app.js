@@ -80,7 +80,7 @@ function checkBrowserDependency(url) {
   const u = new URL(url);
   const hostName = u.hostname;
 
-  if (URL_LIST.find((e) => e === hostName)) {
+  if (URL_LIST.includes(hostName)) {
     return [true, hostName];
   }
 
