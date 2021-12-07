@@ -114,17 +114,17 @@ function displayResult(resultDiv, url, contentType, integrity) {
 
   const [isBrowserDependent, domain] = checkBrowserDependency(url);
 
-  if (isBrowserDependent) {
-    const warning = `<div id="warning">This integrity hash might not work on browsers other than the one you are currently using since ${domain} serves different contents depending on browsers.</div>`;
-
-    sriCopy.insertAdjacentHTML('afterend', warning);
-    return;
-  }
   const warningElement = document.getElementById("warning");
 
   if (warningElement) {
     warningElement.remove();
   }
+  if (!isBrowserDependent) {
+    return;
+  }
+  const warning = `<div id="warning">This integrity hash might not work on browsers other than the one you are currently using since ${domain} serves different contents depending on browsers.</div>`;
+
+  sriCopy.insertAdjacentHTML('afterend', warning);
 }
 
 async function formSubmit(event) {
