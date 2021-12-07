@@ -73,6 +73,20 @@ async function integrityMetadata(text, algorithm) {
   return `${algorithm}-${base64string}`;
 }
 
+function checkBrowserDependency(url) {
+  const URL_LIST = [
+    'fonts.googleapis.com'
+  ];
+  const u = new URL(url);
+  const hostName = u.hostname;
+
+  if (URL_LIST.includes(hostName)) {
+    return [true, hostName];
+  }
+
+  return [false, hostName];
+}
+
 function displayResult(resultDiv, url, contentType, integrity) {
   resultDiv.classList.add("is-active");
   if (contentType === "script") {
@@ -97,6 +111,20 @@ function displayResult(resultDiv, url, contentType, integrity) {
   sriCopy.addEventListener("click", () => {
     copyText(resultDiv.innerText);
   });
+
+  const [isBrowserDependent, domain] = checkBrowserDependency(url);
+
+  const warningElement = document.getElementById("warning");
+
+  if (warningElement) {
+    warningElement.remove();
+  }
+  if (!isBrowserDependent) {
+    return;
+  }
+  const warning = `<div id="warning">This integrity hash might not work on browsers other than the one you are currently using since ${domain} serves different contents depending on browsers.</div>`;
+
+  sriCopy.insertAdjacentHTML('afterend', warning);
 }
 
 async function formSubmit(event) {
