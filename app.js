@@ -41,10 +41,8 @@ function digestName(hashAlgorithm) {
   }
 }
 
-async function hashText(message, algorithm) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(message);
-  const digest = await crypto.subtle.digest(digestName(algorithm), data);
+async function hashText(buffer, algorithm) {
+  const digest = await crypto.subtle.digest(digestName(algorithm), buffer);
 
   return digest;
 }
@@ -64,8 +62,8 @@ function parseContentType(type) {
   return 'script';
 }
 
-async function integrityMetadata(text, algorithm) {
-  const hashBuffer = await hashText(text, algorithm); // Array Buffer
+async function integrityMetadata(buffer, algorithm) {
+  const hashBuffer = await hashText(buffer, algorithm);
   const base64string = btoa(
     String.fromCharCode(...new Uint8Array(hashBuffer))
   );
@@ -144,9 +142,9 @@ async function formSubmit(event) {
     if (response.status === 200) {
       const type = response.headers.get("content-type");
       const contentType = parseContentType(type);
-      const text = await response.text();
+      const buffer = await response.arrayBuffer();
       const hashAlgorithm = hashEl.value;
-      const integrity = await integrityMetadata(text, hashAlgorithm);
+      const integrity = await integrityMetadata(buffer, hashAlgorithm);
 
       displayResult(resultDiv, url, contentType, integrity);
     } else {
