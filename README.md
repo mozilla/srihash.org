@@ -12,7 +12,7 @@ You'll need Node.js 10.x and npm for linting and a local server for testing
 Clone the git repository and install dependencies:
 
 ```shell
-git clone git://github.com/mozilla/srihash.org.git
+git clone https://github.com/mozilla/srihash.org.git
 cd srihash.org
 npm install
 ```
