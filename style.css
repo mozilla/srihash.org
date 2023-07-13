@@ -204,7 +204,7 @@ footer {
  * Mobile styling
  */
 
-@media (max-width: 960px) {
+@media (width <= 960px) {
   nav {
     padding: 0.75rem 0;
     text-align: center;
