@@ -3,9 +3,6 @@
   "rules": {
     "at-rule-empty-line-before": null,
     "at-rule-no-vendor-prefix": null,
-    "block-closing-brace-empty-line-before": null,
-    "block-closing-brace-newline-after": null,
-    "block-opening-brace-space-before": null,
     "color-hex-length": "short",
     "color-named": "never",
     "declaration-empty-line-before": null,
@@ -15,7 +12,6 @@
     "function-url-no-scheme-relative": true,
     "function-url-quotes": "always",
     "length-zero-no-unit": true,
-    "max-line-length": null,
     "media-feature-name-no-vendor-prefix": null,
     "no-descending-specificity": null,
     "no-duplicate-selectors": true,
