@@ -1,11 +1,13 @@
-# SRI Hash Generator
+# Archived Repository.
+
+**This repository is archived**. 
+
+We **do not** expect to introduce new functionality or any other changes to this web page.
+
+---
 
 This is the code behind the <https://www.srihash.org/> website. It generates [subresource integrity](https://www.w3.org/TR/SRI/) hashes.
 
-[![Build Status](https://travis-ci.org/mozilla/srihash.org.svg?branch=master)](https://travis-ci.org/mozilla/srihash.org)
-[![devDependencies Status](https://david-dm.org/mozilla/srihash.org/dev-status.svg)](https://david-dm.org/mozilla/srihash.org?type=dev)
-
-## Install
 
 You'll need Node.js 10.x and npm for linting and a local server for testing
 
@@ -17,7 +19,7 @@ cd srihash.org
 npm install
 ```
 
-## Linters
+#### Linters
 
 Run tests with:
 
@@ -25,7 +27,7 @@ Run tests with:
 npm run lint
 ```
 
-## Code of Conduct
+#### Code of Conduct
 This repository is governed by Mozilla's code of conduct and etiquette guidelines.
 For more details, please read the
 [Mozilla Community Participation Guidelines](https://www.mozilla.org/about/governance/policies/participation/) or [CODE_OF_CONDUCT.md].
